@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+
+  /* neutrals (warm, matches the org's logo background) */
+  --color-bg: oklch(0.98 0.006 60);
+  --color-surface: oklch(1 0 0);
+  --color-surface-soft: oklch(0.97 0.006 60);
+  --color-surface-soft-2: oklch(0.955 0.012 60);
+  --color-border: oklch(0.88 0.01 60);
+  --color-border-soft: oklch(0.9 0.01 60);
+  --color-border-softer: oklch(0.93 0.01 60);
+
+  /* org navy — replaces the former near-black "ink", per the live
+     hopeforthenations7.org brand (#03307c / #011332) */
+  --color-ink: #03307c;
+  --color-ink-dark: #011332;
+  --color-ink-soft: #2e5fa0;
+  --color-sidebar-inactive: #9fb8d9;
+  --color-muted: oklch(0.4 0.015 60);
+  --color-muted-2: oklch(0.45 0.015 60);
+  --color-label: oklch(0.5 0.015 60);
+
+  /* navy/sky-blue accent — primary CTAs, stats, active states.
+     accent-strong (#5ecbea) is the org's real headline sky-blue. */
+  --color-accent: #011332;
+  --color-accent-deep: var(--color-blue);
+  --color-accent-strong: #5ecbea;
+  --color-accent-soft: #eaf4fc;
+  --color-accent-soft-2: #dceefa;
+  --color-accent-ink: #011332;
+
+  /* blue accent — links, section eyebrows, admin bars */
+  --color-blue: oklch(0.42 0.13 223);
+  --color-blue-hover: oklch(0.592 0.148 223);
+  --color-blue-soft: oklch(0.93 0.05 223);
+
+  /* status colors */
+  --color-success-bg: oklch(0.93 0.08 145);
+  --color-success-fg: oklch(0.35 0.1 145);
+  --color-success-text: oklch(0.5 0.14 145);
+  --color-neutral-bg: oklch(0.9 0.01 60);
+  --color-neutral-fg: oklch(0.45 0.015 60);
+}
+
+@layer base {
+  body {
+    background: var(--color-bg);
+  }
+
+  a {
+    color: var(--color-blue);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-blue-hover);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: #c9e8fa;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

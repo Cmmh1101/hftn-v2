@@ -1,0 +1,312 @@
+{
+  "meta": {
+    "title": "Hope For The Nations",
+    "description": "Faith · Education · Relief — blessing communities with the tools to thrive."
+  },
+  "regions": {
+    "southAmerica": "South America",
+    "centralAmerica": "Central America",
+    "northAmerica": "North America",
+    "europe": "Europe"
+  },
+  "nav": {
+    "home": "Home",
+    "programs": "Programs",
+    "impact": "Impact",
+    "events": "Events",
+    "stories": "Stories",
+    "gallery": "Gallery",
+    "about": "About",
+    "contact": "Contact",
+    "donate": "Donate",
+    "tagline": "Faith · Education · Relief"
+  },
+  "footer": {
+    "blurb": "Blessing communities with the tools to improve their living situation through hope and the Gospel.",
+    "explore": "EXPLORE",
+    "organization": "ORGANIZATION",
+    "follow": "FOLLOW",
+    "form990": "Form 990",
+    "the501c3": "501(c)(3)",
+    "copyright": "Copyright {year} © Hope For The Nations"
+  },
+  "home": {
+    "eyebrow": "Working across four continents",
+    "heroTitle": "Blessing communities with the tools to thrive.",
+    "heroBody": "We equip vulnerable children, families, and communities through education, jornadas of outreach, and sustainable programs — rooted in Christian compassion and carried out with local partners around the world.",
+    "viewPrograms": "View Our Programs",
+    "donate": "Donate",
+    "statCountries": "Countries served",
+    "statJornadas": "Jornadas completed",
+    "statStudents": "School of Hope students",
+    "statFamilies": "Families reached",
+    "beyondTitle": "Beyond Venezuela",
+    "ourStory": "Our story →",
+    "beyondBody": "Hope for the Nations began its work in Venezuela. As needs have grown, so has our reach — we now support jornadas and programs across South America, Central America, North America, and Europe, guided by where the need is greatest.",
+    "regionSaLabel": "SOUTH AMERICA",
+    "regionSaPlaces": "Venezuela, Colombia, Peru",
+    "regionCaLabel": "CENTRAL AMERICA",
+    "regionCaPlaces": "Honduras, Guatemala",
+    "regionNaLabel": "NORTH AMERICA",
+    "regionNaPlaces": "United States",
+    "regionEuLabel": "EUROPE",
+    "regionEuPlaces": "Spain",
+    "flagshipEyebrow": "Flagship program",
+    "flagshipTitle": "School of Hope",
+    "flagshipBody": "Our own accredited online high school, registered in the United States, delivering education to students worldwide — the centerpiece of our work today.",
+    "learnMore": "Learn about School of Hope",
+    "upcomingEventTitle": "Upcoming Fundraising Event",
+    "allEvents": "All events →",
+    "storiesTitle": "Stories of Hope",
+    "readMore": "Read more →",
+    "jornadasTitle": "From Our Jornadas",
+    "fullGallery": "Full gallery →",
+    "followUs": "Follow Us",
+    "latest": "LATEST — @hopeforthenations7",
+    "quote": "“Grateful for every hand that showed up this weekend’s jornada in Trujillo. Thank you for making this possible.”"
+  },
+  "programCategory": {
+    "flagship": "Flagship",
+    "continuous": "Continuous",
+    "jornada": "Jornada",
+    "relief": "Relief"
+  },
+  "programs": {
+    "eyebrow": "What we do",
+    "title": "Our Programs",
+    "intro": "From children to elders, our programs meet communities where the need is — delivered through continuous ministries and short-term jornadas alike.",
+    "jornadasTitle": "Jornadas",
+    "jornadasIntro": "Short-term outreach days carried out wherever a community needs us — combining several forms of service in a single visit.",
+    "jornadaMedical": "Medical Care",
+    "jornadaFeeding": "Feeding",
+    "jornadaEvangelization": "Evangelization",
+    "jornadaYouth": "Youth Outreach",
+    "jornadaResource": "Resource Drives"
+  },
+  "impact": {
+    "eyebrow": "For partners & grant-makers",
+    "title": "Our Impact",
+    "intro": "Numbers behind eleven years of work across four regions — shared openly so funders and partners can see exactly where support goes.",
+    "statCountries": "Countries served",
+    "statJornadas": "Jornadas completed",
+    "statStudents": "School of Hope students",
+    "statDeployed": "Deployed in 2025",
+    "reachByRegion": "Reach by Region",
+    "families": "{count} families",
+    "reportsTitle": "Reports & Financials",
+    "annualReport": "2025 Annual Report",
+    "form990": "Form 990",
+    "letter501c3": "501(c)(3) Letter",
+    "pdf": "PDF",
+    "ctaTitle": "Considering a grant or partnership?",
+    "ctaBody": "We’re happy to walk through our metrics and reporting in detail.",
+    "talkToTeam": "Talk to our team"
+  },
+  "events": {
+    "eyebrow": "Get involved",
+    "title": "Events",
+    "intro": "Fundraising events that make next year's jornadas possible."
+  },
+  "stories": {
+    "eyebrow": "Real lives, real impact",
+    "title": "Stories of Hope",
+    "fromBlog": "From the Blog"
+  },
+  "gallery": {
+    "eyebrow": "Jornadas realized",
+    "title": "Gallery",
+    "intro": "A look back at outreach days across every region we serve.",
+    "allRegions": "All Regions"
+  },
+  "about": {
+    "eyebrow": "Our story",
+    "title": "About Hope for the Nations",
+    "missionTitle": "Mission",
+    "missionBody": "We empower vulnerable children, families, and communities through education, economic opportunity, humanitarian assistance, and sustainable development — partnering with local leaders to build lasting change.",
+    "visionTitle": "Vision",
+    "visionBody": "A world where every child and family, wherever they are, has access to education, opportunity, and spiritual guidance — and where communities thrive with faith, dignity, and resilience.",
+    "journeyTitle": "Our Journey",
+    "journey2015": "Founded, first jornadas in Venezuela",
+    "journey2019": "School of Hope launches",
+    "journey2023": "First jornadas outside Venezuela",
+    "journey2026": "Active in 14 countries, 4 regions",
+    "leadershipTitle": "Leadership",
+    "meetTeamLink": "Meet our team →"
+  },
+  "team": {
+    "eyebrow": "Our people",
+    "title": "Leadership & Team",
+    "intro": "Behind every student, every family, and every program is a team of passionate individuals committed to making quality education and lasting hope accessible to all. At Hope for the Nations, we believe lasting impact is created when people with different talents come together with one shared purpose: transforming lives through education, compassion, and service.",
+    "leadershipTitle": "Our Leadership",
+    "boardTitle": "Board of Directors",
+    "boardBody": "Our Board of Directors provides strategic leadership, governance, and accountability to ensure that Hope for the Nations remains faithful to its mission while pursuing sustainable growth and long-term impact.",
+    "boardComingSoon": "Board members will be introduced here soon.",
+    "schoolTitle": "School of Hope International",
+    "schoolBody": "School of Hope International is Hope for the Nations' flagship education program — an accredited online high school led by a dedicated multidisciplinary team in academics, admissions, technology, and communications. More details about that team will be shared on School of Hope International's own site.",
+    "volunteersTitle": "Volunteers & Partners",
+    "volunteersBody": "Many of our programs are made possible through the dedication of volunteers who generously contribute their time, expertise, and hearts to serve others. Together, we are building opportunities that change lives.",
+    "cultureTitle": "Our Culture",
+    "cultureIntro": "We believe that strong organizations are built on strong values. Everything we do is guided by our commitment to:",
+    "valueIntegrityTitle": "Integrity",
+    "valueIntegrityBody": "We act with honesty, transparency, and accountability.",
+    "valueCompassionTitle": "Compassion",
+    "valueCompassionBody": "We serve others with empathy and respect.",
+    "valuePurposeTitle": "Purpose",
+    "valuePurposeBody": "We are driven by a mission greater than ourselves.",
+    "valueExcellenceTitle": "Excellence",
+    "valueExcellenceBody": "We pursue quality in everything we do.",
+    "valueInnovationTitle": "Innovation",
+    "valueInnovationBody": "We embrace creativity and technology to improve education.",
+    "valueFaithTitle": "Faith",
+    "valueFaithBody": "We believe every person has God-given potential.",
+    "valueServiceTitle": "Service",
+    "valueServiceBody": "We lead by serving our students, families, and communities."
+  },
+  "donate": {
+    "eyebrow": "Make an impact",
+    "title": "Donate",
+    "intro": "Every gift funds jornadas, School of Hope, and relief where it's needed most.",
+    "tier25Desc": "Feeds a family for a week",
+    "tier60Desc": "Supplies a jornada medical kit",
+    "tier150Desc": "One month of School of Hope tuition",
+    "tierCustom": "Custom",
+    "tierCustomDesc": "Choose your own amount",
+    "giveTo": "Give to",
+    "whereverNeeded": "Wherever needed most",
+    "giveOnce": "Give once",
+    "giveMonthly": "Give monthly",
+    "sponsorStudent": "Sponsor a Student",
+    "sponsorNote": "Sponsoring a School of Hope student commits to $150/month through the end of the current calendar year.",
+    "errorAmount": "Enter an amount of at least $1.",
+    "errorGeneric": "Something went wrong. Please try again."
+  },
+  "donateThankYou": {
+    "eyebrow": "Thank you",
+    "title": "Your gift is on its way to work.",
+    "body": "A receipt has been sent to your email. Thank you for standing with the communities we serve.",
+    "backHome": "Back to home"
+  },
+  "contact": {
+    "eyebrow": "We'd love to hear from you",
+    "title": "Contact",
+    "namePlaceholder": "Full name",
+    "emailPlaceholder": "Email",
+    "messagePlaceholder": "Message",
+    "send": "Send Message",
+    "sending": "Sending…",
+    "emailLabel": "EMAIL",
+    "hqLabel": "HEADQUARTERS",
+    "hqValue": "Orlando, Florida · USA",
+    "map": "MAP",
+    "errorFields": "Please fill in every field.",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "success": "Thanks — we'll be in touch soon."
+  },
+  "status": {
+    "Active": "Active",
+    "Planned": "Planned",
+    "Completed": "Completed",
+    "Draft": "Draft",
+    "Published": "Published"
+  },
+  "donationKind": {
+    "one_time": "One-time",
+    "monthly": "Monthly",
+    "sponsorship": "Sponsorship"
+  },
+  "admin": {
+    "roles": {
+      "admin": "Admin",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    },
+    "login": {
+      "tagline": "FOR THE NATIONS",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "signIn": "Sign in",
+      "signingIn": "Signing in…"
+    },
+    "nav": {
+      "overview": "Overview",
+      "programs": "Programs & Jornadas",
+      "events": "Events & Fundraising",
+      "donations": "Donations & Donors",
+      "content": "Blog & Stories",
+      "gallery": "Gallery / Media",
+      "users": "Users & Roles",
+      "signOut": "Sign out"
+    },
+    "topbar": {
+      "search": "Search programs, donors, posts...",
+      "newButton": "+ New"
+    },
+    "overview": {
+      "title": "Overview",
+      "donationsMtd": "Donations (MTD)",
+      "activeJornadas": "Active Jornadas",
+      "acrossRegions": "Across {count} regions",
+      "schoolOfHopeStudents": "School of Hope Students",
+      "upcomingEvents": "Upcoming Events",
+      "next": "Next: {date}",
+      "donationsByMonth": "Donations by month",
+      "reachByRegion": "Reach by region",
+      "recentActivity": "Recent activity",
+      "noActivity": "No activity yet.",
+      "activityDonation": "New donation of {amount} from {donor}",
+      "activityPostPublished": "\"{title}\" published",
+      "activityPostDrafted": "\"{title}\" saved as a draft",
+      "activityGalleryAdded": "Photos added for {location}"
+    },
+    "programs": {
+      "title": "Programs & Jornadas",
+      "newJornada": "+ New Jornada",
+      "colName": "NAME",
+      "colType": "TYPE",
+      "colRegion": "REGION",
+      "colParticipants": "PARTICIPANTS",
+      "colStatus": "STATUS",
+      "edit": "Edit"
+    },
+    "events": {
+      "title": "Events & Fundraising",
+      "newEvent": "+ New Event",
+      "raisedOf": "Raised {raised} of {goal}",
+      "manage": "Manage"
+    },
+    "donations": {
+      "title": "Donations & Donors",
+      "totalThisYear": "Total this year",
+      "recurringDonors": "Recurring donors",
+      "averageGift": "Average gift",
+      "colDonor": "DONOR",
+      "colAmount": "AMOUNT",
+      "colType": "TYPE",
+      "colDate": "DATE"
+    },
+    "content": {
+      "title": "Blog & Stories",
+      "newPost": "+ New Post",
+      "colTitle": "TITLE",
+      "colType": "TYPE",
+      "colAuthor": "AUTHOR",
+      "colStatus": "STATUS",
+      "edit": "Edit",
+      "typeBlog": "Blog",
+      "typeStory": "Story of Hope"
+    },
+    "gallery": {
+      "title": "Gallery / Media",
+      "uploadPhotos": "+ Upload Photos"
+    },
+    "users": {
+      "title": "Users & Roles",
+      "invitePlaceholder": "email@example.com",
+      "inviteButton": "+ Invite User",
+      "colName": "NAME",
+      "colRole": "ROLE",
+      "colRegion": "REGION",
+      "colLastActive": "LAST ACTIVE"
+    }
+  }
+}

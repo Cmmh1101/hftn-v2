@@ -1,0 +1,312 @@
+{
+  "meta": {
+    "title": "Hope For The Nations",
+    "description": "Fe · Educación · Ayuda — bendiciendo comunidades con las herramientas para prosperar."
+  },
+  "regions": {
+    "southAmerica": "Sudamérica",
+    "centralAmerica": "Centroamérica",
+    "northAmerica": "Norteamérica",
+    "europe": "Europa"
+  },
+  "nav": {
+    "home": "Inicio",
+    "programs": "Programas",
+    "impact": "Impacto",
+    "events": "Eventos",
+    "stories": "Historias",
+    "gallery": "Galería",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "donate": "Donar",
+    "tagline": "Fe · Educación · Ayuda"
+  },
+  "footer": {
+    "blurb": "Bendiciendo comunidades con las herramientas para mejorar su situación de vida a través de la esperanza y el Evangelio.",
+    "explore": "EXPLORAR",
+    "organization": "ORGANIZACIÓN",
+    "follow": "SÍGUENOS",
+    "form990": "Formulario 990",
+    "the501c3": "501(c)(3)",
+    "copyright": "Derechos reservados {year} © Hope For The Nations"
+  },
+  "home": {
+    "eyebrow": "Trabajando en cuatro continentes",
+    "heroTitle": "Bendiciendo comunidades con las herramientas para prosperar.",
+    "heroBody": "Equipamos a niños, familias y comunidades vulnerables mediante la educación, jornadas de ayuda y programas sostenibles — arraigados en la compasión cristiana y realizados junto a socios locales alrededor del mundo.",
+    "viewPrograms": "Ver Nuestros Programas",
+    "donate": "Donar",
+    "statCountries": "Países atendidos",
+    "statJornadas": "Jornadas realizadas",
+    "statStudents": "Estudiantes de School of Hope",
+    "statFamilies": "Familias alcanzadas",
+    "beyondTitle": "Más allá de Venezuela",
+    "ourStory": "Nuestra historia →",
+    "beyondBody": "Hope for the Nations comenzó su labor en Venezuela. A medida que las necesidades han crecido, también lo ha hecho nuestro alcance — hoy apoyamos jornadas y programas en Sudamérica, Centroamérica, Norteamérica y Europa, guiados por dónde la necesidad es mayor.",
+    "regionSaLabel": "SUDAMÉRICA",
+    "regionSaPlaces": "Venezuela, Colombia, Perú",
+    "regionCaLabel": "CENTROAMÉRICA",
+    "regionCaPlaces": "Honduras, Guatemala",
+    "regionNaLabel": "NORTEAMÉRICA",
+    "regionNaPlaces": "Estados Unidos",
+    "regionEuLabel": "EUROPA",
+    "regionEuPlaces": "España",
+    "flagshipEyebrow": "Programa insignia",
+    "flagshipTitle": "School of Hope",
+    "flagshipBody": "Nuestra propia preparatoria en línea acreditada, registrada en Estados Unidos, que brinda educación a estudiantes de todo el mundo — el eje central de nuestro trabajo hoy.",
+    "learnMore": "Conoce School of Hope",
+    "upcomingEventTitle": "Próximo Evento de Recaudación",
+    "allEvents": "Todos los eventos →",
+    "storiesTitle": "Historias de Esperanza",
+    "readMore": "Leer más →",
+    "jornadasTitle": "Desde Nuestras Jornadas",
+    "fullGallery": "Ver galería completa →",
+    "followUs": "Síguenos",
+    "latest": "LO ÚLTIMO — @hopeforthenations7",
+    "quote": "“Agradecidos por cada mano que se hizo presente en la jornada de este fin de semana en Trujillo. Gracias por hacer esto posible.”"
+  },
+  "programCategory": {
+    "flagship": "Insignia",
+    "continuous": "Continuo",
+    "jornada": "Jornada",
+    "relief": "Ayuda"
+  },
+  "programs": {
+    "eyebrow": "Lo que hacemos",
+    "title": "Nuestros Programas",
+    "intro": "Desde niños hasta adultos mayores, nuestros programas llegan a las comunidades donde existe la necesidad — a través de ministerios continuos y jornadas de corto plazo.",
+    "jornadasTitle": "Jornadas",
+    "jornadasIntro": "Días de ayuda de corto plazo realizados donde una comunidad nos necesita — combinando varias formas de servicio en una sola visita.",
+    "jornadaMedical": "Atención Médica",
+    "jornadaFeeding": "Alimentación",
+    "jornadaEvangelization": "Evangelización",
+    "jornadaYouth": "Ayuda Juvenil",
+    "jornadaResource": "Recolección de Recursos"
+  },
+  "impact": {
+    "eyebrow": "Para socios y donantes institucionales",
+    "title": "Nuestro Impacto",
+    "intro": "Las cifras detrás de once años de trabajo en cuatro regiones — compartidas abiertamente para que financiadores y socios vean exactamente a dónde va el apoyo.",
+    "statCountries": "Países atendidos",
+    "statJornadas": "Jornadas realizadas",
+    "statStudents": "Estudiantes de School of Hope",
+    "statDeployed": "Invertido en 2025",
+    "reachByRegion": "Alcance por Región",
+    "families": "{count} familias",
+    "reportsTitle": "Informes y Finanzas",
+    "annualReport": "Informe Anual 2025",
+    "form990": "Formulario 990",
+    "letter501c3": "Carta 501(c)(3)",
+    "pdf": "PDF",
+    "ctaTitle": "¿Consideras una donación institucional o alianza?",
+    "ctaBody": "Con gusto revisamos nuestras métricas e informes en detalle.",
+    "talkToTeam": "Habla con nuestro equipo"
+  },
+  "events": {
+    "eyebrow": "Involúcrate",
+    "title": "Eventos",
+    "intro": "Eventos de recaudación que hacen posibles las jornadas del próximo año."
+  },
+  "stories": {
+    "eyebrow": "Vidas reales, impacto real",
+    "title": "Historias de Esperanza",
+    "fromBlog": "Del Blog"
+  },
+  "gallery": {
+    "eyebrow": "Jornadas realizadas",
+    "title": "Galería",
+    "intro": "Un vistazo a los días de ayuda en cada región que atendemos.",
+    "allRegions": "Todas las Regiones"
+  },
+  "about": {
+    "eyebrow": "Nuestra historia",
+    "title": "Sobre Hope for the Nations",
+    "missionTitle": "Misión",
+    "missionBody": "Empoderamos a niños, familias y comunidades vulnerables mediante la educación, oportunidad económica, ayuda humanitaria y desarrollo sostenible — en alianza con líderes locales para construir un cambio duradero.",
+    "visionTitle": "Visión",
+    "visionBody": "Un mundo donde cada niño y familia, sin importar dónde estén, tenga acceso a educación, oportunidad y guía espiritual — y donde las comunidades prosperen con fe, dignidad y resiliencia.",
+    "journeyTitle": "Nuestra Trayectoria",
+    "journey2015": "Fundación, primeras jornadas en Venezuela",
+    "journey2019": "Lanzamiento de School of Hope",
+    "journey2023": "Primeras jornadas fuera de Venezuela",
+    "journey2026": "Presencia en 14 países, 4 regiones",
+    "leadershipTitle": "Liderazgo",
+    "meetTeamLink": "Conoce a nuestro equipo →"
+  },
+  "team": {
+    "eyebrow": "Nuestro equipo",
+    "title": "Liderazgo y Equipo",
+    "intro": "Detrás de cada estudiante, cada familia y cada programa hay un equipo de personas apasionadas comprometidas con hacer que una educación de calidad y una esperanza duradera sean accesibles para todos. En Hope for the Nations, creemos que el impacto duradero se logra cuando personas con talentos diferentes se unen con un propósito común: transformar vidas a través de la educación, la compasión y el servicio.",
+    "leadershipTitle": "Nuestro Liderazgo",
+    "boardTitle": "Junta Directiva",
+    "boardBody": "Nuestra Junta Directiva brinda liderazgo estratégico, gobernanza y rendición de cuentas para asegurar que Hope for the Nations se mantenga fiel a su misión mientras persigue un crecimiento sostenible y un impacto a largo plazo.",
+    "boardComingSoon": "Los miembros de la junta se presentarán aquí próximamente.",
+    "schoolTitle": "School of Hope International",
+    "schoolBody": "School of Hope International es el programa educativo insignia de Hope for the Nations — una preparatoria en línea acreditada dirigida por un equipo multidisciplinario dedicado en las áreas académica, de admisiones, tecnología y comunicaciones. Más detalles sobre ese equipo se compartirán en el propio sitio de School of Hope International.",
+    "volunteersTitle": "Voluntarios y Aliados",
+    "volunteersBody": "Muchos de nuestros programas son posibles gracias a la dedicación de voluntarios que generosamente aportan su tiempo, experiencia y corazón para servir a otros. Juntos, estamos construyendo oportunidades que transforman vidas.",
+    "cultureTitle": "Nuestra Cultura",
+    "cultureIntro": "Creemos que las organizaciones sólidas se construyen sobre valores sólidos. Todo lo que hacemos está guiado por nuestro compromiso con:",
+    "valueIntegrityTitle": "Integridad",
+    "valueIntegrityBody": "Actuamos con honestidad, transparencia y responsabilidad.",
+    "valueCompassionTitle": "Compasión",
+    "valueCompassionBody": "Servimos a otros con empatía y respeto.",
+    "valuePurposeTitle": "Propósito",
+    "valuePurposeBody": "Nos impulsa una misión más grande que nosotros mismos.",
+    "valueExcellenceTitle": "Excelencia",
+    "valueExcellenceBody": "Buscamos la calidad en todo lo que hacemos.",
+    "valueInnovationTitle": "Innovación",
+    "valueInnovationBody": "Adoptamos la creatividad y la tecnología para mejorar la educación.",
+    "valueFaithTitle": "Fe",
+    "valueFaithBody": "Creemos que cada persona tiene un potencial dado por Dios.",
+    "valueServiceTitle": "Servicio",
+    "valueServiceBody": "Lideramos sirviendo a nuestros estudiantes, familias y comunidades."
+  },
+  "donate": {
+    "eyebrow": "Genera un impacto",
+    "title": "Donar",
+    "intro": "Cada donación financia jornadas, School of Hope y ayuda donde más se necesita.",
+    "tier25Desc": "Alimenta a una familia durante una semana",
+    "tier60Desc": "Provee un kit médico para una jornada",
+    "tier150Desc": "Un mes de colegiatura en School of Hope",
+    "tierCustom": "Personalizado",
+    "tierCustomDesc": "Elige tu propio monto",
+    "giveTo": "Donar a",
+    "whereverNeeded": "Donde más se necesite",
+    "giveOnce": "Donar una vez",
+    "giveMonthly": "Donar mensualmente",
+    "sponsorStudent": "Apadrinar a un Estudiante",
+    "sponsorNote": "Apadrinar a un estudiante de School of Hope implica una donación mensual de $150 hasta el final del año calendario en curso.",
+    "errorAmount": "Ingresa un monto de al menos $1.",
+    "errorGeneric": "Algo salió mal. Por favor, inténtalo de nuevo."
+  },
+  "donateThankYou": {
+    "eyebrow": "Gracias",
+    "title": "Tu donación ya está en camino a hacer el bien.",
+    "body": "Se ha enviado un recibo a tu correo electrónico. Gracias por acompañar a las comunidades que servimos.",
+    "backHome": "Volver al inicio"
+  },
+  "contact": {
+    "eyebrow": "Nos encantaría saber de ti",
+    "title": "Contacto",
+    "namePlaceholder": "Nombre completo",
+    "emailPlaceholder": "Correo electrónico",
+    "messagePlaceholder": "Mensaje",
+    "send": "Enviar Mensaje",
+    "sending": "Enviando…",
+    "emailLabel": "CORREO ELECTRÓNICO",
+    "hqLabel": "SEDE PRINCIPAL",
+    "hqValue": "Orlando, Florida · EE. UU.",
+    "map": "MAPA",
+    "errorFields": "Por favor completa todos los campos.",
+    "errorGeneric": "Algo salió mal. Por favor, inténtalo de nuevo.",
+    "success": "Gracias — nos pondremos en contacto pronto."
+  },
+  "status": {
+    "Active": "Activo",
+    "Planned": "Planeado",
+    "Completed": "Completado",
+    "Draft": "Borrador",
+    "Published": "Publicado"
+  },
+  "donationKind": {
+    "one_time": "Única vez",
+    "monthly": "Mensual",
+    "sponsorship": "Apadrinamiento"
+  },
+  "admin": {
+    "roles": {
+      "admin": "Administrador",
+      "editor": "Editor",
+      "viewer": "Visualizador"
+    },
+    "login": {
+      "tagline": "FOR THE NATIONS",
+      "emailPlaceholder": "Correo electrónico",
+      "passwordPlaceholder": "Contraseña",
+      "signIn": "Iniciar sesión",
+      "signingIn": "Iniciando sesión…"
+    },
+    "nav": {
+      "overview": "Resumen",
+      "programs": "Programas y Jornadas",
+      "events": "Eventos y Recaudación",
+      "donations": "Donaciones y Donantes",
+      "content": "Blog e Historias",
+      "gallery": "Galería / Medios",
+      "users": "Usuarios y Roles",
+      "signOut": "Cerrar sesión"
+    },
+    "topbar": {
+      "search": "Buscar programas, donantes, publicaciones...",
+      "newButton": "+ Nuevo"
+    },
+    "overview": {
+      "title": "Resumen",
+      "donationsMtd": "Donaciones (mes actual)",
+      "activeJornadas": "Jornadas Activas",
+      "acrossRegions": "En {count} regiones",
+      "schoolOfHopeStudents": "Estudiantes de School of Hope",
+      "upcomingEvents": "Próximos Eventos",
+      "next": "Próximo: {date}",
+      "donationsByMonth": "Donaciones por mes",
+      "reachByRegion": "Alcance por región",
+      "recentActivity": "Actividad reciente",
+      "noActivity": "Aún no hay actividad.",
+      "activityDonation": "Nueva donación de {amount} de {donor}",
+      "activityPostPublished": "\"{title}\" publicado",
+      "activityPostDrafted": "\"{title}\" guardado como borrador",
+      "activityGalleryAdded": "Fotos agregadas para {location}"
+    },
+    "programs": {
+      "title": "Programas y Jornadas",
+      "newJornada": "+ Nueva Jornada",
+      "colName": "NOMBRE",
+      "colType": "TIPO",
+      "colRegion": "REGIÓN",
+      "colParticipants": "PARTICIPANTES",
+      "colStatus": "ESTADO",
+      "edit": "Editar"
+    },
+    "events": {
+      "title": "Eventos y Recaudación",
+      "newEvent": "+ Nuevo Evento",
+      "raisedOf": "Recaudado {raised} de {goal}",
+      "manage": "Gestionar"
+    },
+    "donations": {
+      "title": "Donaciones y Donantes",
+      "totalThisYear": "Total este año",
+      "recurringDonors": "Donantes recurrentes",
+      "averageGift": "Donación promedio",
+      "colDonor": "DONANTE",
+      "colAmount": "MONTO",
+      "colType": "TIPO",
+      "colDate": "FECHA"
+    },
+    "content": {
+      "title": "Blog e Historias",
+      "newPost": "+ Nueva Publicación",
+      "colTitle": "TÍTULO",
+      "colType": "TIPO",
+      "colAuthor": "AUTOR",
+      "colStatus": "ESTADO",
+      "edit": "Editar",
+      "typeBlog": "Blog",
+      "typeStory": "Historia de Esperanza"
+    },
+    "gallery": {
+      "title": "Galería / Medios",
+      "uploadPhotos": "+ Subir Fotos"
+    },
+    "users": {
+      "title": "Usuarios y Roles",
+      "invitePlaceholder": "correo@ejemplo.com",
+      "inviteButton": "+ Invitar Usuario",
+      "colName": "NOMBRE",
+      "colRole": "ROL",
+      "colRegion": "REGIÓN",
+      "colLastActive": "ÚLTIMA ACTIVIDAD"
+    }
+  }
+}
