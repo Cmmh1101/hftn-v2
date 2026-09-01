@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
+import type { InputHTMLAttributes, TextareaHTMLAttributes, SelectHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
 const fieldClasses =
@@ -10,4 +10,20 @@ export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElem
 
 export function Textarea({ className, ...props }: TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return <textarea className={cn(fieldClasses, "resize-y", className)} {...props} />;
+}
+
+export function Select({ className, children, ...props }: SelectHTMLAttributes<HTMLSelectElement>) {
+  return (
+    <select className={cn(fieldClasses, "bg-surface", className)} {...props}>
+      {children}
+    </select>
+  );
+}
+
+export function Label({ children }: { children: React.ReactNode }) {
+  return <label className="mb-1.5 block text-xs font-bold tracking-wide text-label">{children}</label>;
+}
+
+export function FieldGroup({ children }: { children: React.ReactNode }) {
+  return <div>{children}</div>;
 }

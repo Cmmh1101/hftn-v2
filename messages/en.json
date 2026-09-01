@@ -229,12 +229,22 @@
       "donations": "Donations & Donors",
       "content": "Blog & Stories",
       "gallery": "Gallery / Media",
+      "leadership": "Leadership",
       "users": "Users & Roles",
       "signOut": "Sign out"
     },
     "topbar": {
       "search": "Search programs, donors, posts...",
       "newButton": "+ New"
+    },
+    "form": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "confirmDelete": "Are you sure you want to delete this? This can't be undone.",
+      "photo": "Photo",
+      "removePhoto": "Remove current photo",
+      "uploadHint": "JPG, PNG, WEBP or GIF, up to 5MB"
     },
     "overview": {
       "title": "Overview",
@@ -256,18 +266,32 @@
     "programs": {
       "title": "Programs & Jornadas",
       "newJornada": "+ New Jornada",
+      "newTitle": "New Jornada",
+      "editTitle": "Edit Jornada",
       "colName": "NAME",
       "colType": "TYPE",
       "colRegion": "REGION",
       "colParticipants": "PARTICIPANTS",
       "colStatus": "STATUS",
+      "fieldCategory": "Category",
+      "fieldSummary": "Summary",
       "edit": "Edit"
     },
     "events": {
       "title": "Events & Fundraising",
       "newEvent": "+ New Event",
+      "newTitle": "New Event",
+      "editTitle": "Edit Event",
       "raisedOf": "Raised {raised} of {goal}",
-      "manage": "Manage"
+      "manage": "Manage",
+      "fieldName": "Name",
+      "fieldDate": "Date",
+      "fieldLocation": "Location",
+      "fieldDescription": "Description",
+      "fieldGoal": "Goal (USD)",
+      "fieldRaised": "Raised so far (USD)",
+      "fieldCtaLabel": "Button label",
+      "fieldStatus": "Status"
     },
     "donations": {
       "title": "Donations & Donors",
@@ -282,17 +306,38 @@
     "content": {
       "title": "Blog & Stories",
       "newPost": "+ New Post",
+      "newTitle": "New Post",
+      "editTitle": "Edit Post",
       "colTitle": "TITLE",
       "colType": "TYPE",
       "colAuthor": "AUTHOR",
       "colStatus": "STATUS",
       "edit": "Edit",
       "typeBlog": "Blog",
-      "typeStory": "Story of Hope"
+      "typeStory": "Story of Hope",
+      "fieldTag": "Tag",
+      "fieldBody": "Body",
+      "fieldPublishedAt": "Published date"
     },
     "gallery": {
       "title": "Gallery / Media",
-      "uploadPhotos": "+ Upload Photos"
+      "uploadPhotos": "+ Upload Photos",
+      "fieldLocation": "Location",
+      "fieldRegion": "Region",
+      "fieldCaption": "Caption",
+      "upload": "Upload",
+      "delete": "Delete"
+    },
+    "leadership": {
+      "title": "Leadership",
+      "newLeader": "+ New Leader",
+      "newTitle": "New Leader",
+      "editTitle": "Edit Leader",
+      "colName": "NAME",
+      "colRole": "ROLE",
+      "fieldBio": "Bio",
+      "fieldSortOrder": "Sort order",
+      "edit": "Edit"
     },
     "users": {
       "title": "Users & Roles",

@@ -229,12 +229,22 @@
       "donations": "Donaciones y Donantes",
       "content": "Blog e Historias",
       "gallery": "Galería / Medios",
+      "leadership": "Liderazgo",
       "users": "Usuarios y Roles",
       "signOut": "Cerrar sesión"
     },
     "topbar": {
       "search": "Buscar programas, donantes, publicaciones...",
       "newButton": "+ Nuevo"
+    },
+    "form": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "confirmDelete": "¿Estás seguro de que deseas eliminar esto? Esta acción no se puede deshacer.",
+      "photo": "Foto",
+      "removePhoto": "Eliminar foto actual",
+      "uploadHint": "JPG, PNG, WEBP o GIF, hasta 5MB"
     },
     "overview": {
       "title": "Resumen",
@@ -256,18 +266,32 @@
     "programs": {
       "title": "Programas y Jornadas",
       "newJornada": "+ Nueva Jornada",
+      "newTitle": "Nueva Jornada",
+      "editTitle": "Editar Jornada",
       "colName": "NOMBRE",
       "colType": "TIPO",
       "colRegion": "REGIÓN",
       "colParticipants": "PARTICIPANTES",
       "colStatus": "ESTADO",
+      "fieldCategory": "Categoría",
+      "fieldSummary": "Resumen",
       "edit": "Editar"
     },
     "events": {
       "title": "Eventos y Recaudación",
       "newEvent": "+ Nuevo Evento",
+      "newTitle": "Nuevo Evento",
+      "editTitle": "Editar Evento",
       "raisedOf": "Recaudado {raised} de {goal}",
-      "manage": "Gestionar"
+      "manage": "Gestionar",
+      "fieldName": "Nombre",
+      "fieldDate": "Fecha",
+      "fieldLocation": "Ubicación",
+      "fieldDescription": "Descripción",
+      "fieldGoal": "Meta (USD)",
+      "fieldRaised": "Recaudado hasta ahora (USD)",
+      "fieldCtaLabel": "Texto del botón",
+      "fieldStatus": "Estado"
     },
     "donations": {
       "title": "Donaciones y Donantes",
@@ -282,17 +306,38 @@
     "content": {
       "title": "Blog e Historias",
       "newPost": "+ Nueva Publicación",
+      "newTitle": "Nueva Publicación",
+      "editTitle": "Editar Publicación",
       "colTitle": "TÍTULO",
       "colType": "TIPO",
       "colAuthor": "AUTOR",
       "colStatus": "ESTADO",
       "edit": "Editar",
       "typeBlog": "Blog",
-      "typeStory": "Historia de Esperanza"
+      "typeStory": "Historia de Esperanza",
+      "fieldTag": "Etiqueta",
+      "fieldBody": "Contenido",
+      "fieldPublishedAt": "Fecha de publicación"
     },
     "gallery": {
       "title": "Galería / Medios",
-      "uploadPhotos": "+ Subir Fotos"
+      "uploadPhotos": "+ Subir Fotos",
+      "fieldLocation": "Ubicación",
+      "fieldRegion": "Región",
+      "fieldCaption": "Descripción",
+      "upload": "Subir",
+      "delete": "Eliminar"
+    },
+    "leadership": {
+      "title": "Liderazgo",
+      "newLeader": "+ Nuevo Líder",
+      "newTitle": "Nuevo Líder",
+      "editTitle": "Editar Líder",
+      "colName": "NOMBRE",
+      "colRole": "CARGO",
+      "fieldBio": "Biografía",
+      "fieldSortOrder": "Orden",
+      "edit": "Editar"
     },
     "users": {
       "title": "Usuarios y Roles",

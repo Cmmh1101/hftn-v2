@@ -1,6 +1,6 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { Card } from "@/components/ui/Card";
-import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
+import { Photo } from "@/components/ui/Photo";
 import { PageIntro } from "@/components/site/PageIntro";
 import { getPublishedPosts } from "@/lib/queries";
 import { formatPostDate, toIntlLocale } from "@/lib/format";
@@ -21,7 +21,7 @@ export default async function StoriesPage() {
       <div className="mb-14 grid grid-cols-2 gap-5 md:grid-cols-4">
         {stories.map((s) => (
           <Card key={s.id} padding="none" className="overflow-hidden">
-            <PhotoPlaceholder aspect="4/3" label="PHOTO" rounded="0" />
+            <Photo path={s.photo_path} alt={s.title} aspect="4/3" label="PHOTO" rounded="0" />
             <div className="p-4.5">
               <div className="text-[14.5px] font-bold">{s.title}</div>
               <div className="mt-1.5 text-[13px] leading-relaxed text-muted-2">{s.body}</div>

@@ -2,13 +2,17 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { Card } from "@/components/ui/Card";
 import { Badge, type BadgeStatus } from "@/components/ui/Badge";
 import { ProgressBar } from "@/components/ui/ProgressBar";
+import { Button } from "@/components/ui/Button";
+import { DeleteButton } from "@/components/site/DeleteButton";
 import { getEvents } from "@/lib/queries";
 import { formatCents, toIntlLocale } from "@/lib/format";
+import { deleteEvent } from "./actions";
 
 export default async function AdminEventsPage() {
-  const [t, tStatus, locale, events] = await Promise.all([
+  const [t, tStatus, tForm, locale, events] = await Promise.all([
     getTranslations("admin.events"),
     getTranslations("status"),
+    getTranslations("admin.form"),
     getLocale(),
     getEvents(),
   ]);
@@ -18,9 +22,9 @@ export default async function AdminEventsPage() {
     <main className="p-8">
       <div className="mb-5 flex items-center justify-between">
         <h1 className="font-serif text-[26px] font-semibold">{t("title")}</h1>
-        <div className="cursor-pointer rounded-md bg-ink px-4.5 py-2.5 text-[13px] font-bold text-white">
+        <Button href="/admin/events/new" variant="primary" size="sm">
           {t("newEvent")}
-        </div>
+        </Button>
       </div>
       <div className="flex flex-col gap-3.5">
         {events.map((e) => {
@@ -43,7 +47,17 @@ export default async function AdminEventsPage() {
                 <ProgressBar percent={pct} color="accent" />
               </div>
               <Badge status={e.status as BadgeStatus}>{tStatus(e.status)}</Badge>
-              <span className="cursor-pointer font-bold text-blue">{t("manage")}</span>
+              <div className="flex gap-3">
+                <Button href={`/admin/events/${e.id}/edit`} variant="link" size="sm">
+                  {t("manage")}
+                </Button>
+                <DeleteButton
+                  action={deleteEvent}
+                  confirmMessage={tForm("confirmDelete")}
+                  label={tForm("delete")}
+                  hiddenFields={{ id: e.id }}
+                />
+              </div>
             </Card>
           );
         })}

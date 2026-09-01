@@ -46,6 +46,7 @@ export type GalleryGroup = {
   region: string;
   caption: string;
   photoCount: number;
+  photos: GalleryPhoto[];
 };
 
 export async function getGalleryPhotos(): Promise<GalleryPhoto[]> {
@@ -64,12 +65,14 @@ export async function getGalleryGroups(): Promise<GalleryGroup[]> {
     const existing = byLocation.get(photo.location);
     if (existing) {
       existing.photoCount += 1;
+      existing.photos.push(photo);
     } else {
       byLocation.set(photo.location, {
         location: photo.location,
         region: photo.region,
         caption: photo.caption,
         photoCount: 1,
+        photos: [photo],
       });
     }
   }

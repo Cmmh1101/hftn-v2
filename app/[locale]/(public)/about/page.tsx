@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
+import { Photo } from "@/components/ui/Photo";
 import { PageIntro } from "@/components/site/PageIntro";
 import { Button } from "@/components/ui/Button";
 import { getLeaders } from "@/lib/queries";
@@ -47,7 +47,7 @@ export default async function AboutPage() {
       <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
         {leaders.map((l) => (
           <div key={l.id}>
-            <PhotoPlaceholder aspect="1" label="PHOTO" rounded="8px" className="mb-2.5" />
+            <Photo path={l.photo_path} alt={l.name} aspect="1" label="PHOTO" rounded="8px" className="mb-2.5" />
             <div className="text-sm font-bold">{l.name}</div>
             <div className="text-xs text-muted-2">{l.role}</div>
           </div>

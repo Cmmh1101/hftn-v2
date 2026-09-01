@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { StatTile } from "@/components/ui/StatTile";
 import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
+import { Photo } from "@/components/ui/Photo";
 import { getGalleryGroups, getNextEvent, getPublishedPosts } from "@/lib/queries";
 import { formatEventDateLong, toIntlLocale } from "@/lib/format";
 
@@ -111,7 +112,7 @@ export default async function HomePage() {
             </Button>
           </div>
           <Card padding="none" className="grid grid-cols-1 overflow-hidden md:grid-cols-[1fr_1.4fr]">
-            <PhotoPlaceholder aspect="4/3" label={`PHOTO — ${nextEvent.name}`} rounded="0" />
+            <Photo path={nextEvent.photo_path} alt={nextEvent.name} aspect="4/3" label={`PHOTO — ${nextEvent.name}`} rounded="0" />
             <div className="flex flex-col justify-center p-8">
               <span className="text-[13px] font-bold text-accent-deep">
                 {formatEventDateLong(nextEvent.event_date, toIntlLocale(locale))} · {nextEvent.location.toUpperCase()}
@@ -137,7 +138,7 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 gap-5.5 md:grid-cols-3">
           {featuredStories.map((s) => (
             <Card key={s.id} padding="none" className="overflow-hidden">
-              <PhotoPlaceholder aspect="4/3" label={`PHOTO — ${s.title.split(" ")[0]}`} rounded="0" />
+              <Photo path={s.photo_path} alt={s.title} aspect="4/3" label={`PHOTO — ${s.title.split(" ")[0]}`} rounded="0" />
               <div className="p-5">
                 <div className="text-[15px] font-bold">{s.title}</div>
                 <div className="mt-1.5 text-[13.5px] leading-relaxed text-muted-2">{s.body}</div>
@@ -157,7 +158,14 @@ export default async function HomePage() {
         </div>
         <div className="grid grid-cols-3 gap-3 md:grid-cols-6">
           {galleryTeaser.map((g) => (
-            <PhotoPlaceholder key={g.location} aspect="1" label={locationLabel(g.location)} rounded="6px" />
+            <Photo
+              key={g.location}
+              path={g.photos[0]?.storage_path}
+              alt={g.location}
+              aspect="1"
+              label={locationLabel(g.location)}
+              rounded="6px"
+            />
           ))}
         </div>
       </section>

@@ -2,8 +2,9 @@ import { getTranslations } from "next-intl/server";
 import { AdminTable, AdminTableRow } from "@/components/site/AdminTable";
 import { Input } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
+import { RoleSelect } from "@/components/site/RoleSelect";
 import { getProfiles } from "@/lib/queries";
-import { inviteUser } from "./actions";
+import { inviteUser, updateUserRole } from "./actions";
 
 const GRID = "1.5fr 1.2fr 1fr 1fr";
 
@@ -13,6 +14,12 @@ export default async function AdminUsersPage() {
     getTranslations("admin.roles"),
     getProfiles(),
   ]);
+
+  const roleOptions = [
+    { value: "admin", label: tRoles("admin") },
+    { value: "editor", label: tRoles("editor") },
+    { value: "viewer", label: tRoles("viewer") },
+  ];
 
   return (
     <main className="p-8">
@@ -29,7 +36,7 @@ export default async function AdminUsersPage() {
         {profiles.map((p) => (
           <AdminTableRow key={p.id} gridTemplate={GRID}>
             <span className="font-semibold">{p.name || "—"}</span>
-            <span className="text-muted-2">{tRoles(p.role)}</span>
+            <RoleSelect action={updateUserRole.bind(null, p.id)} defaultValue={p.role} options={roleOptions} />
             <span className="text-muted-2">{p.region || "—"}</span>
             <span className="text-muted-2">—</span>
           </AdminTableRow>

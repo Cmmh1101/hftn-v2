@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
+import { Photo } from "@/components/ui/Photo";
 import { Card } from "@/components/ui/Card";
 import { PageIntro } from "@/components/site/PageIntro";
 import { getLeaders } from "@/lib/queries";
@@ -25,7 +25,7 @@ export default async function TeamPage() {
       <div className="mb-14 grid grid-cols-1 gap-8 md:grid-cols-2">
         {leaders.map((l) => (
           <div key={l.id} className="flex gap-5">
-            <PhotoPlaceholder aspect="1" label="PHOTO" rounded="8px" className="w-28 shrink-0" />
+            <Photo path={l.photo_path} alt={l.name} aspect="1" label="PHOTO" rounded="8px" className="w-28 shrink-0" />
             <div>
               <div className="text-base font-bold">{l.name}</div>
               <div className="mt-0.5 text-xs font-bold uppercase tracking-wide text-blue">{l.role}</div>

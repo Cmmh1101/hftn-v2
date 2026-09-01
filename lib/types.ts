@@ -14,6 +14,7 @@ export type Program = {
   participants: number;
   status: ProgramStatus;
   summary: string;
+  photo_path: string | null;
   created_at: string;
 };
 
@@ -27,6 +28,7 @@ export type Event = {
   raised_cents: number;
   status: ProgramStatus;
   cta_label: string;
+  photo_path: string | null;
   created_at: string;
 };
 
@@ -52,6 +54,7 @@ export type Post = {
   body: string;
   status: PostStatus;
   published_at: string | null;
+  photo_path: string | null;
   created_at: string;
 };
 

@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Chip } from "@/components/ui/Chip";
-import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
+import { Photo } from "@/components/ui/Photo";
 import { PageIntro } from "@/components/site/PageIntro";
 import { getGalleryGroups } from "@/lib/queries";
 
@@ -64,8 +64,11 @@ export default async function GalleryPage({
             {g.region} · {g.caption}
           </div>
           <div className="grid grid-cols-3 gap-2.5 md:grid-cols-6">
-            {Array.from({ length: Math.max(g.photoCount, 6) }).map((_, i) => (
-              <PhotoPlaceholder key={i} aspect="1" label="PHOTO" rounded="6px" />
+            {g.photos.map((photo) => (
+              <Photo key={photo.id} path={photo.storage_path} alt={g.location} aspect="1" label="PHOTO" rounded="6px" />
+            ))}
+            {Array.from({ length: Math.max(6 - g.photoCount, 0) }).map((_, i) => (
+              <Photo key={`placeholder-${i}`} path={null} alt="" aspect="1" label="PHOTO" rounded="6px" />
             ))}
           </div>
         </div>

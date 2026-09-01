@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Card } from "@/components/ui/Card";
-import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
+import { Photo } from "@/components/ui/Photo";
 import { PageIntro } from "@/components/site/PageIntro";
 import { getPrograms } from "@/lib/queries";
 
@@ -40,14 +40,14 @@ export default async function ProgramsPage() {
             <h2 className="mt-2.5 font-serif text-[26px] font-semibold">{flagship.name}</h2>
             <p className="mt-3 text-[14.5px] leading-relaxed text-muted">{flagship.summary}</p>
           </div>
-          <PhotoPlaceholder tone="warm" aspect="16/9" label="PHOTO — online classroom" />
+          <Photo path={flagship.photo_path} alt={flagship.name} tone="warm" aspect="16/9" label="PHOTO — online classroom" />
         </Card>
       ) : null}
 
       <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-3">
         {continuousAndRelief.map((p) => (
           <Card key={p.id} padding="none" className="overflow-hidden">
-            <PhotoPlaceholder aspect="4/3" label={`PHOTO — ${p.name}`} rounded="0" />
+            <Photo path={p.photo_path} alt={p.name} aspect="4/3" label={`PHOTO — ${p.name}`} rounded="0" />
             <div className="p-5">
               <span className="text-[11px] font-bold tracking-wide text-blue">
                 {tCategory(p.category).toUpperCase()}
