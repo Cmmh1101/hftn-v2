@@ -41,6 +41,8 @@ export default async function AdminContentPage() {
                 action={deletePost}
                 confirmMessage={tForm("confirmDelete")}
                 label={tForm("delete")}
+                confirmLabel={tForm("confirmYes")}
+                cancelLabel={tForm("cancel")}
                 hiddenFields={{ id: p.id }}
               />
             </div>

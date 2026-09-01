@@ -35,6 +35,8 @@ export default async function AdminLeadershipPage() {
                 action={deleteLeader}
                 confirmMessage={tForm("confirmDelete")}
                 label={tForm("delete")}
+                confirmLabel={tForm("confirmYes")}
+                cancelLabel={tForm("cancel")}
                 hiddenFields={{ id: l.id }}
               />
             </div>

@@ -43,6 +43,8 @@ export default async function AdminProgramsPage() {
                 action={deleteProgram}
                 confirmMessage={tForm("confirmDelete")}
                 label={tForm("delete")}
+                confirmLabel={tForm("confirmYes")}
+                cancelLabel={tForm("cancel")}
                 hiddenFields={{ id: p.id }}
               />
             </div>

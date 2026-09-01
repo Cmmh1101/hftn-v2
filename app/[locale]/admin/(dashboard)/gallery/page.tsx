@@ -45,6 +45,8 @@ export default async function AdminGalleryPage() {
               action={deleteGalleryPhoto}
               confirmMessage={tForm("confirmDelete")}
               label={t("delete")}
+              confirmLabel={tForm("confirmYes")}
+              cancelLabel={tForm("cancel")}
               hiddenFields={{ id: p.id }}
               className="text-[11px]"
             />

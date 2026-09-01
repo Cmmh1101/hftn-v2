@@ -242,6 +242,7 @@
       "cancel": "Cancelar",
       "delete": "Eliminar",
       "confirmDelete": "¿Estás seguro de que deseas eliminar esto? Esta acción no se puede deshacer.",
+      "confirmYes": "Sí, eliminar",
       "photo": "Foto",
       "removePhoto": "Eliminar foto actual",
       "uploadHint": "JPG, PNG, WEBP o GIF, hasta 5MB"
