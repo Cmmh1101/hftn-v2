@@ -16,6 +16,7 @@ function readFields(formData: FormData) {
     participants: Number(formData.get("participants") ?? 0) || 0,
     status: formData.get("status") as ProgramStatus,
     summary: String(formData.get("summary") ?? "").trim(),
+    program_date: String(formData.get("program_date") ?? "").trim() || null,
   };
 }
 

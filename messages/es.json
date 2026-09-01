@@ -7,7 +7,21 @@
     "southAmerica": "Sudamérica",
     "centralAmerica": "Centroamérica",
     "northAmerica": "Norteamérica",
-    "europe": "Europa"
+    "europe": "Europa",
+    "multiple": "Múltiple",
+    "global": "Global"
+  },
+  "programTypes": {
+    "medicalCare": "Atención Médica",
+    "feeding": "Alimentación",
+    "medicalFeeding": "Médica + Alimentación",
+    "evangelization": "Evangelización",
+    "youthOutreach": "Ayuda Juvenil",
+    "resourceDrive": "Recolección de Recursos",
+    "elderlyMinistry": "Ministerio a Adultos Mayores",
+    "disasterRelief": "Ayuda en Desastres",
+    "continuous": "Continuo",
+    "relief": "Ayuda"
   },
   "nav": {
     "home": "Inicio",
@@ -80,6 +94,7 @@
     "jornadaResource": "Recolección de Recursos"
   },
   "impact": {
+    "comingSoon": "Próximamente",
     "eyebrow": "Para socios y donantes institucionales",
     "title": "Nuestro Impacto",
     "intro": "Las cifras detrás de ocho años de trabajo en Sudamérica y Norteamérica — compartidas abiertamente para que financiadores y socios vean exactamente a dónde va el apoyo.",
@@ -231,6 +246,7 @@
       "gallery": "Galería / Medios",
       "leadership": "Liderazgo",
       "users": "Usuarios y Roles",
+      "settings": "Configuración",
       "signOut": "Cerrar sesión"
     },
     "topbar": {
@@ -245,6 +261,7 @@
       "confirmYes": "Sí, eliminar",
       "photo": "Foto",
       "removePhoto": "Eliminar foto actual",
+      "removeFile": "Eliminar archivo actual",
       "uploadHint": "JPG, PNG, WEBP o GIF, hasta 5MB"
     },
     "overview": {
@@ -276,6 +293,7 @@
       "colStatus": "ESTADO",
       "fieldCategory": "Categoría",
       "fieldSummary": "Resumen",
+      "fieldDate": "Fecha",
       "edit": "Editar"
     },
     "events": {
@@ -322,11 +340,13 @@
     },
     "gallery": {
       "title": "Galería / Medios",
+      "editTitle": "Editar Foto",
       "uploadPhotos": "+ Subir Fotos",
       "fieldLocation": "Ubicación",
       "fieldRegion": "Región",
       "fieldCaption": "Descripción",
       "upload": "Subir",
+      "edit": "Editar",
       "delete": "Eliminar"
     },
     "leadership": {
@@ -348,6 +368,21 @@
       "colRole": "ROL",
       "colRegion": "REGIÓN",
       "colLastActive": "ÚLTIMA ACTIVIDAD"
+    },
+    "settings": {
+      "title": "Configuración",
+      "intro": "Estadísticas generales mostradas en Inicio e Impacto, además de los informes descargables en la página de Impacto.",
+      "fieldCountries": "Países atendidos",
+      "fieldJornadas": "Jornadas realizadas",
+      "fieldScholarships": "Estadística de becas",
+      "fieldFamilies": "Familias atendidas",
+      "fieldDeployed": "Total invertido / desplegado",
+      "reportsTitle": "Informes y Finanzas",
+      "reportAnnual": "Informe Anual",
+      "reportForm990": "Formulario 990",
+      "reportLetter501c3": "Carta 501(c)(3)",
+      "viewCurrent": "Ver PDF actual",
+      "noFileYet": "Aún no se ha subido un archivo"
     }
   }
 }

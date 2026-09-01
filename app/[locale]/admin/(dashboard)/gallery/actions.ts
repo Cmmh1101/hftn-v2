@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getLocale } from "next-intl/server";
+import { redirect } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { uploadFile, deleteFile } from "@/lib/storage";
 
@@ -31,6 +33,25 @@ export async function uploadGalleryPhoto(formData: FormData) {
   await supabase.from("gallery_photos").update({ storage_path: path }).eq("id", data.id);
 
   revalidateGallery();
+}
+
+export async function updateGalleryPhoto(id: string, formData: FormData) {
+  const location = String(formData.get("location") ?? "").trim();
+  const region = String(formData.get("region") ?? "").trim();
+  const caption = String(formData.get("caption") ?? "").trim();
+  if (!location) return;
+
+  const supabase = await createClient();
+  await supabase.from("gallery_photos").update({ location, region, caption }).eq("id", id);
+
+  const photo = formData.get("photo") as File | null;
+  if (photo && photo.size > 0) {
+    const path = await uploadFile(photo, "gallery", id);
+    await supabase.from("gallery_photos").update({ storage_path: path }).eq("id", id);
+  }
+
+  revalidateGallery();
+  redirect({ href: "/admin/gallery", locale: await getLocale() });
 }
 
 export async function deleteGalleryPhoto(formData: FormData) {

@@ -1,6 +1,23 @@
 import { createClient } from "@/lib/supabase/server";
-import type { Donation, Event, GalleryPhoto, Leader, Post, Profile, Program } from "@/lib/types";
+import type { Donation, Event, GalleryPhoto, Leader, Post, Profile, Program, SiteSettings } from "@/lib/types";
 import { relativeTime } from "@/lib/format";
+
+const DEFAULT_SITE_SETTINGS: SiteSettings = {
+  countries_served: "3",
+  jornadas_completed: "312",
+  scholarships_stat: "50+",
+  families_reached: "4,500+",
+  total_deployed: "$300K",
+  annual_report_path: null,
+  form_990_path: null,
+  letter_501c3_path: null,
+};
+
+export async function getSiteSettings(): Promise<SiteSettings> {
+  const supabase = await createClient();
+  const { data } = await supabase.from("site_settings").select("*").eq("id", true).single();
+  return data ?? DEFAULT_SITE_SETTINGS;
+}
 
 export async function getPrograms(): Promise<Program[]> {
   const supabase = await createClient();

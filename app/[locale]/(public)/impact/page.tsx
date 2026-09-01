@@ -4,15 +4,21 @@ import { StatTile } from "@/components/ui/StatTile";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Button } from "@/components/ui/Button";
 import { PageIntro } from "@/components/site/PageIntro";
+import { getSiteSettings } from "@/lib/queries";
+import { getPublicUrl } from "@/lib/storage";
 
 export default async function ImpactPage() {
-  const [t, tRegions] = await Promise.all([getTranslations("impact"), getTranslations("regions")]);
+  const [t, tRegions, settings] = await Promise.all([
+    getTranslations("impact"),
+    getTranslations("regions"),
+    getSiteSettings(),
+  ]);
 
   const IMPACT_STATS = [
-    { value: "3", label: t("statCountries") },
-    { value: "312", label: t("statJornadas") },
-    { value: "50+", label: t("statStudents") },
-    { value: "$1.4M", label: t("statDeployed") },
+    { value: settings.countries_served, label: t("statCountries") },
+    { value: settings.jornadas_completed, label: t("statJornadas") },
+    { value: settings.scholarships_stat, label: t("statStudents") },
+    { value: settings.total_deployed, label: t("statDeployed") },
   ];
 
   const REGION_REACH = [
@@ -20,7 +26,11 @@ export default async function ImpactPage() {
     { label: tRegions("northAmerica"), pct: 22, families: 900 },
   ];
 
-  const REPORTS = [t("annualReport"), t("form990"), t("letter501c3")];
+  const REPORTS = [
+    { label: t("annualReport"), url: getPublicUrl(settings.annual_report_path) },
+    { label: t("form990"), url: getPublicUrl(settings.form_990_path) },
+    { label: t("letter501c3"), url: getPublicUrl(settings.letter_501c3_path) },
+  ];
 
   return (
     <main className="mx-auto max-w-[1240px] px-8 pb-20 pt-14">
@@ -48,9 +58,15 @@ export default async function ImpactPage() {
       <h2 className="mb-5 font-serif text-2xl font-semibold">{t("reportsTitle")}</h2>
       <div className="mb-11 grid grid-cols-1 gap-4 md:grid-cols-3">
         {REPORTS.map((r) => (
-          <Card key={r} className="flex items-center justify-between">
-            <span className="text-sm font-semibold">{r}</span>
-            <span className="text-xs font-bold text-blue">{t("pdf")}</span>
+          <Card key={r.label} className="flex items-center justify-between">
+            <span className="text-sm font-semibold">{r.label}</span>
+            {r.url ? (
+              <a href={r.url} target="_blank" rel="noreferrer" className="text-xs font-bold text-blue">
+                {t("pdf")}
+              </a>
+            ) : (
+              <span className="text-xs italic text-label">{t("comingSoon")}</span>
+            )}
           </Card>
         ))}
       </div>

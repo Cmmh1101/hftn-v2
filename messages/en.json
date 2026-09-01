@@ -7,7 +7,21 @@
     "southAmerica": "South America",
     "centralAmerica": "Central America",
     "northAmerica": "North America",
-    "europe": "Europe"
+    "europe": "Europe",
+    "multiple": "Multiple",
+    "global": "Global"
+  },
+  "programTypes": {
+    "medicalCare": "Medical Care",
+    "feeding": "Feeding",
+    "medicalFeeding": "Medical + Feeding",
+    "evangelization": "Evangelization",
+    "youthOutreach": "Youth Outreach",
+    "resourceDrive": "Resource Drive",
+    "elderlyMinistry": "Elderly Ministry",
+    "disasterRelief": "Disaster Relief",
+    "continuous": "Continuous",
+    "relief": "Relief"
   },
   "nav": {
     "home": "Home",
@@ -80,6 +94,7 @@
     "jornadaResource": "Resource Drives"
   },
   "impact": {
+    "comingSoon": "Coming soon",
     "eyebrow": "For partners & grant-makers",
     "title": "Our Impact",
     "intro": "Numbers behind eight years of work across South America and North America — shared openly so funders and partners can see exactly where support goes.",
@@ -231,6 +246,7 @@
       "gallery": "Gallery / Media",
       "leadership": "Leadership",
       "users": "Users & Roles",
+      "settings": "Settings",
       "signOut": "Sign out"
     },
     "topbar": {
@@ -245,6 +261,7 @@
       "confirmYes": "Yes, delete",
       "photo": "Photo",
       "removePhoto": "Remove current photo",
+      "removeFile": "Remove current file",
       "uploadHint": "JPG, PNG, WEBP or GIF, up to 5MB"
     },
     "overview": {
@@ -276,6 +293,7 @@
       "colStatus": "STATUS",
       "fieldCategory": "Category",
       "fieldSummary": "Summary",
+      "fieldDate": "Date",
       "edit": "Edit"
     },
     "events": {
@@ -322,11 +340,13 @@
     },
     "gallery": {
       "title": "Gallery / Media",
+      "editTitle": "Edit Photo",
       "uploadPhotos": "+ Upload Photos",
       "fieldLocation": "Location",
       "fieldRegion": "Region",
       "fieldCaption": "Caption",
       "upload": "Upload",
+      "edit": "Edit",
       "delete": "Delete"
     },
     "leadership": {
@@ -348,6 +368,21 @@
       "colRole": "ROLE",
       "colRegion": "REGION",
       "colLastActive": "LAST ACTIVE"
+    },
+    "settings": {
+      "title": "Settings",
+      "intro": "Org-wide stats shown on the Home and Impact pages, plus the downloadable reports on the Impact page.",
+      "fieldCountries": "Countries served",
+      "fieldJornadas": "Jornadas completed",
+      "fieldScholarships": "Scholarships stat",
+      "fieldFamilies": "Families reached",
+      "fieldDeployed": "Total deployed / invested",
+      "reportsTitle": "Reports & Financials",
+      "reportAnnual": "Annual Report",
+      "reportForm990": "Form 990",
+      "reportLetter501c3": "501(c)(3) Letter",
+      "viewCurrent": "View current PDF",
+      "noFileYet": "No file uploaded yet"
     }
   }
 }

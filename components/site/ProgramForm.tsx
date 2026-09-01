@@ -2,6 +2,8 @@ import { getTranslations } from "next-intl/server";
 import { Input, Textarea, Select, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { Photo } from "@/components/ui/Photo";
+import { PROGRAM_REGIONS } from "@/lib/regions";
+import { PROGRAM_TYPES } from "@/lib/programTypes";
 import type { Program } from "@/lib/types";
 
 export async function ProgramForm({
@@ -11,10 +13,12 @@ export async function ProgramForm({
   action: (formData: FormData) => void;
   program?: Program;
 }) {
-  const [t, tCategory, tStatus, tForm] = await Promise.all([
+  const [t, tCategory, tStatus, tRegions, tTypes, tForm] = await Promise.all([
     getTranslations("admin.programs"),
     getTranslations("programCategory"),
     getTranslations("status"),
+    getTranslations("regions"),
+    getTranslations("programTypes"),
     getTranslations("admin.form"),
   ]);
 
@@ -46,16 +50,34 @@ export async function ProgramForm({
       <div className="grid grid-cols-2 gap-4">
         <div>
           <Label>{t("colType")}</Label>
-          <Input name="type" defaultValue={program?.type} className="w-full" />
+          <Select name="type" defaultValue={program?.type ?? PROGRAM_TYPES[0].dbValue} required className="w-full">
+            {PROGRAM_TYPES.map((pt) => (
+              <option key={pt.dbValue} value={pt.dbValue}>
+                {tTypes(pt.labelKey)}
+              </option>
+            ))}
+          </Select>
         </div>
         <div>
           <Label>{t("colRegion")}</Label>
-          <Input name="region" defaultValue={program?.region} className="w-full" />
+          <Select name="region" defaultValue={program?.region ?? PROGRAM_REGIONS[0].dbValue} required className="w-full">
+            {PROGRAM_REGIONS.map((r) => (
+              <option key={r.dbValue} value={r.dbValue}>
+                {tRegions(r.labelKey)}
+              </option>
+            ))}
+          </Select>
         </div>
       </div>
-      <div>
-        <Label>{t("colParticipants")}</Label>
-        <Input type="number" min={0} name="participants" defaultValue={program?.participants ?? 0} className="w-full" />
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <Label>{t("colParticipants")}</Label>
+          <Input type="number" min={0} name="participants" defaultValue={program?.participants ?? 0} className="w-full" />
+        </div>
+        <div>
+          <Label>{t("fieldDate")}</Label>
+          <Input type="date" name="program_date" defaultValue={program?.program_date ?? ""} className="w-full" />
+        </div>
       </div>
       <div>
         <Label>{t("fieldSummary")}</Label>

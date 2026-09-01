@@ -15,6 +15,7 @@ export type Program = {
   status: ProgramStatus;
   summary: string;
   photo_path: string | null;
+  program_date: string | null;
   created_at: string;
 };
 
@@ -92,4 +93,15 @@ export type Profile = {
   role: ProfileRole;
   region: string;
   created_at: string;
+};
+
+export type SiteSettings = {
+  countries_served: string;
+  jornadas_completed: string;
+  scholarships_stat: string;
+  families_reached: string;
+  total_deployed: string;
+  annual_report_path: string | null;
+  form_990_path: string | null;
+  letter_501c3_path: string | null;
 };

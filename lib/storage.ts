@@ -2,10 +2,13 @@ import { createAdminClient } from "@/lib/supabase/admin";
 
 const BUCKET = "media";
 
+// A public-bucket URL is a predictable string, not a privileged lookup — build
+// it directly so this stays safe to call from client components too (Photo is
+// used inside client-side modals), rather than requiring the service-role
+// client, which only exists server-side.
 export function getPublicUrl(path: string | null | undefined): string | null {
   if (!path) return null;
-  const supabase = createAdminClient();
-  return supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+  return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${path}`;
 }
 
 function extensionFor(file: File): string {

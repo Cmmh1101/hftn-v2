@@ -1,16 +1,18 @@
 import { getTranslations } from "next-intl/server";
 import { Photo } from "@/components/ui/Photo";
-import { Input } from "@/components/ui/Field";
+import { Input, Select } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { DeleteButton } from "@/components/site/DeleteButton";
 import { getGalleryPhotos } from "@/lib/queries";
+import { GALLERY_REGIONS } from "@/lib/regions";
 import { uploadGalleryPhoto, deleteGalleryPhoto } from "./actions";
 
 export default async function AdminGalleryPage() {
-  const [t, tForm, photos] = await Promise.all([
+  const [t, tForm, tRegions, photos] = await Promise.all([
     getTranslations("admin.gallery"),
     getTranslations("admin.form"),
+    getTranslations("regions"),
     getGalleryPhotos(),
   ]);
 
@@ -21,7 +23,13 @@ export default async function AdminGalleryPage() {
       <Card className="mb-7 max-w-2xl">
         <form action={uploadGalleryPhoto} className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
           <Input name="location" placeholder={t("fieldLocation")} required />
-          <Input name="region" placeholder={t("fieldRegion")} required />
+          <Select name="region" defaultValue={GALLERY_REGIONS[0].dbValue} required>
+            {GALLERY_REGIONS.map((r) => (
+              <option key={r.dbValue} value={r.dbValue}>
+                {tRegions(r.labelKey)}
+              </option>
+            ))}
+          </Select>
           <Input name="caption" placeholder={t("fieldCaption")} className="sm:col-span-2" />
           <Input
             type="file"
@@ -41,15 +49,20 @@ export default async function AdminGalleryPage() {
           <div key={p.id}>
             <Photo path={p.storage_path} alt={p.location} aspect="1" rounded="6px" />
             <div className="mt-1.5 text-[11px] text-muted-2">{p.location}</div>
-            <DeleteButton
-              action={deleteGalleryPhoto}
-              confirmMessage={tForm("confirmDelete")}
-              label={t("delete")}
-              confirmLabel={tForm("confirmYes")}
-              cancelLabel={tForm("cancel")}
-              hiddenFields={{ id: p.id }}
-              className="text-[11px]"
-            />
+            <div className="mt-1 flex items-center gap-2.5">
+              <Button href={`/admin/gallery/${p.id}/edit`} variant="link" size="sm" className="text-[11px]">
+                {t("edit")}
+              </Button>
+              <DeleteButton
+                action={deleteGalleryPhoto}
+                confirmMessage={tForm("confirmDelete")}
+                label={t("delete")}
+                confirmLabel={tForm("confirmYes")}
+                cancelLabel={tForm("cancel")}
+                hiddenFields={{ id: p.id }}
+                className="text-[11px]"
+              />
+            </div>
           </div>
         ))}
       </div>

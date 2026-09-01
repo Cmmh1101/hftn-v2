@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { StatTile } from "@/components/ui/StatTile";
 import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 import { Photo } from "@/components/ui/Photo";
-import { getGalleryGroups, getNextEvent, getPublishedPosts } from "@/lib/queries";
+import { getGalleryGroups, getNextEvent, getPublishedPosts, getSiteSettings } from "@/lib/queries";
 import { formatEventDateLong, toIntlLocale } from "@/lib/format";
 
 function locationLabel(location: string) {
@@ -13,21 +13,22 @@ function locationLabel(location: string) {
 }
 
 export default async function HomePage() {
-  const [t, locale, stories, nextEvent, galleryGroups] = await Promise.all([
+  const [t, locale, stories, nextEvent, galleryGroups, settings] = await Promise.all([
     getTranslations("home"),
     getLocale(),
     getPublishedPosts("story"),
     getNextEvent(),
     getGalleryGroups(),
+    getSiteSettings(),
   ]);
   const featuredStories = stories.slice(0, 3);
   const galleryTeaser = galleryGroups.slice(0, 6);
 
   const HOME_STATS = [
-    { value: "3", label: t("statCountries") },
-    { value: "312", label: t("statJornadas") },
-    { value: "50+", label: t("statStudents") },
-    { value: "4,500+", label: t("statFamilies") },
+    { value: settings.countries_served, label: t("statCountries") },
+    { value: settings.jornadas_completed, label: t("statJornadas") },
+    { value: settings.scholarships_stat, label: t("statStudents") },
+    { value: settings.families_reached, label: t("statFamilies") },
   ];
 
   const REGIONS = [
