@@ -5,8 +5,8 @@ insert into programs (name, category, type, region, participants, status, summar
   ('Trujillo Outreach', 'jornada', 'Medical + Feeding', 'South America', 210, 'Active', ''),
   ('Barquisimeto Days', 'jornada', 'Evangelization', 'South America', 340, 'Active', ''),
   ('Copán Relief', 'jornada', 'Resource Drive', 'Central America', 150, 'Planned', ''),
-  ('School of Hope', 'flagship', 'Continuous', 'Global', 1860, 'Active',
-    'Our own accredited online high school, registered in the United States, providing education to students anywhere in the world. Our main focus for growth right now.'),
+  ('School of Hope', 'flagship', 'Continuous', 'Global', 50, 'Active',
+    'Our own online high school, officially registered with the Florida Department of Education in February 2026 and currently working toward Cognia accreditation. Our main focus for growth right now.'),
   ('Miami Elder Visits', 'jornada', 'Elderly Ministry', 'North America', 60, 'Active', ''),
   ('Valencia Youth Camp', 'jornada', 'Youth Outreach', 'Europe', 45, 'Planned', ''),
   ('Earthquake Response ''25', 'relief', 'Disaster Relief', 'South America', 900, 'Completed', ''),
@@ -18,8 +18,8 @@ insert into programs (name, category, type, region, participants, status, summar
     'Emergency response for earthquakes and crises, from supplies to rebuilding.');
 
 insert into events (name, event_date, location, description, goal_cents, raised_cents, status, cta_label) values
-  ('Lights of Hope Gala', '2026-09-20', 'Orlando, FL',
-    'An evening of dinner and stories to fund next year''s jornadas across South and Central America.',
+  ('Lights of Hope Gala', '2026-12-12', 'Orlando, FL',
+    'An evening of dinner and stories to fund next year''s jornadas in Venezuela and the United States.',
     6000000, 3600000, 'Active', 'Reserve a seat'),
   ('Run for the Nations 5K', '2026-11-08', 'Miami, FL',
     'Community 5K supporting School of Hope scholarships.',
@@ -59,9 +59,10 @@ insert into posts (title, type, author, tag, body, status, published_at) values
 insert into gallery_photos (location, region, caption) values
   ('Barquisimeto, Venezuela', 'South America', 'March 2026'),
   ('Trujillo, Venezuela', 'South America', 'January 2026'),
-  ('Copán, Honduras', 'Central America', 'November 2025'),
-  ('Miami, USA', 'North America', 'September 2025'),
-  ('Valencia, Spain', 'Europe', 'June 2025');
+  ('Miami, USA', 'North America', 'September 2025');
+-- Central America and Europe jornadas haven't happened yet — add rows here
+-- once real photos exist and the gallery's region filter will pick them up
+-- automatically (see app/[locale]/(public)/gallery/page.tsx).
 
 insert into leaders (name, role, bio, sort_order) values
   ('Luzbell Wood', 'Founder & Executive Director',

@@ -8,8 +8,7 @@ export default async function AboutPage() {
   const [t, leaders] = await Promise.all([getTranslations("about"), getLeaders()]);
 
   const JOURNEY = [
-    { year: "2015", desc: t("journey2015") },
-    { year: "2019", desc: t("journey2019") },
+    { year: "2018", desc: t("journey2018") },
     { year: "2023", desc: t("journey2023") },
     { year: "2026", desc: t("journey2026") },
   ];
@@ -30,7 +29,7 @@ export default async function AboutPage() {
       </div>
 
       <h2 className="mb-6 font-serif text-[22px] font-semibold">{t("journeyTitle")}</h2>
-      <div className="mb-14 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="mb-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {JOURNEY.map((j) => (
           <div key={j.year} className="border-t-[3px] border-accent pt-3.5">
             <div className="font-serif text-xl font-bold">{j.year}</div>

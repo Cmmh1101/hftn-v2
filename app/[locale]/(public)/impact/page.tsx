@@ -9,17 +9,15 @@ export default async function ImpactPage() {
   const [t, tRegions] = await Promise.all([getTranslations("impact"), getTranslations("regions")]);
 
   const IMPACT_STATS = [
-    { value: "14", label: t("statCountries") },
+    { value: "3", label: t("statCountries") },
     { value: "312", label: t("statJornadas") },
-    { value: "1,860", label: t("statStudents") },
+    { value: "50+", label: t("statStudents") },
     { value: "$1.4M", label: t("statDeployed") },
   ];
 
   const REGION_REACH = [
     { label: tRegions("southAmerica"), pct: 78, families: 6200 },
-    { label: tRegions("centralAmerica"), pct: 38, families: 2100 },
     { label: tRegions("northAmerica"), pct: 22, families: 900 },
-    { label: tRegions("europe"), pct: 12, families: 200 },
   ];
 
   const REPORTS = [t("annualReport"), t("form990"), t("letter501c3")];
@@ -37,7 +35,7 @@ export default async function ImpactPage() {
       </div>
 
       <h2 className="mb-5 font-serif text-2xl font-semibold">{t("reachByRegion")}</h2>
-      <div className="mb-11 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="mb-11 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {REGION_REACH.map((r) => (
           <Card key={r.label}>
             <div className="mb-2.5 text-xs font-bold text-blue">{r.label.toUpperCase()}</div>

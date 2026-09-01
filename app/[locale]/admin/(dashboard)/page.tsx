@@ -20,9 +20,7 @@ export default async function AdminOverviewPage() {
 
   const REGION_REACH = [
     { label: tRegions("southAmerica"), pct: 78 },
-    { label: tRegions("centralAmerica"), pct: 38 },
     { label: tRegions("northAmerica"), pct: 22 },
-    { label: tRegions("europe"), pct: 12 },
   ];
 
   const flagship = programs.find((p) => p.category === "flagship");

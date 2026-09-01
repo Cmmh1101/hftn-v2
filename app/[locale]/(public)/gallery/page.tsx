@@ -4,55 +4,58 @@ import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 import { PageIntro } from "@/components/site/PageIntro";
 import { getGalleryGroups } from "@/lib/queries";
 
-type Region = "all" | "sa" | "ca" | "na" | "eu";
+type RegionKey = "sa" | "ca" | "na" | "eu";
 
 // Matches the region string stored in Supabase (always English — content
-// data isn't translated) regardless of the UI locale.
-const REGION_DB_VALUES: Record<Exclude<Region, "all">, string> = {
-  sa: "South America",
-  ca: "Central America",
-  na: "North America",
-  eu: "Europe",
-};
+// data isn't translated) regardless of the UI locale. Order here is the
+// display order once a region has real photos.
+const REGION_ORDER: { key: RegionKey; dbValue: string; labelKey: "southAmerica" | "centralAmerica" | "northAmerica" | "europe" }[] = [
+  { key: "sa", dbValue: "South America", labelKey: "southAmerica" },
+  { key: "ca", dbValue: "Central America", labelKey: "centralAmerica" },
+  { key: "na", dbValue: "North America", labelKey: "northAmerica" },
+  { key: "eu", dbValue: "Europe", labelKey: "europe" },
+];
 
 export default async function GalleryPage({
   searchParams,
 }: {
   searchParams: Promise<{ region?: string }>;
 }) {
-  const [t, tRegions, { region: rawRegion }] = await Promise.all([
+  const [t, tRegions, { region: rawRegion }, allGroups] = await Promise.all([
     getTranslations("gallery"),
     getTranslations("regions"),
     searchParams,
+    getGalleryGroups(),
   ]);
 
-  const region: Region = (["all", "sa", "ca", "na", "eu"] as Region[]).includes(rawRegion as Region)
-    ? (rawRegion as Region)
-    : "all";
+  // Only show a region filter once a jornada has actually happened there —
+  // no empty "Central America" / "Europe" tabs for work that hasn't started.
+  const activeDbValues = new Set(allGroups.map((g) => g.region));
+  const availableRegions = REGION_ORDER.filter((r) => activeDbValues.has(r.dbValue));
 
-  const REGION_FILTERS: { key: Region; label: string }[] = [
+  const region = availableRegions.some((r) => r.key === rawRegion) ? (rawRegion as RegionKey) : "all";
+
+  const REGION_FILTERS: { key: RegionKey | "all"; label: string }[] = [
     { key: "all", label: t("allRegions") },
-    { key: "sa", label: tRegions("southAmerica") },
-    { key: "ca", label: tRegions("centralAmerica") },
-    { key: "na", label: tRegions("northAmerica") },
-    { key: "eu", label: tRegions("europe") },
+    ...availableRegions.map((r) => ({ key: r.key, label: tRegions(r.labelKey) })),
   ];
 
-  const allGroups = await getGalleryGroups();
-  const groups =
-    region === "all" ? allGroups : allGroups.filter((g) => g.region === REGION_DB_VALUES[region]);
+  const activeDbValue = REGION_ORDER.find((r) => r.key === region)?.dbValue;
+  const groups = activeDbValue ? allGroups.filter((g) => g.region === activeDbValue) : allGroups;
 
   return (
     <main className="mx-auto max-w-[1240px] px-8 pb-20 pt-14">
       <PageIntro eyebrow={t("eyebrow")} title={t("title")} intro={t("intro")} />
 
-      <div className="mb-9 flex flex-wrap gap-2.5">
-        {REGION_FILTERS.map((f) => (
-          <Chip key={f.key} href={f.key === "all" ? "/gallery" : `/gallery?region=${f.key}`} selected={region === f.key}>
-            {f.label}
-          </Chip>
-        ))}
-      </div>
+      {REGION_FILTERS.length > 1 ? (
+        <div className="mb-9 flex flex-wrap gap-2.5">
+          {REGION_FILTERS.map((f) => (
+            <Chip key={f.key} href={f.key === "all" ? "/gallery" : `/gallery?region=${f.key}`} selected={region === f.key}>
+              {f.label}
+            </Chip>
+          ))}
+        </div>
+      ) : null}
 
       {groups.map((g) => (
         <div key={g.location} className="mb-10">

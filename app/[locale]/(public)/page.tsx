@@ -23,17 +23,15 @@ export default async function HomePage() {
   const galleryTeaser = galleryGroups.slice(0, 6);
 
   const HOME_STATS = [
-    { value: "14", label: t("statCountries") },
+    { value: "3", label: t("statCountries") },
     { value: "312", label: t("statJornadas") },
-    { value: "1,860", label: t("statStudents") },
-    { value: "9,400+", label: t("statFamilies") },
+    { value: "50+", label: t("statStudents") },
+    { value: "4,500+", label: t("statFamilies") },
   ];
 
   const REGIONS = [
     { label: t("regionSaLabel"), places: t("regionSaPlaces") },
-    { label: t("regionCaLabel"), places: t("regionCaPlaces") },
     { label: t("regionNaLabel"), places: t("regionNaPlaces") },
-    { label: t("regionEuLabel"), places: t("regionEuPlaces") },
   ];
 
   return (
@@ -74,7 +72,7 @@ export default async function HomePage() {
           </Button>
         </div>
         <p className="mb-9 max-w-[760px] text-base leading-relaxed text-muted">{t("beyondBody")}</p>
-        <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {REGIONS.map((r) => (
             <Card key={r.label}>
               <div className="text-xs font-bold tracking-wide text-blue">{r.label}</div>

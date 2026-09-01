@@ -34,6 +34,7 @@ type ButtonAsLink = CommonProps & {
   href: string;
   target?: string;
   rel?: string;
+  onClick?: () => void;
 };
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;

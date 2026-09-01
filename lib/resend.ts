@@ -46,7 +46,7 @@ export async function sendDonationReceipt(params: {
 export async function sendContactNotification(params: { name: string; email: string; message: string }) {
   await getResend().emails.send({
     from: FROM,
-    to: process.env.CONTACT_INBOX_EMAIL ?? "info@hopeforthenations7.org",
+    to: process.env.CONTACT_INBOX_EMAIL ?? "admin@hopeforthenations7.org",
     replyTo: params.email,
     subject: `New contact form message from ${params.name}`,
     html: `<p><strong>${params.name}</strong> (${params.email}) wrote:</p><p>${params.message}</p>`,

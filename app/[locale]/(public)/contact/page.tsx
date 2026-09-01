@@ -15,7 +15,7 @@ export default function ContactPage() {
         <div className="flex flex-col gap-5">
           <div>
             <div className="text-xs font-bold tracking-wide text-label">{t("emailLabel")}</div>
-            <div className="mt-1 text-[15px]">info@hopeforthenations7.org</div>
+            <div className="mt-1 text-[15px]">admin@hopeforthenations7.org</div>
           </div>
           <div>
             <div className="text-xs font-bold tracking-wide text-label">{t("hqLabel")}</div>
