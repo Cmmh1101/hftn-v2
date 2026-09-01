@@ -1,17 +1,17 @@
 import { getTranslations } from "next-intl/server";
 import { Card } from "@/components/ui/Card";
 import { StatTile } from "@/components/ui/StatTile";
-import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Button } from "@/components/ui/Button";
 import { PageIntro } from "@/components/site/PageIntro";
-import { getSiteSettings } from "@/lib/queries";
+import { getPrograms, getSiteSettings } from "@/lib/queries";
 import { getPublicUrl } from "@/lib/storage";
 
 export default async function ImpactPage() {
-  const [t, tRegions, settings] = await Promise.all([
+  const [t, tRegions, settings, programs] = await Promise.all([
     getTranslations("impact"),
     getTranslations("regions"),
     getSiteSettings(),
+    getPrograms(),
   ]);
 
   const IMPACT_STATS = [
@@ -21,10 +21,18 @@ export default async function ImpactPage() {
     { value: settings.total_deployed, label: t("statDeployed") },
   ];
 
+  // Real per-region totals from actual program records — participants from
+  // programs still only "Planned" haven't been reached yet, so those are
+  // excluded rather than counted toward the total.
+  const participantsInRegion = (region: string) =>
+    programs
+      .filter((p) => p.region === region && p.status !== "Planned")
+      .reduce((sum, p) => sum + p.participants, 0);
+
   const REGION_REACH = [
-    { label: tRegions("southAmerica"), pct: 78, families: 6200 },
-    { label: tRegions("northAmerica"), pct: 22, families: 900 },
-  ];
+    { region: "South America", label: tRegions("southAmerica") },
+    { region: "North America", label: tRegions("northAmerica") },
+  ].map((r) => ({ label: r.label, participants: participantsInRegion(r.region) }));
 
   const REPORTS = [
     { label: t("annualReport"), url: getPublicUrl(settings.annual_report_path) },
@@ -47,11 +55,14 @@ export default async function ImpactPage() {
       <h2 className="mb-5 font-serif text-2xl font-semibold">{t("reachByRegion")}</h2>
       <div className="mb-11 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {REGION_REACH.map((r) => (
-          <Card key={r.label}>
-            <div className="mb-2.5 text-xs font-bold text-blue">{r.label.toUpperCase()}</div>
-            <ProgressBar percent={r.pct} color="accent" />
-            <div className="mt-2 text-xs text-muted-2">{t("families", { count: r.families.toLocaleString() })}</div>
-          </Card>
+          <StatTile
+            key={r.label}
+            variant="card"
+            tone="accent"
+            value={r.participants.toLocaleString()}
+            label={r.label.toUpperCase()}
+            trend={t("participantsReached")}
+          />
         ))}
       </div>
 
