@@ -1,11 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-
-const SOCIALS = [
-  { href: "https://www.facebook.com/hopeforthenations7", label: "Facebook" },
-  { href: "https://www.instagram.com/hopeforthenations7/", label: "Instagram" },
-  { href: "https://www.youtube.com/channel/UCknlRAt1zFByIgx-5MaRrLA", label: "YouTube" },
-];
+import { NewsletterForm } from "@/components/site/NewsletterForm";
+import { SOCIALS } from "@/lib/socials";
 
 function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -22,7 +18,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border bg-surface-soft-2">
-      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-8 px-8 pb-7 pt-14 sm:grid-cols-4">
+      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-8 px-8 pb-7 pt-14 sm:grid-cols-5">
         <div className="sm:col-span-1">
           <div className="font-serif text-[19px] font-bold text-ink">Hope For The Nations</div>
           <p className="mt-2.5 max-w-[280px] text-[13.5px] leading-relaxed text-muted-2">{t("blurb")}</p>
@@ -45,6 +41,9 @@ export function Footer() {
               {s.label}
             </a>
           ))}
+        </FooterColumn>
+        <FooterColumn title={t("newsletterTitle")}>
+          <NewsletterForm />
         </FooterColumn>
       </div>
       <div className="mx-auto max-w-[1240px] border-t border-border px-8 py-5 text-[12.5px] text-label">

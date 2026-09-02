@@ -6,6 +6,7 @@ import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 import { Photo } from "@/components/ui/Photo";
 import { getGalleryGroups, getNextEvent, getPublishedPosts, getSiteSettings } from "@/lib/queries";
 import { formatEventDateLong, toIntlLocale } from "@/lib/format";
+import { SOCIALS } from "@/lib/socials";
 
 function locationLabel(location: string) {
   const parts = location.split(",");
@@ -177,24 +178,17 @@ export default async function HomePage() {
           <h2 className="mb-6 font-serif text-2xl font-semibold">{t("followUs")}</h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.3fr_1fr]">
             <div className="flex flex-wrap gap-3.5">
-              <a
-                href="https://www.facebook.com/hopeforthenations7"
-                className="rounded-md border border-border bg-surface px-5 py-3 text-sm font-bold text-ink"
-              >
-                Facebook
-              </a>
-              <a
-                href="https://www.instagram.com/hopeforthenations7/"
-                className="rounded-md border border-border bg-surface px-5 py-3 text-sm font-bold text-ink"
-              >
-                Instagram
-              </a>
-              <a
-                href="https://www.youtube.com/channel/UCknlRAt1zFByIgx-5MaRrLA"
-                className="rounded-md border border-border bg-surface px-5 py-3 text-sm font-bold text-ink"
-              >
-                YouTube
-              </a>
+              {SOCIALS.map((s) => (
+                <a
+                  key={s.href}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-md border border-border bg-surface px-5 py-3 text-sm font-bold text-ink"
+                >
+                  {s.label}
+                </a>
+              ))}
             </div>
             <Card>
               <div className="mb-2.5 text-[11px] font-bold tracking-wide text-label">{t("latest")}</div>

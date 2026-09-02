@@ -42,6 +42,14 @@
     "follow": "SÍGUENOS",
     "form990": "Formulario 990",
     "the501c3": "501(c)(3)",
+    "newsletterTitle": "BOLETÍN",
+    "newsletterPlaceholder": "Tu correo",
+    "newsletterButton": "Suscribirse",
+    "newsletterSending": "Suscribiendo…",
+    "newsletterSuccess": "¡Gracias, ya estás suscrito!",
+    "newsletterErrorFields": "Por favor ingresa tu correo.",
+    "newsletterErrorGeneric": "Algo salió mal. Inténtalo de nuevo.",
+    "newsletterDuplicate": "Ya estás suscrito.",
     "copyright": "Derechos reservados {year} © Hope For The Nations"
   },
   "home": {
@@ -104,6 +112,11 @@
     "statDeployed": "Invertido en 2025",
     "reachByRegion": "Alcance por Región",
     "participantsReached": "Participantes atendidos",
+    "milestonesTitle": "Impacto a lo Largo del Tiempo",
+    "colPeriod": "Período",
+    "colArea": "Área",
+    "colImpact": "Impacto",
+    "goalBadge": "META",
     "reportsTitle": "Informes y Finanzas",
     "annualReport": "Informe Anual 2025",
     "form990": "Formulario 990",
@@ -207,6 +220,7 @@
     "emailLabel": "CORREO ELECTRÓNICO",
     "hqLabel": "UBICACIONES",
     "hqValue": "Eads, TN y Melbourne, FL · EE. UU.",
+    "followLabel": "SÍGUENOS",
     "map": "MAPA",
     "errorFields": "Por favor completa todos los campos.",
     "errorGeneric": "Algo salió mal. Por favor, inténtalo de nuevo.",
@@ -242,10 +256,12 @@
       "programs": "Programas y Jornadas",
       "events": "Eventos y Recaudación",
       "donations": "Donaciones y Donantes",
+      "milestones": "Hitos de Impacto",
       "content": "Blog e Historias",
       "gallery": "Galería / Medios",
       "leadership": "Liderazgo",
       "users": "Usuarios y Roles",
+      "subscribers": "Suscriptores",
       "settings": "Configuración",
       "signOut": "Cerrar sesión"
     },
@@ -383,6 +399,31 @@
       "reportLetter501c3": "Carta 501(c)(3)",
       "viewCurrent": "Ver PDF actual",
       "noFileYet": "Aún no se ha subido un archivo"
+    },
+    "subscribers": {
+      "title": "Suscriptores",
+      "totalSubscribers": "Total de suscriptores",
+      "colEmail": "CORREO",
+      "colName": "NOMBRE",
+      "colSource": "ORIGEN",
+      "colDate": "SUSCRITO"
+    },
+    "milestones": {
+      "title": "Hitos de Impacto",
+      "newMilestone": "+ Nuevo Hito",
+      "newTitle": "Nuevo Hito",
+      "editTitle": "Editar Hito",
+      "colPeriod": "PERÍODO",
+      "colArea": "ÁREA",
+      "colImpact": "IMPACTO",
+      "colGoal": "META",
+      "goalYes": "Meta",
+      "fieldPeriod": "Período",
+      "fieldArea": "Área",
+      "fieldImpactValue": "Valor de impacto",
+      "fieldSortOrder": "Orden",
+      "fieldIsGoal": "Esta es una meta futura, no un resultado alcanzado",
+      "edit": "Editar"
     }
   }
 }

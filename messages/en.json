@@ -42,6 +42,14 @@
     "follow": "FOLLOW",
     "form990": "Form 990",
     "the501c3": "501(c)(3)",
+    "newsletterTitle": "NEWSLETTER",
+    "newsletterPlaceholder": "Your email",
+    "newsletterButton": "Subscribe",
+    "newsletterSending": "Subscribing…",
+    "newsletterSuccess": "Thanks — you're subscribed!",
+    "newsletterErrorFields": "Please enter your email.",
+    "newsletterErrorGeneric": "Something went wrong. Please try again.",
+    "newsletterDuplicate": "You're already subscribed.",
     "copyright": "Copyright {year} © Hope For The Nations"
   },
   "home": {
@@ -104,6 +112,11 @@
     "statDeployed": "Deployed in 2025",
     "reachByRegion": "Reach by Region",
     "participantsReached": "Participants reached",
+    "milestonesTitle": "Impact Over Time",
+    "colPeriod": "Period",
+    "colArea": "Area",
+    "colImpact": "Impact",
+    "goalBadge": "GOAL",
     "reportsTitle": "Reports & Financials",
     "annualReport": "2025 Annual Report",
     "form990": "Form 990",
@@ -207,6 +220,7 @@
     "emailLabel": "EMAIL",
     "hqLabel": "LOCATIONS",
     "hqValue": "Eads, TN & Melbourne, FL · USA",
+    "followLabel": "FOLLOW US",
     "map": "MAP",
     "errorFields": "Please fill in every field.",
     "errorGeneric": "Something went wrong. Please try again.",
@@ -242,10 +256,12 @@
       "programs": "Programs & Jornadas",
       "events": "Events & Fundraising",
       "donations": "Donations & Donors",
+      "milestones": "Impact Milestones",
       "content": "Blog & Stories",
       "gallery": "Gallery / Media",
       "leadership": "Leadership",
       "users": "Users & Roles",
+      "subscribers": "Subscribers",
       "settings": "Settings",
       "signOut": "Sign out"
     },
@@ -383,6 +399,31 @@
       "reportLetter501c3": "501(c)(3) Letter",
       "viewCurrent": "View current PDF",
       "noFileYet": "No file uploaded yet"
+    },
+    "subscribers": {
+      "title": "Subscribers",
+      "totalSubscribers": "Total subscribers",
+      "colEmail": "EMAIL",
+      "colName": "NAME",
+      "colSource": "SOURCE",
+      "colDate": "SUBSCRIBED"
+    },
+    "milestones": {
+      "title": "Impact Milestones",
+      "newMilestone": "+ New Milestone",
+      "newTitle": "New Milestone",
+      "editTitle": "Edit Milestone",
+      "colPeriod": "PERIOD",
+      "colArea": "AREA",
+      "colImpact": "IMPACT",
+      "colGoal": "GOAL",
+      "goalYes": "Goal",
+      "fieldPeriod": "Period",
+      "fieldArea": "Area",
+      "fieldImpactValue": "Impact value",
+      "fieldSortOrder": "Sort order",
+      "fieldIsGoal": "This is a future goal, not an achieved result",
+      "edit": "Edit"
     }
   }
 }

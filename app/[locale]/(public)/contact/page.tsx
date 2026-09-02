@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 import { PageIntro } from "@/components/site/PageIntro";
 import { ContactForm } from "@/components/site/ContactForm";
+import { SOCIALS } from "@/lib/socials";
 
 export default function ContactPage() {
   const t = useTranslations("contact");
@@ -20,6 +21,16 @@ export default function ContactPage() {
           <div>
             <div className="text-xs font-bold tracking-wide text-label">{t("hqLabel")}</div>
             <div className="mt-1 text-[15px]">{t("hqValue")}</div>
+          </div>
+          <div>
+            <div className="text-xs font-bold tracking-wide text-label">{t("followLabel")}</div>
+            <div className="mt-1.5 flex gap-4">
+              {SOCIALS.map((s) => (
+                <a key={s.href} href={s.href} target="_blank" rel="noreferrer" className="text-[15px] font-semibold text-blue">
+                  {s.label}
+                </a>
+              ))}
+            </div>
           </div>
           <PhotoPlaceholder aspect="16/9" label={t("map")} />
         </div>

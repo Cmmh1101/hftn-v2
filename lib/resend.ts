@@ -65,3 +65,28 @@ export async function sendContactConfirmation(params: { name: string; email: str
     `,
   });
 }
+
+/**
+ * Mirrors a subscriber into a Resend Segment (what Resend called "Audiences"
+ * until they migrated to Segments — https://resend.com/docs/dashboard/segments/migrating-from-audiences-to-segments)
+ * so campaigns can be sent from Resend's own dashboard. Our own database is
+ * still the source of truth for the subscriber list — this is a best-effort
+ * sync that never throws, and silently no-ops until RESEND_SEGMENT_ID is set.
+ */
+export async function subscribeToAudience(params: { email: string; name?: string }): Promise<string | null> {
+  const segmentId = process.env.RESEND_SEGMENT_ID;
+  if (!segmentId) return null;
+
+  try {
+    const { data } = await getResend().contacts.create({
+      email: params.email,
+      firstName: params.name || undefined,
+      unsubscribed: false,
+      segments: [{ id: segmentId }],
+    });
+    return data?.id ?? null;
+  } catch (error) {
+    console.error("Failed to add subscriber to Resend segment:", error);
+    return null;
+  }
+}

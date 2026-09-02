@@ -95,6 +95,26 @@ export type Profile = {
   created_at: string;
 };
 
+export type ImpactMilestone = {
+  id: string;
+  period: string;
+  area: string;
+  impact_value: string;
+  is_goal: boolean;
+  sort_order: number;
+  created_at: string;
+};
+
+export type Subscriber = {
+  id: string;
+  email: string;
+  name: string;
+  source: string;
+  resend_contact_id: string | null;
+  unsubscribed_at: string | null;
+  created_at: string;
+};
+
 export type SiteSettings = {
   countries_served: string;
   jornadas_completed: string;

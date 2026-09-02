@@ -3,15 +3,16 @@ import { Card } from "@/components/ui/Card";
 import { StatTile } from "@/components/ui/StatTile";
 import { Button } from "@/components/ui/Button";
 import { PageIntro } from "@/components/site/PageIntro";
-import { getPrograms, getSiteSettings } from "@/lib/queries";
+import { getImpactMilestones, getPrograms, getSiteSettings } from "@/lib/queries";
 import { getPublicUrl } from "@/lib/storage";
 
 export default async function ImpactPage() {
-  const [t, tRegions, settings, programs] = await Promise.all([
+  const [t, tRegions, settings, programs, milestones] = await Promise.all([
     getTranslations("impact"),
     getTranslations("regions"),
     getSiteSettings(),
     getPrograms(),
+    getImpactMilestones(),
   ]);
 
   const IMPACT_STATS = [
@@ -65,6 +66,39 @@ export default async function ImpactPage() {
           />
         ))}
       </div>
+
+      {milestones.length > 0 ? (
+        <>
+          <h2 className="mb-5 font-serif text-2xl font-semibold">{t("milestonesTitle")}</h2>
+          <Card padding="none" className="mb-11 overflow-hidden">
+            <table className="w-full text-left text-[13.5px]">
+              <thead>
+                <tr className="border-b border-border-soft bg-surface-soft-2 text-xs font-bold uppercase tracking-wide text-label">
+                  <th className="px-5 py-3">{t("colPeriod")}</th>
+                  <th className="px-5 py-3">{t("colArea")}</th>
+                  <th className="px-5 py-3">{t("colImpact")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {milestones.map((m) => (
+                  <tr key={m.id} className="border-b border-border-soft last:border-b-0">
+                    <td className="px-5 py-3 font-semibold">{m.period}</td>
+                    <td className="px-5 py-3 text-muted-2">{m.area}</td>
+                    <td className="px-5 py-3">
+                      {m.impact_value}
+                      {m.is_goal ? (
+                        <span className="ml-2 rounded-full bg-blue-soft px-2 py-0.5 text-[10.5px] font-bold text-blue">
+                          {t("goalBadge")}
+                        </span>
+                      ) : null}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </Card>
+        </>
+      ) : null}
 
       <h2 className="mb-5 font-serif text-2xl font-semibold">{t("reportsTitle")}</h2>
       <div className="mb-11 grid grid-cols-1 gap-4 md:grid-cols-3">

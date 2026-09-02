@@ -1,5 +1,16 @@
 import { createClient } from "@/lib/supabase/server";
-import type { Donation, Event, GalleryPhoto, Leader, Post, Profile, Program, SiteSettings } from "@/lib/types";
+import type {
+  Donation,
+  Event,
+  GalleryPhoto,
+  ImpactMilestone,
+  Leader,
+  Post,
+  Profile,
+  Program,
+  SiteSettings,
+  Subscriber,
+} from "@/lib/types";
 import { relativeTime } from "@/lib/format";
 
 const DEFAULT_SITE_SETTINGS: SiteSettings = {
@@ -113,6 +124,22 @@ export async function getDonations(): Promise<Donation[]> {
 export async function getProfiles(): Promise<Profile[]> {
   const supabase = await createClient();
   const { data } = await supabase.from("profiles").select("*").order("created_at", { ascending: true });
+  return data ?? [];
+}
+
+export async function getSubscribers(): Promise<Subscriber[]> {
+  const supabase = await createClient();
+  const { data } = await supabase.from("subscribers").select("*").order("created_at", { ascending: false });
+  return data ?? [];
+}
+
+export async function getImpactMilestones(): Promise<ImpactMilestone[]> {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("impact_milestones")
+    .select("*")
+    .order("sort_order", { ascending: true })
+    .order("period", { ascending: true });
   return data ?? [];
 }
 
