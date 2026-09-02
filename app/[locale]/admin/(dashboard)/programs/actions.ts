@@ -17,6 +17,7 @@ function readFields(formData: FormData) {
     status: formData.get("status") as ProgramStatus,
     summary: String(formData.get("summary") ?? "").trim(),
     program_date: String(formData.get("program_date") ?? "").trim() || null,
+    website_url: String(formData.get("website_url") ?? "").trim() || null,
   };
 }
 

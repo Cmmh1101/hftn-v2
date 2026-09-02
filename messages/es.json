@@ -50,6 +50,7 @@
     "newsletterErrorFields": "Por favor ingresa tu correo.",
     "newsletterErrorGeneric": "Algo salió mal. Inténtalo de nuevo.",
     "newsletterDuplicate": "Ya estás suscrito.",
+    "adminLogin": "Acceso Administrativo",
     "copyright": "Derechos reservados {year} © Hope For The Nations"
   },
   "home": {
@@ -95,6 +96,9 @@
     "intro": "Desde niños hasta adultos mayores, nuestros programas llegan a las comunidades donde existe la necesidad — a través de ministerios continuos y jornadas de corto plazo.",
     "jornadasTitle": "Jornadas",
     "jornadasIntro": "Días de ayuda de corto plazo realizados donde una comunidad nos necesita — combinando varias formas de servicio en una sola visita.",
+    "visitWebsite": "Visitar sitio web",
+    "fieldRegion": "Región",
+    "fieldParticipants": "Participantes",
     "jornadaMedical": "Atención Médica",
     "jornadaFeeding": "Alimentación",
     "jornadaEvangelization": "Evangelización",
@@ -265,6 +269,11 @@
       "settings": "Configuración",
       "signOut": "Cerrar sesión"
     },
+    "navGroups": {
+      "content": "Contenido",
+      "engagement": "Participación",
+      "admin": "Administración"
+    },
     "topbar": {
       "search": "Buscar programas, donantes, publicaciones...",
       "newButton": "+ Nuevo"
@@ -310,6 +319,8 @@
       "fieldCategory": "Categoría",
       "fieldSummary": "Resumen",
       "fieldDate": "Fecha",
+      "fieldWebsiteUrl": "Enlace del sitio web",
+      "fieldWebsiteUrlHint": "Si este programa tiene su propio sitio web separado (por ejemplo, School of Hope International), enlázalo aquí para que los visitantes puedan navegar hasta él.",
       "edit": "Editar"
     },
     "events": {

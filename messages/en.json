@@ -50,6 +50,7 @@
     "newsletterErrorFields": "Please enter your email.",
     "newsletterErrorGeneric": "Something went wrong. Please try again.",
     "newsletterDuplicate": "You're already subscribed.",
+    "adminLogin": "Admin Login",
     "copyright": "Copyright {year} © Hope For The Nations"
   },
   "home": {
@@ -95,6 +96,9 @@
     "intro": "From children to elders, our programs meet communities where the need is — delivered through continuous ministries and short-term jornadas alike.",
     "jornadasTitle": "Jornadas",
     "jornadasIntro": "Short-term outreach days carried out wherever a community needs us — combining several forms of service in a single visit.",
+    "visitWebsite": "Visit website",
+    "fieldRegion": "Region",
+    "fieldParticipants": "Participants",
     "jornadaMedical": "Medical Care",
     "jornadaFeeding": "Feeding",
     "jornadaEvangelization": "Evangelization",
@@ -265,6 +269,11 @@
       "settings": "Settings",
       "signOut": "Sign out"
     },
+    "navGroups": {
+      "content": "Content",
+      "engagement": "Engagement",
+      "admin": "Admin"
+    },
     "topbar": {
       "search": "Search programs, donors, posts...",
       "newButton": "+ New"
@@ -310,6 +319,8 @@
       "fieldCategory": "Category",
       "fieldSummary": "Summary",
       "fieldDate": "Date",
+      "fieldWebsiteUrl": "Website link",
+      "fieldWebsiteUrlHint": "If this program has its own separate website (e.g. School of Hope International), link it here so visitors can navigate to it.",
       "edit": "Edit"
     },
     "events": {

@@ -16,6 +16,7 @@ export type Program = {
   summary: string;
   photo_path: string | null;
   program_date: string | null;
+  website_url: string | null;
   created_at: string;
 };
 

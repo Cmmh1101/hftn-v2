@@ -46,8 +46,11 @@ export function Footer() {
           <NewsletterForm />
         </FooterColumn>
       </div>
-      <div className="mx-auto max-w-[1240px] border-t border-border px-8 py-5 text-[12.5px] text-label">
-        {t("copyright", { year: new Date().getFullYear() })}
+      <div className="mx-auto flex max-w-[1240px] items-center justify-between border-t border-border px-8 py-5 text-[12.5px] text-label">
+        <span>{t("copyright", { year: new Date().getFullYear() })}</span>
+        <Link href="/admin/login" className="hover:text-muted-2">
+          {t("adminLogin")}
+        </Link>
       </div>
     </footer>
   );

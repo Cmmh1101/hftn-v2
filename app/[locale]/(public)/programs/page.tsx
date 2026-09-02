@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/Card";
 import { Photo } from "@/components/ui/Photo";
 import { PageIntro } from "@/components/site/PageIntro";
 import { JornadaTypesSection } from "@/components/site/JornadaTypesSection";
+import { ProgramCard } from "@/components/site/ProgramCard";
 import { getPrograms } from "@/lib/queries";
 import { PROGRAM_TYPES } from "@/lib/programTypes";
 import { PROGRAM_REGIONS } from "@/lib/regions";
@@ -59,6 +60,16 @@ export default async function ProgramsPage() {
             </span>
             <h2 className="mt-2.5 font-serif text-[26px] font-semibold">{flagship.name}</h2>
             <p className="mt-3 text-[14.5px] leading-relaxed text-muted">{flagship.summary}</p>
+            {flagship.website_url ? (
+              <a
+                href={flagship.website_url}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 inline-block text-sm font-bold text-blue hover:text-blue-hover"
+              >
+                {t("visitWebsite")} →
+              </a>
+            ) : null}
           </div>
           <Photo path={flagship.photo_path} alt={flagship.name} tone="warm" aspect="16/9" label="PHOTO — online classroom" />
         </Card>
@@ -66,16 +77,23 @@ export default async function ProgramsPage() {
 
       <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-3">
         {continuousAndRelief.map((p) => (
-          <Card key={p.id} padding="none" className="overflow-hidden">
-            <Photo path={p.photo_path} alt={p.name} aspect="4/3" label={`PHOTO — ${p.name}`} rounded="0" />
-            <div className="p-5">
-              <span className="text-[11px] font-bold tracking-wide text-blue">
-                {tCategory(p.category).toUpperCase()}
-              </span>
-              <h3 className="mt-2 font-serif text-[19px]">{p.name}</h3>
-              <p className="mt-2 text-[13.5px] leading-normal text-muted">{p.summary}</p>
-            </div>
-          </Card>
+          <ProgramCard
+            key={p.id}
+            program={{
+              id: p.id,
+              name: p.name,
+              categoryLabel: tCategory(p.category),
+              typeLabel: typeLabel(p.type),
+              regionLabel: regionLabel(p.region),
+              participants: p.participants,
+              summary: p.summary,
+              photo_path: p.photo_path,
+              websiteUrl: p.website_url,
+            }}
+            regionFieldLabel={t("fieldRegion")}
+            participantsFieldLabel={t("fieldParticipants")}
+            visitWebsiteLabel={t("visitWebsite")}
+          />
         ))}
       </div>
 

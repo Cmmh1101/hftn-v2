@@ -84,6 +84,17 @@ export async function ProgramForm({
         <Textarea name="summary" defaultValue={program?.summary} rows={4} className="w-full" />
       </div>
       <div>
+        <Label>{t("fieldWebsiteUrl")}</Label>
+        <Input
+          type="url"
+          name="website_url"
+          defaultValue={program?.website_url ?? ""}
+          placeholder="https://schoolofhopeinternational.org"
+          className="w-full"
+        />
+        <p className="mt-1 text-xs text-label">{t("fieldWebsiteUrlHint")}</p>
+      </div>
+      <div>
         <Label>{tForm("photo")}</Label>
         {program?.photo_path ? (
           <div className="mb-2 flex items-center gap-3">

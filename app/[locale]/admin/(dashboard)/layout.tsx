@@ -1,6 +1,6 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { Input } from "@/components/ui/Field";
-import { SidebarItem } from "@/components/ui/SidebarItem";
+import { AdminSidebarNav } from "@/components/site/AdminSidebarNav";
 import { Avatar } from "@/components/ui/Avatar";
 import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
 import { createClient } from "@/lib/supabase/server";
@@ -8,25 +8,41 @@ import { initials, toIntlLocale } from "@/lib/format";
 import { signOut } from "../actions";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const [t, tRoles, locale] = await Promise.all([
+  const [t, tGroups, tRoles, locale] = await Promise.all([
     getTranslations("admin.nav"),
+    getTranslations("admin.navGroups"),
     getTranslations("admin.roles"),
     getLocale(),
   ]);
   const tTopbar = await getTranslations("admin.topbar");
 
-  const NAV_ITEMS = [
-    { href: "/admin", label: t("overview") },
-    { href: "/admin/programs", label: t("programs") },
-    { href: "/admin/events", label: t("events") },
-    { href: "/admin/donations", label: t("donations") },
-    { href: "/admin/impact-milestones", label: t("milestones") },
-    { href: "/admin/content", label: t("content") },
-    { href: "/admin/gallery", label: t("gallery") },
-    { href: "/admin/leadership", label: t("leadership") },
-    { href: "/admin/subscribers", label: t("subscribers") },
-    { href: "/admin/users", label: t("users") },
-    { href: "/admin/settings", label: t("settings") },
+  const OVERVIEW = { href: "/admin", label: t("overview") };
+  const NAV_GROUPS = [
+    {
+      label: tGroups("content"),
+      items: [
+        { href: "/admin/programs", label: t("programs") },
+        { href: "/admin/impact-milestones", label: t("milestones") },
+        { href: "/admin/content", label: t("content") },
+        { href: "/admin/gallery", label: t("gallery") },
+        { href: "/admin/leadership", label: t("leadership") },
+      ],
+    },
+    {
+      label: tGroups("engagement"),
+      items: [
+        { href: "/admin/events", label: t("events") },
+        { href: "/admin/donations", label: t("donations") },
+        { href: "/admin/subscribers", label: t("subscribers") },
+      ],
+    },
+    {
+      label: tGroups("admin"),
+      items: [
+        { href: "/admin/users", label: t("users") },
+        { href: "/admin/settings", label: t("settings") },
+      ],
+    },
   ];
 
   const supabase = await createClient();
@@ -51,11 +67,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           </div>
           <div className="mt-1 text-[10px] tracking-[2px] text-sidebar-inactive">FOR THE NATIONS</div>
         </div>
-        {NAV_ITEMS.map((item) => (
-          <SidebarItem key={item.href} href={item.href}>
-            {item.label}
-          </SidebarItem>
-        ))}
+        <AdminSidebarNav overview={OVERVIEW} groups={NAV_GROUPS} />
         <div className="mt-auto flex items-center gap-2.5 border-t border-white/10 pt-3.5">
           <Avatar initials={initials(name || "?")} />
           <div>
