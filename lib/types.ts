@@ -50,9 +50,11 @@ export type Donation = {
 export type Post = {
   id: string;
   title: string;
+  slug: string;
   type: PostType;
   author: string;
-  tag: string;
+  category: string;
+  tags: string[];
   body: string;
   status: PostStatus;
   published_at: string | null;

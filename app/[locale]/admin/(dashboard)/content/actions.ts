@@ -4,17 +4,23 @@ import { revalidatePath } from "next/cache";
 import { getLocale } from "next-intl/server";
 import { redirect } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { uploadFile, deleteFile } from "@/lib/storage";
+import { uploadFile, deleteFile, getPublicUrl } from "@/lib/storage";
+import { slugify } from "@/lib/slug";
 import type { PostStatus, PostType } from "@/lib/types";
 
 function readFields(formData: FormData) {
   const status = formData.get("status") as PostStatus;
   const publishedAtInput = String(formData.get("published_at") ?? "").trim();
+  const title = String(formData.get("title") ?? "").trim();
+  const slugInput = String(formData.get("slug") ?? "").trim();
+  const tagsInput = String(formData.get("tags") ?? "").trim();
   return {
-    title: String(formData.get("title") ?? "").trim(),
+    title,
+    slug: slugify(slugInput || title),
     type: formData.get("type") as PostType,
     author: String(formData.get("author") ?? "").trim(),
-    tag: String(formData.get("tag") ?? "").trim(),
+    category: String(formData.get("category") ?? "").trim(),
+    tags: tagsInput ? tagsInput.split(",").map((t) => t.trim()).filter(Boolean) : [],
     body: String(formData.get("body") ?? "").trim(),
     status,
     published_at: publishedAtInput || (status === "published" ? new Date().toISOString().slice(0, 10) : null),
@@ -79,4 +85,14 @@ export async function deletePost(formData: FormData) {
   await deleteFile(post?.photo_path);
 
   revalidatePosts();
+}
+
+export async function uploadEditorImage(formData: FormData): Promise<{ url: string } | { error: string }> {
+  const file = formData.get("image") as File | null;
+  if (!file || file.size === 0) return { error: "No file provided" };
+
+  const id = crypto.randomUUID();
+  const path = await uploadFile(file, "post-content", id);
+  const url = getPublicUrl(path);
+  return url ? { url } : { error: "Upload failed" };
 }

@@ -140,7 +140,8 @@
   "stories": {
     "eyebrow": "Real lives, real impact",
     "title": "Stories of Hope",
-    "fromBlog": "From the Blog"
+    "fromBlog": "From the Blog",
+    "backToStories": "Back to Stories"
   },
   "gallery": {
     "eyebrow": "Jornadas realized",
@@ -363,7 +364,13 @@
       "edit": "Edit",
       "typeBlog": "Blog",
       "typeStory": "Story of Hope",
-      "fieldTag": "Tag",
+      "fieldCategory": "Category",
+      "fieldTags": "Tags",
+      "fieldTagsPlaceholder": "hope, jornadas, venezuela",
+      "fieldTagsHint": "Comma-separated. Used for future filtering, not shown as a single label.",
+      "fieldSlug": "URL slug",
+      "fieldSlugPlaceholder": "auto-generated-from-title",
+      "fieldSlugHint": "Leave blank to auto-generate from the title.",
       "fieldBody": "Body",
       "fieldPublishedAt": "Published date"
     },

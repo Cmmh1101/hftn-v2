@@ -1,4 +1,5 @@
 import { getTranslations, getLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { StatTile } from "@/components/ui/StatTile";
@@ -6,6 +7,7 @@ import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 import { Photo } from "@/components/ui/Photo";
 import { getGalleryGroups, getNextEvent, getPublishedPosts, getSiteSettings } from "@/lib/queries";
 import { formatEventDateLong, toIntlLocale } from "@/lib/format";
+import { excerptFromHtml } from "@/lib/excerpt";
 import { SOCIALS } from "@/lib/socials";
 
 function locationLabel(location: string) {
@@ -139,13 +141,15 @@ export default async function HomePage() {
         </div>
         <div className="grid grid-cols-1 gap-5.5 md:grid-cols-3">
           {featuredStories.map((s) => (
-            <Card key={s.id} padding="none" className="overflow-hidden">
-              <Photo path={s.photo_path} alt={s.title} aspect="4/3" label={`PHOTO — ${s.title.split(" ")[0]}`} rounded="0" />
-              <div className="p-5">
-                <div className="text-[15px] font-bold">{s.title}</div>
-                <div className="mt-1.5 text-[13.5px] leading-relaxed text-muted-2">{s.body}</div>
-              </div>
-            </Card>
+            <Link key={s.id} href={`/stories/${s.slug}`}>
+              <Card padding="none" className="overflow-hidden transition-colors hover:border-blue">
+                <Photo path={s.photo_path} alt={s.title} aspect="4/3" label={`PHOTO — ${s.title.split(" ")[0]}`} rounded="0" />
+                <div className="p-5">
+                  <div className="text-[15px] font-bold">{s.title}</div>
+                  <div className="mt-1.5 text-[13.5px] leading-relaxed text-muted-2">{excerptFromHtml(s.body)}</div>
+                </div>
+              </Card>
+            </Link>
           ))}
         </div>
       </section>

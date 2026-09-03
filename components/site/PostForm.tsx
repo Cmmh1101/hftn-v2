@@ -1,7 +1,8 @@
 import { getTranslations } from "next-intl/server";
-import { Input, Textarea, Select, Label } from "@/components/ui/Field";
+import { Input, Select, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { Photo } from "@/components/ui/Photo";
+import { RichTextEditor } from "@/components/site/RichTextEditor";
 import type { Post } from "@/lib/types";
 
 export async function PostForm({ action, post }: { action: (formData: FormData) => void; post?: Post }) {
@@ -12,10 +13,15 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
   ]);
 
   return (
-    <form action={action} className="flex max-w-xl flex-col gap-4">
+    <form action={action} className="flex max-w-2xl flex-col gap-4">
       <div>
         <Label>{t("colTitle")}</Label>
         <Input name="title" defaultValue={post?.title} required className="w-full" />
+      </div>
+      <div>
+        <Label>{t("fieldSlug")}</Label>
+        <Input name="slug" defaultValue={post?.slug} placeholder={t("fieldSlugPlaceholder")} className="w-full" />
+        <p className="mt-1 text-xs text-label">{t("fieldSlugHint")}</p>
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div>
@@ -39,9 +45,14 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
           <Input name="author" defaultValue={post?.author} className="w-full" />
         </div>
         <div>
-          <Label>{t("fieldTag")}</Label>
-          <Input name="tag" defaultValue={post?.tag} className="w-full" />
+          <Label>{t("fieldCategory")}</Label>
+          <Input name="category" defaultValue={post?.category} className="w-full" />
         </div>
+      </div>
+      <div>
+        <Label>{t("fieldTags")}</Label>
+        <Input name="tags" defaultValue={post?.tags?.join(", ")} placeholder={t("fieldTagsPlaceholder")} className="w-full" />
+        <p className="mt-1 text-xs text-label">{t("fieldTagsHint")}</p>
       </div>
       <div>
         <Label>{t("fieldPublishedAt")}</Label>
@@ -49,7 +60,7 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
       </div>
       <div>
         <Label>{t("fieldBody")}</Label>
-        <Textarea name="body" defaultValue={post?.body} rows={6} className="w-full" />
+        <RichTextEditor name="body" defaultValue={post?.body} />
       </div>
       <div>
         <Label>{tForm("photo")}</Label>

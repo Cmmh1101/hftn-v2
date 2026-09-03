@@ -140,7 +140,8 @@
   "stories": {
     "eyebrow": "Vidas reales, impacto real",
     "title": "Historias de Esperanza",
-    "fromBlog": "Del Blog"
+    "fromBlog": "Del Blog",
+    "backToStories": "Volver a Historias"
   },
   "gallery": {
     "eyebrow": "Jornadas realizadas",
@@ -363,7 +364,13 @@
       "edit": "Editar",
       "typeBlog": "Blog",
       "typeStory": "Historia de Esperanza",
-      "fieldTag": "Etiqueta",
+      "fieldCategory": "Categoría",
+      "fieldTags": "Etiquetas",
+      "fieldTagsPlaceholder": "esperanza, jornadas, venezuela",
+      "fieldTagsHint": "Separadas por comas. Se usan para filtrar más adelante, no se muestran como una sola etiqueta.",
+      "fieldSlug": "Slug de URL",
+      "fieldSlugPlaceholder": "generado-automaticamente-del-titulo",
+      "fieldSlugHint": "Déjalo en blanco para generarlo automáticamente del título.",
       "fieldBody": "Contenido",
       "fieldPublishedAt": "Fecha de publicación"
     },

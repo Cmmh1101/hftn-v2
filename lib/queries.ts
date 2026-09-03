@@ -63,6 +63,12 @@ export async function getPublishedPosts(type: "blog" | "story"): Promise<Post[]>
   return data ?? [];
 }
 
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  const supabase = await createClient();
+  const { data } = await supabase.from("posts").select("*").eq("slug", slug).eq("status", "published").single();
+  return data ?? null;
+}
+
 export async function getLeaders(): Promise<Leader[]> {
   const supabase = await createClient();
   const { data } = await supabase.from("leaders").select("*").order("sort_order", { ascending: true });
