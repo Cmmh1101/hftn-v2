@@ -45,7 +45,7 @@ export function RichTextEditor({ name, defaultValue }: { name: string; defaultVa
     immediatelyRender: false,
     extensions: [
       StarterKit,
-      Link.configure({ openOnClick: false, autolink: true }),
+      Link.configure({ openOnClick: false, autolink: true, protocols: ["http", "https", "mailto"] }),
       Image,
       Placeholder.configure({ placeholder: "Write the post…" }),
     ],
