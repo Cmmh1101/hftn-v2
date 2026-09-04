@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { sendContactConfirmation, sendContactNotification } from "@/lib/resend";
 import { syncToSheet } from "@/lib/sheets";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 export type ContactFormState = { status: "idle" | "success" | "error"; message?: string };
 
@@ -15,6 +16,12 @@ export async function submitContact(_prevState: ContactFormState, formData: Form
 
   if (!name || !email || !message) {
     return { status: "error", message: t("errorFields") };
+  }
+
+  const ip = await getClientIp();
+  const allowed = await checkRateLimit(`contact:${ip}`, 5, 15);
+  if (!allowed) {
+    return { status: "error", message: t("errorRateLimit") };
   }
 
   const supabase = createAdminClient();

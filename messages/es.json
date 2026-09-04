@@ -51,6 +51,7 @@
     "newsletterSuccess": "¡Gracias, ya estás suscrito!",
     "newsletterErrorFields": "Por favor ingresa tu correo.",
     "newsletterErrorGeneric": "Algo salió mal. Inténtalo de nuevo.",
+    "newsletterErrorRateLimit": "Demasiados intentos. Inténtalo de nuevo más tarde.",
     "newsletterDuplicate": "Ya estás suscrito.",
     "adminLogin": "Acceso Administrativo",
     "copyright": "Derechos reservados {year} © Hope For The Nations"
@@ -231,6 +232,7 @@
     "map": "MAPA",
     "errorFields": "Por favor completa todos los campos.",
     "errorGeneric": "Algo salió mal. Por favor, inténtalo de nuevo.",
+    "errorRateLimit": "Se han enviado demasiados mensajes recientemente. Inténtalo de nuevo más tarde.",
     "success": "Gracias — nos pondremos en contacto pronto."
   },
   "status": {

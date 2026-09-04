@@ -51,6 +51,7 @@
     "newsletterSuccess": "Thanks — you're subscribed!",
     "newsletterErrorFields": "Please enter your email.",
     "newsletterErrorGeneric": "Something went wrong. Please try again.",
+    "newsletterErrorRateLimit": "Too many attempts. Please try again later.",
     "newsletterDuplicate": "You're already subscribed.",
     "adminLogin": "Admin Login",
     "copyright": "Copyright {year} © Hope For The Nations"
@@ -231,6 +232,7 @@
     "map": "MAP",
     "errorFields": "Please fill in every field.",
     "errorGeneric": "Something went wrong. Please try again.",
+    "errorRateLimit": "Too many messages sent recently. Please try again later.",
     "success": "Thanks — we'll be in touch soon."
   },
   "status": {

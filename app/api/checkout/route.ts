@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
+import { checkRateLimit } from "@/lib/rate-limit";
 import type { DonationKind } from "@/lib/types";
 
 function sponsorshipCancelAt(): number {
@@ -9,6 +10,12 @@ function sponsorshipCancelAt(): number {
 }
 
 export async function POST(request: Request) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? request.headers.get("x-real-ip") ?? "unknown";
+  const allowed = await checkRateLimit(`checkout:${ip}`, 10, 60);
+  if (!allowed) {
+    return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+  }
+
   const body = await request.json();
   const amountCents = Number(body.amountCents);
   const kind = body.kind as DonationKind;
