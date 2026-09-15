@@ -27,7 +27,10 @@ async function recordDonation(params: {
     stripe_subscription_id: params.subscriptionId ?? null,
   });
 
-  await Promise.all([
+  // The donation is already recorded — a Resend/Sheets failure here must not
+  // throw, or Stripe will treat this webhook delivery as failed and retry
+  // it, risking a duplicate donation row on the next attempt.
+  const results = await Promise.allSettled([
     sendDonationReceipt({
       donorEmail: params.donorEmail,
       donorName: params.donorName,
@@ -45,6 +48,9 @@ async function recordDonation(params: {
       createdAt: new Date().toISOString(),
     }),
   ]);
+  for (const result of results) {
+    if (result.status === "rejected") console.error("Donation follow-up failed:", result.reason);
+  }
 }
 
 export async function POST(request: Request) {

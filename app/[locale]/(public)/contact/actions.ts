@@ -30,11 +30,17 @@ export async function submitContact(_prevState: ContactFormState, formData: Form
     return { status: "error", message: t("errorGeneric") };
   }
 
-  await Promise.all([
+  // The message is already saved — a Resend/Sheets hiccup after this point
+  // shouldn't turn into a crash for the visitor, so failures are logged
+  // (visible in Netlify function logs) rather than thrown.
+  const results = await Promise.allSettled([
     sendContactNotification({ name, email, message }),
     sendContactConfirmation({ name, email }),
     syncToSheet({ type: "contact", name, email, message, createdAt: new Date().toISOString() }),
   ]);
+  for (const result of results) {
+    if (result.status === "rejected") console.error("Contact form follow-up failed:", result.reason);
+  }
 
   return { status: "success", message: t("success") };
 }
