@@ -20,7 +20,12 @@ export function StatTile({
   variant = "plain",
 }: StatTileProps) {
   return (
-    <div className={cn(variant === "card" && "rounded-lg border border-border bg-surface p-5")}>
+    <div
+      className={cn(
+        variant === "card" &&
+          "relative overflow-hidden rounded-lg border border-border bg-gradient-to-b from-surface to-surface-soft p-5 shadow-[0_1px_2px_rgba(3,48,124,0.04),0_4px_12px_rgba(3,48,124,0.05)] before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:bg-gradient-to-r before:from-accent-strong before:to-blue before:content-['']",
+      )}
+    >
       {variant === "card" ? <div className="text-xs font-semibold text-label">{label}</div> : null}
       <div
         className={cn(

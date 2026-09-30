@@ -116,7 +116,7 @@ export default async function ImpactPage() {
         ))}
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-6 rounded-lg bg-ink p-9">
+      <div className="flex flex-wrap items-center justify-between gap-6 rounded-lg bg-gradient-to-br from-ink-soft via-ink to-ink-dark p-9 shadow-[0_4px_20px_rgba(1,19,50,0.25)]">
         <div>
           <div className="font-serif text-[22px] font-semibold text-white">{t("ctaTitle")}</div>
           <div className="mt-1.5 text-sm text-white/80">{t("ctaBody")}</div>

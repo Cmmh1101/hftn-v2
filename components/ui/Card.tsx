@@ -19,10 +19,10 @@ export function Card({ padding = "md", highlight = false, className, ...props }:
   return (
     <div
       className={cn(
-        "rounded-lg bg-surface",
+        "rounded-lg shadow-[0_1px_2px_rgba(3,48,124,0.04),0_4px_12px_rgba(3,48,124,0.05)] transition-shadow",
         highlight
-          ? "border-2 border-accent bg-accent-soft"
-          : "border border-border",
+          ? "border-2 border-accent bg-gradient-to-b from-accent-soft to-accent-soft-2"
+          : "border border-border bg-gradient-to-b from-surface to-surface-soft",
         paddingClasses[padding],
         className,
       )}

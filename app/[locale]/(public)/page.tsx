@@ -42,7 +42,11 @@ export default async function HomePage() {
   return (
     <main>
       {/* HERO */}
-      <section className="mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-14 px-8 pb-16 pt-[72px] md:grid-cols-[1.1fr_1fr]">
+      <section className="relative mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-14 overflow-hidden px-8 pb-16 pt-[72px] md:grid-cols-[1.1fr_1fr]">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-40 -top-40 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(94,203,234,0.16)_0%,rgba(94,203,234,0)_70%)]"
+        />
         <div>
           <span className="text-xs font-bold uppercase tracking-[2px] text-blue">{t("eyebrow")}</span>
           <h1 className="mt-4 font-serif text-[52px] font-semibold leading-[1.08]">{t("heroTitle")}</h1>
@@ -60,7 +64,7 @@ export default async function HomePage() {
       </section>
 
       {/* STATS BAR */}
-      <section className="border-y border-border bg-surface-soft-2">
+      <section className="border-y border-border bg-gradient-to-r from-surface-soft-2 via-surface-soft to-surface-soft-2">
         <div className="mx-auto grid max-w-[1240px] grid-cols-2 gap-6 px-8 py-9 text-center md:grid-cols-4">
           {HOME_STATS.map((s) => (
             <StatTile key={s.label} value={s.value} label={s.label} size="lg" tone="accent" />
@@ -88,8 +92,12 @@ export default async function HomePage() {
       </section>
 
       {/* SCHOOL OF HOPE FLAGSHIP */}
-      <section className="bg-ink text-white">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-12 px-8 py-16 md:grid-cols-2">
+      <section className="relative overflow-hidden bg-gradient-to-br from-ink-soft via-ink to-ink-dark text-white">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-32 -bottom-32 h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(94,203,234,0.14)_0%,rgba(94,203,234,0)_70%)]"
+        />
+        <div className="relative mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-12 px-8 py-16 md:grid-cols-2">
           <div>
             <span className="text-xs font-bold uppercase tracking-[2px] text-accent-strong">
               {t("flagshipEyebrow")}
@@ -177,7 +185,7 @@ export default async function HomePage() {
       </section>
 
       {/* FOLLOW US */}
-      <section className="border-t border-border bg-surface-soft-2">
+      <section className="border-t border-border bg-gradient-to-b from-surface-soft-2 to-surface-soft">
         <div className="mx-auto max-w-[1240px] px-8 py-14">
           <h2 className="mb-6 font-serif text-2xl font-semibold">{t("followUs")}</h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.3fr_1fr]">

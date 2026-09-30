@@ -6,8 +6,10 @@ type Variant = "primary" | "accent" | "accentOnDark" | "outline" | "outlineOnDar
 type Size = "sm" | "md" | "lg";
 
 const variantClasses: Record<Variant, string> = {
-  primary: "bg-ink text-white hover:bg-ink/90",
-  accent: "bg-accent text-white hover:bg-accent-strong",
+  primary:
+    "bg-gradient-to-b from-ink-soft to-ink text-white shadow-[0_1px_2px_rgba(1,19,50,0.15),0_4px_10px_rgba(1,19,50,0.25)] hover:shadow-[0_2px_4px_rgba(1,19,50,0.2),0_6px_16px_rgba(1,19,50,0.3)] hover:-translate-y-px",
+  accent:
+    "bg-gradient-to-b from-accent-strong to-accent text-white shadow-[0_1px_2px_rgba(1,19,50,0.15),0_4px_10px_rgba(1,19,50,0.25)] hover:shadow-[0_2px_4px_rgba(1,19,50,0.2),0_6px_16px_rgba(1,19,50,0.3)] hover:-translate-y-px",
   accentOnDark: "bg-accent-strong text-accent-ink hover:brightness-105",
   outline: "border-[1.5px] border-ink text-ink bg-transparent hover:bg-ink/5",
   outlineOnDark: "border-[1.5px] border-white/70 text-white bg-transparent hover:bg-white/10",
@@ -41,7 +43,7 @@ export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 export function Button({ variant = "primary", size = "md", className, children, ...props }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 whitespace-nowrap font-bold cursor-pointer transition-colors",
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap font-bold cursor-pointer transition-all",
     variantClasses[variant],
     variant !== "link" && sizeClasses[size],
     className,
