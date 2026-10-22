@@ -124,6 +124,131 @@
   color: var(--color-ink);
 }
 
+/* ── Motion system ──────────────────────────────────────────────────────
+   One easing curve everywhere so movement feels like one personality:
+   a quick start that settles softly. Everything is disabled under
+   prefers-reduced-motion at the bottom of this block. */
+:root {
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes dawn-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-24px, 18px, 0) scale(1.06);
+  }
+}
+
+/* Staggered entrance for above-the-fold content: pure CSS, so there is no
+   flash and no JS needed. Delay is set inline per element. */
+.rise {
+  animation: rise 0.9s var(--ease-out-soft) both;
+}
+.modal-backdrop {
+  animation: fade-in 0.25s ease-out both;
+}
+.modal-panel {
+  animation: pop-in 0.35s var(--ease-out-soft) both;
+}
+.dropdown-panel {
+  animation: dropdown-in 0.18s var(--ease-out-soft) both;
+  transform-origin: top left;
+}
+.dawn-glow {
+  animation: dawn-drift 18s ease-in-out infinite;
+}
+
+/* Scroll reveal (see components/ui/Reveal.tsx). Content is visible by
+   default; the hidden state is only applied client-side to elements that
+   start below the fold, so nothing is ever stuck invisible. */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.reveal-shown {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.8s var(--ease-out-soft) var(--reveal-delay, 0ms),
+    transform 0.8s var(--ease-out-soft) var(--reveal-delay, 0ms);
+}
+
+/* Interactive cards respond to the pointer: lift, deepen the shadow, and
+   let the photo inside zoom slowly (Photo uses group-hover for that). */
+.card-lift {
+  transition:
+    transform 0.4s var(--ease-out-soft),
+    box-shadow 0.4s var(--ease-out-soft),
+    border-color 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-blue);
+  box-shadow:
+    0 2px 4px rgba(3, 48, 124, 0.06),
+    0 18px 40px rgba(3, 48, 124, 0.16);
+}
+
+/* Italic accent word inside serif headings — the editorial touch that
+   makes a headline read as designed rather than typed. */
+.accent-em em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-blue);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @keyframes marquee {
   0% {
     transform: translateX(0);

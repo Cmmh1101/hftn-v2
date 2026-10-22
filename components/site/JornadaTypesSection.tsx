@@ -28,7 +28,7 @@ export function JornadaTypesSection({ groups }: { groups: TypeGroup[] }) {
       <div className="grid grid-cols-2 gap-3.5 md:grid-cols-5">
         {groups.map((g) => (
           <button key={g.type} type="button" onClick={() => setOpenType(g.type)} className="text-left">
-            <Card className="cursor-pointer text-center transition-colors hover:border-blue">
+            <Card className="card-lift cursor-pointer text-center">
               <div className="text-[13px] font-bold">{g.label}</div>
               <div className="mt-1 text-[11px] text-muted-2">{g.entries.length}</div>
             </Card>
@@ -38,11 +38,11 @@ export function JornadaTypesSection({ groups }: { groups: TypeGroup[] }) {
 
       {active ? (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          className="modal-backdrop fixed inset-0 z-50 flex items-center justify-center bg-ink-dark/60 p-4 backdrop-blur-sm"
           onClick={() => setOpenType(null)}
         >
           <div
-            className="flex max-h-[80vh] w-full max-w-2xl flex-col overflow-hidden rounded-lg bg-surface"
+            className="modal-panel flex max-h-[80vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl bg-surface shadow-[0_30px_80px_rgba(1,19,50,0.35)]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-border-soft p-5">

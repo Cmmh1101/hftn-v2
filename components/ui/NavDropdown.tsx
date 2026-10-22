@@ -32,7 +32,7 @@ export function NavDropdown({ label, items }: { label: string; items: { href: st
         <span className={cn("text-[9px] transition-transform", open && "rotate-180")}>▾</span>
       </button>
       {open ? (
-        <div className="absolute left-0 top-full mt-3 min-w-[170px] rounded-md border border-border bg-surface py-1.5 shadow-lg">
+        <div className="dropdown-panel absolute left-0 top-full mt-3 min-w-[170px] rounded-md border border-border bg-surface py-1.5 shadow-lg">
           {items.map((item) => (
             <Link
               key={item.href}

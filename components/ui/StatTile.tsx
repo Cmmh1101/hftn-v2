@@ -1,4 +1,5 @@
 import { cn } from "@/lib/cn";
+import { CountUp } from "@/components/ui/CountUp";
 
 export type StatTileProps = {
   value: string;
@@ -8,6 +9,7 @@ export type StatTileProps = {
   size?: "sm" | "lg";
   tone?: "ink" | "accent";
   variant?: "plain" | "card";
+  countUp?: boolean;
 };
 
 export function StatTile({
@@ -18,6 +20,7 @@ export function StatTile({
   size = "sm",
   tone = "ink",
   variant = "plain",
+  countUp = false,
 }: StatTileProps) {
   return (
     <div
@@ -35,7 +38,7 @@ export function StatTile({
           variant === "card" && "mt-1.5",
         )}
       >
-        {value}
+        {countUp ? <CountUp value={value} /> : value}
       </div>
       {variant === "plain" ? (
         <div className="mt-1 text-[13px] text-muted-2">{label}</div>

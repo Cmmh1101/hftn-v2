@@ -2,6 +2,8 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { Reveal } from "@/components/ui/Reveal";
+import { SectionWave } from "@/components/ui/SectionWave";
 import { StatTile } from "@/components/ui/StatTile";
 import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 import { Photo } from "@/components/ui/Photo";
@@ -45,13 +47,15 @@ export default async function HomePage() {
       <section className="relative mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-14 overflow-hidden px-8 pb-16 pt-[72px] md:grid-cols-[1.1fr_1fr]">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-40 -top-40 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(94,203,234,0.16)_0%,rgba(94,203,234,0)_70%)]"
+          className="dawn-glow pointer-events-none absolute -right-40 -top-40 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(94,203,234,0.16)_0%,rgba(94,203,234,0)_70%)]"
         />
         <div>
-          <span className="text-xs font-bold uppercase tracking-[2px] text-blue">{t("eyebrow")}</span>
-          <h1 className="mt-4 font-serif text-[52px] font-semibold leading-[1.08]">{t("heroTitle")}</h1>
-          <p className="mt-5 max-w-[520px] text-[17px] leading-relaxed text-muted">{t("heroBody")}</p>
-          <div className="mt-7 flex gap-3.5">
+          <span className="rise block text-xs font-bold uppercase tracking-[2px] text-blue">{t("eyebrow")}</span>
+          <h1 className="rise accent-em mt-4 font-serif text-[52px] font-semibold leading-[1.08]" style={{ animationDelay: "90ms" }}>
+            {t.rich("heroTitle", { em: (chunks) => <em>{chunks}</em> })}
+          </h1>
+          <p className="rise mt-5 max-w-[520px] text-[17px] leading-relaxed text-muted" style={{ animationDelay: "200ms" }}>{t("heroBody")}</p>
+          <div className="rise mt-7 flex gap-3.5" style={{ animationDelay: "310ms" }}>
             <Button href="/programs" variant="primary" size="lg">
               {t("viewPrograms")}
             </Button>
@@ -60,14 +64,18 @@ export default async function HomePage() {
             </Button>
           </div>
         </div>
-        <PhotoPlaceholder tone="warm" aspect="5/4" label={"PHOTO\nvolunteers at a jornada"} rounded="10px" />
+        <div className="rise" style={{ animationDelay: "250ms" }}>
+          <PhotoPlaceholder tone="warm" aspect="5/4" label={"PHOTO\nvolunteers at a jornada"} rounded="10px" />
+        </div>
       </section>
 
       {/* STATS BAR */}
       <section className="border-y border-border bg-gradient-to-r from-surface-soft-2 via-surface-soft to-surface-soft-2">
         <div className="mx-auto grid max-w-[1240px] grid-cols-2 gap-6 px-8 py-9 text-center md:grid-cols-4">
-          {HOME_STATS.map((s) => (
-            <StatTile key={s.label} value={s.value} label={s.label} size="lg" tone="accent" />
+          {HOME_STATS.map((s, i) => (
+            <Reveal key={s.label} delay={i * 90}>
+              <StatTile value={s.value} label={s.label} size="lg" tone="accent" countUp />
+            </Reveal>
           ))}
         </div>
       </section>
@@ -82,22 +90,26 @@ export default async function HomePage() {
         </div>
         <p className="mb-9 max-w-[760px] text-base leading-relaxed text-muted">{t("beyondBody")}</p>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {REGIONS.map((r) => (
-            <Card key={r.label}>
-              <div className="text-xs font-bold tracking-wide text-blue">{r.label}</div>
-              <div className="mt-2 font-serif text-lg">{r.places}</div>
-            </Card>
+          {REGIONS.map((r, i) => (
+            <Reveal key={r.label} delay={i * 120}>
+              <Card className="card-lift h-full">
+                <div className="text-xs font-bold tracking-wide text-blue">{r.label}</div>
+                <div className="mt-2 font-serif text-lg">{r.places}</div>
+              </Card>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* SCHOOL OF HOPE FLAGSHIP */}
       <section className="relative overflow-hidden bg-gradient-to-br from-ink-soft via-ink to-ink-dark text-white">
+        <SectionWave position="top" />
+        <SectionWave position="bottom" />
         <div
           aria-hidden
           className="pointer-events-none absolute -left-32 -bottom-32 h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(94,203,234,0.14)_0%,rgba(94,203,234,0)_70%)]"
         />
-        <div className="relative mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-12 px-8 py-16 md:grid-cols-2">
+        <div className="relative mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-12 px-8 py-24 md:grid-cols-2">
           <div>
             <span className="text-xs font-bold uppercase tracking-[2px] text-accent-strong">
               {t("flagshipEyebrow")}
@@ -123,7 +135,7 @@ export default async function HomePage() {
               {t("allEvents")}
             </Button>
           </div>
-          <Card padding="none" className="grid grid-cols-1 overflow-hidden md:grid-cols-[1fr_1.4fr]">
+          <Card padding="none" className="card-lift grid grid-cols-1 overflow-hidden md:grid-cols-[1fr_1.4fr]">
             <Photo path={nextEvent.photo_path} alt={nextEvent.name} aspect="4/3" label={`PHOTO — ${nextEvent.name}`} rounded="0" />
             <div className="flex flex-col justify-center p-8">
               <span className="text-[13px] font-bold text-accent-deep">
@@ -148,9 +160,10 @@ export default async function HomePage() {
           </Button>
         </div>
         <div className="grid grid-cols-1 gap-5.5 md:grid-cols-3">
-          {featuredStories.map((s) => (
-            <Link key={s.id} href={`/stories/${s.slug}`}>
-              <Card padding="none" className="overflow-hidden transition-colors hover:border-blue">
+          {featuredStories.map((s, i) => (
+            <Reveal key={s.id} delay={i * 110}>
+            <Link href={`/stories/${s.slug}`} className="block h-full">
+              <Card padding="none" className="card-lift h-full overflow-hidden">
                 <Photo path={s.photo_path} alt={s.title} aspect="4/3" label={`PHOTO — ${s.title.split(" ")[0]}`} rounded="0" />
                 <div className="p-5">
                   <div className="text-[15px] font-bold">{s.title}</div>
@@ -158,6 +171,7 @@ export default async function HomePage() {
                 </div>
               </Card>
             </Link>
+            </Reveal>
           ))}
         </div>
       </section>

@@ -32,7 +32,7 @@ export function ProgramCard({
   return (
     <>
       <button type="button" onClick={() => setOpen(true)} className="text-left">
-        <Card padding="none" className="cursor-pointer overflow-hidden transition-colors hover:border-blue">
+        <Card padding="none" className="card-lift cursor-pointer overflow-hidden">
           <Photo path={program.photo_path} alt={program.name} aspect="4/3" label={`PHOTO — ${program.name}`} rounded="0" />
           <div className="p-5">
             <span className="text-[11px] font-bold tracking-wide text-blue">{program.categoryLabel.toUpperCase()}</span>
@@ -44,11 +44,11 @@ export function ProgramCard({
 
       {open ? (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          className="modal-backdrop fixed inset-0 z-50 flex items-center justify-center bg-ink-dark/60 p-4 backdrop-blur-sm"
           onClick={() => setOpen(false)}
         >
           <div
-            className="flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-lg bg-surface"
+            className="modal-panel flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-xl bg-surface shadow-[0_30px_80px_rgba(1,19,50,0.35)]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between border-b border-border-soft p-5">

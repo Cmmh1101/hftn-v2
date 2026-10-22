@@ -23,7 +23,7 @@ export default async function StoriesPage() {
       <div className="mb-14 grid grid-cols-2 gap-5 md:grid-cols-4">
         {stories.map((s) => (
           <Link key={s.id} href={`/stories/${s.slug}`}>
-            <Card padding="none" className="overflow-hidden transition-colors hover:border-blue">
+            <Card padding="none" className="card-lift h-full overflow-hidden">
               <Photo path={s.photo_path} alt={s.title} aspect="4/3" label="PHOTO" rounded="0" />
               <div className="p-4.5">
                 <div className="text-[14.5px] font-bold">{s.title}</div>

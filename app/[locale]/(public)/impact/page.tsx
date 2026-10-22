@@ -48,7 +48,7 @@ export default async function ImpactPage() {
       <div className="mb-11 grid grid-cols-2 gap-5 md:grid-cols-4">
         {IMPACT_STATS.map((s) => (
           <Card key={s.label}>
-            <StatTile value={s.value} label={s.label} tone="accent" />
+            <StatTile value={s.value} label={s.label} tone="accent" countUp />
           </Card>
         ))}
       </div>
