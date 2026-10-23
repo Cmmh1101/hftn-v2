@@ -1,0 +1,38 @@
+# Independent second layer for the Supabase keep-alive. The primary one is
+# the Netlify scheduled function (netlify/functions/supabase-keepalive.mts,
+# every 3 days). This one exists so that if Netlify's scheduler ever stops
+# running, or Supabase becomes unreachable, GitHub emails a failed-run
+# alert instead of the site silently going empty after a free-tier pause.
+#
+# Mon + Thu => gaps of 3 and 4 days, comfortably inside Supabase's
+# ~7-day inactivity window, so either layer alone is enough.
+name: Supabase keep-alive
+
+on:
+  schedule:
+    - cron: "0 15 * * 1,4"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Query Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "::error::Add SUPABASE_URL and SUPABASE_ANON_KEY under Settings > Secrets and variables > Actions"
+            exit 1
+          fi
+          curl --fail-with-body --silent --show-error --max-time 30 \
+            "$SUPABASE_URL/rest/v1/site_settings?select=id&limit=1" \
+            -H "apikey: $SUPABASE_ANON_KEY" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY"
+          echo
+          echo "Supabase responded OK at $(date -u +%FT%TZ)"
