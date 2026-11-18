@@ -45,5 +45,20 @@ export async function updateSiteSettings(formData: FormData) {
     }
   }
 
+  const heroFile = formData.get("hero_photo_file") as File | null;
+  const removeHero = formData.get("remove_hero_photo") === "on";
+  if ((heroFile && heroFile.size > 0) || removeHero) {
+    const { data: current } = await supabase.from("site_settings").select("hero_photo_path").eq("id", true).single();
+    if (heroFile && heroFile.size > 0) {
+      // A fresh filename per upload: a reused path would keep serving the old
+      // image from the image CDN's cache after a replacement.
+      const path = await uploadFile(heroFile, "site", `hero-${Date.now()}`);
+      await supabase.from("site_settings").update({ hero_photo_path: path }).eq("id", true);
+    } else {
+      await supabase.from("site_settings").update({ hero_photo_path: null }).eq("id", true);
+    }
+    await deleteFile(current?.hero_photo_path);
+  }
+
   revalidateSettings();
 }

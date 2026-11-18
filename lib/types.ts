@@ -127,4 +127,5 @@ export type SiteSettings = {
   annual_report_path: string | null;
   form_990_path: string | null;
   letter_501c3_path: string | null;
+  hero_photo_path: string | null;
 };

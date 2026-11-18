@@ -62,6 +62,7 @@
   "home": {
     "eyebrow": "Trabajando en dos continentes",
     "heroTitle": "Bendiciendo comunidades con las herramientas para <em>prosperar</em>.",
+    "heroPhotoAlt": "Voluntarios de Hope For The Nations durante una jornada",
     "heroBody": "Equipamos a niños, familias y comunidades vulnerables mediante la educación, jornadas de ayuda y programas sostenibles — arraigados en la compasión cristiana y realizados junto a socios locales alrededor del mundo.",
     "viewPrograms": "Ver Nuestros Programas",
     "donate": "Donar",
@@ -418,6 +419,8 @@
       "fieldScholarships": "Estadística de becas",
       "fieldFamilies": "Familias atendidas",
       "fieldDeployed": "Total invertido / desplegado",
+      "heroPhotoTitle": "Foto de la página de inicio",
+      "heroPhotoHint": "La foto grande en la parte superior de la página de inicio. Funciona mejor una foto horizontal con personas; se muestra recortada en formato 5:4. Déjala vacía para mostrar el marcador.",
       "reportsTitle": "Informes y Finanzas",
       "reportAnnual": "Informe Anual",
       "reportForm990": "Formulario 990",

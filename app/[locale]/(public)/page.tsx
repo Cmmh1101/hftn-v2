@@ -65,7 +65,16 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="rise" style={{ animationDelay: "250ms" }}>
-          <PhotoPlaceholder tone="warm" aspect="5/4" label={"PHOTO\nvolunteers at a jornada"} rounded="10px" />
+          <Photo
+            path={settings.hero_photo_path}
+            alt={t("heroPhotoAlt")}
+            tone="warm"
+            aspect="5/4"
+            label={"PHOTO\nvolunteers at a jornada"}
+            rounded="10px"
+            priority
+            sizes="(max-width: 768px) 100vw, 560px"
+          />
         </div>
       </section>
 

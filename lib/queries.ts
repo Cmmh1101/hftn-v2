@@ -22,6 +22,7 @@ const DEFAULT_SITE_SETTINGS: SiteSettings = {
   annual_report_path: null,
   form_990_path: null,
   letter_501c3_path: null,
+  hero_photo_path: null,
 };
 
 export async function getSiteSettings(): Promise<SiteSettings> {

@@ -6,9 +6,21 @@ import { cn } from "@/lib/cn";
 export type PhotoProps = PhotoPlaceholderProps & {
   path?: string | null;
   alt: string;
+  // Above-the-fold images should skip lazy loading (they are the page's LCP).
+  priority?: boolean;
+  sizes?: string;
 };
 
-export function Photo({ path, alt, aspect = "4/3", rounded = "8px", className, ...placeholderProps }: PhotoProps) {
+export function Photo({
+  path,
+  alt,
+  aspect = "4/3",
+  rounded = "8px",
+  className,
+  priority = false,
+  sizes = "(max-width: 768px) 100vw, 50vw",
+  ...placeholderProps
+}: PhotoProps) {
   const url = getPublicUrl(path);
 
   if (!url) {
@@ -27,7 +39,8 @@ export function Photo({ path, alt, aspect = "4/3", rounded = "8px", className, .
         alt={alt}
         fill
         className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.06]"
-        sizes="(max-width: 768px) 100vw, 50vw"
+        sizes={sizes}
+        priority={priority}
       />
     </div>
   );

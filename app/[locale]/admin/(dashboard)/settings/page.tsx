@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Input, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { Photo } from "@/components/ui/Photo";
 import { getSiteSettings } from "@/lib/queries";
 import { getPublicUrl } from "@/lib/storage";
 import { updateSiteSettings } from "./actions";
@@ -48,6 +49,22 @@ export default async function AdminSettingsPage() {
             <Label>{t("fieldDeployed")}</Label>
             <Input name="total_deployed" defaultValue={settings.total_deployed} className="w-full" />
           </div>
+        </Card>
+
+        <Card className="flex flex-col gap-3">
+          <h2 className="font-serif text-lg font-semibold">{t("heroPhotoTitle")}</h2>
+          <p className="text-xs text-label">{t("heroPhotoHint")}</p>
+          {settings.hero_photo_path ? (
+            <div className="flex items-center gap-4">
+              <Photo path={settings.hero_photo_path} alt="" aspect="5/4" rounded="8px" className="w-40 shrink-0" />
+              <label className="flex items-center gap-1.5 text-xs text-muted">
+                <input type="checkbox" name="remove_hero_photo" /> {tForm("removePhoto")}
+              </label>
+            </div>
+          ) : (
+            <p className="text-xs italic text-label">{t("noFileYet")}</p>
+          )}
+          <Input type="file" name="hero_photo_file" accept="image/png,image/jpeg,image/webp" className="w-full" />
         </Card>
 
         <Card className="flex flex-col gap-4">
