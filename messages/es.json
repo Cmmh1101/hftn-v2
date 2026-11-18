@@ -3,6 +3,9 @@
     "title": "Hope For The Nations",
     "description": "Fe · Educación · Ayuda — bendiciendo comunidades con las herramientas para prosperar."
   },
+  "a11y": {
+    "opensInNewTab": "(se abre en una pestaña nueva)"
+  },
   "regions": {
     "southAmerica": "Sudamérica",
     "centralAmerica": "Centroamérica",

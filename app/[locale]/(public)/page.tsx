@@ -10,7 +10,7 @@ import { Photo } from "@/components/ui/Photo";
 import { getGalleryGroups, getNextEvent, getPublishedPosts, getSiteSettings } from "@/lib/queries";
 import { formatEventDateLong, toIntlLocale } from "@/lib/format";
 import { excerptFromHtml } from "@/lib/excerpt";
-import { SOCIALS } from "@/lib/socials";
+import { SocialButtons } from "@/components/site/SocialButtons";
 
 function locationLabel(location: string) {
   const parts = location.split(",");
@@ -201,21 +201,9 @@ export default async function HomePage() {
       {/* FOLLOW US */}
       <section className="border-t border-border bg-gradient-to-b from-surface-soft-2 to-surface-soft">
         <div className="mx-auto max-w-[1240px] px-8 py-14">
-          <h2 className="mb-6 font-serif text-2xl font-semibold">{t("followUs")}</h2>
+          <h2 id="follow-us-heading" className="mb-6 font-serif text-2xl font-semibold">{t("followUs")}</h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.3fr_1fr]">
-            <div className="flex flex-wrap gap-3.5">
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.href}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-md border border-border bg-surface px-5 py-3 text-sm font-bold text-ink"
-                >
-                  {s.label}
-                </a>
-              ))}
-            </div>
+            <SocialButtons labelledBy="follow-us-heading" />
             <Card>
               <div className="mb-2.5 text-[11px] font-bold tracking-wide text-label">{t("latest")}</div>
               <div className="text-[13.5px] leading-relaxed text-muted">{t("quote")}</div>

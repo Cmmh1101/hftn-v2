@@ -3,6 +3,9 @@
     "title": "Hope For The Nations",
     "description": "Faith · Education · Relief — blessing communities with the tools to thrive."
   },
+  "a11y": {
+    "opensInNewTab": "(opens in a new tab)"
+  },
   "regions": {
     "southAmerica": "South America",
     "centralAmerica": "Central America",

@@ -62,6 +62,14 @@
     box-sizing: border-box;
   }
 
+  /* One consistent, always-visible keyboard focus indicator. Only shows for
+     keyboard navigation (:focus-visible), never on mouse clicks. */
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
   ::selection {
     background: #c9e8fa;
   }
