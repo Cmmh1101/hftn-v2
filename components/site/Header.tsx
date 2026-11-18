@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
@@ -29,11 +30,16 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur-sm">
       <div className="relative mx-auto flex max-w-[1240px] items-center justify-between gap-6 px-8 py-4">
-        <Link href="/" className="flex flex-col leading-none">
-          <span className="font-serif text-[22px] font-bold tracking-wide text-ink">
-            Hope <span className="text-accent">For The Nations</span>
+        <Link href="/" className="flex items-center gap-3 leading-none">
+          <Image src="/brand/logo.png" alt="" width={212} height={180} priority className="h-12 w-auto" />
+          {/* Under 540px the badge (which already reads "Hope For The Nations") stands alone;
+              the text stays in the DOM, visually hidden, so the link keeps its accessible name. */}
+          <span className="flex flex-col max-[540px]:sr-only">
+            <span className="font-serif text-[22px] font-bold tracking-wide text-ink">
+              Hope <span className="text-accent">For The Nations</span>
+            </span>
+            <span className="mt-1 text-[10px] tracking-[2.5px] text-label uppercase">{t("tagline")}</span>
           </span>
-          <span className="mt-1 text-[10px] tracking-[2.5px] text-label uppercase">{t("tagline")}</span>
         </Link>
         <nav className="hidden items-center gap-6 lg:flex">
           {MAIN_NAV.map((item) => (

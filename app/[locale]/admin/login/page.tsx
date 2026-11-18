@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
@@ -36,6 +37,7 @@ export default function AdminLoginPage() {
         onSubmit={handleSubmit}
         className="w-full max-w-sm rounded-lg border border-border bg-surface p-8"
       >
+        <Image src="/brand/logo.png" alt="" width={212} height={180} priority className="mb-3 h-14 w-auto" />
         <div className="mb-1 font-serif text-lg font-bold">
           Hope <span className="text-accent">Admin</span>
         </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations, getLocale } from "next-intl/server";
 import { Input } from "@/components/ui/Field";
 import { AdminSidebarNav } from "@/components/site/AdminSidebarNav";
@@ -62,6 +63,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="grid min-h-screen grid-cols-[240px_1fr] font-sans text-ink">
       <aside className="flex flex-col gap-1 bg-ink-dark p-[18px] text-white">
         <div className="px-2.5 pb-6 pt-1.5">
+          <span className="mb-3 inline-flex rounded-xl bg-white p-1.5">
+            <Image src="/brand/logo.png" alt="" width={212} height={180} className="h-10 w-auto" />
+          </span>
           <div className="font-serif text-lg font-bold">
             Hope <span className="text-accent-strong">Admin</span>
           </div>

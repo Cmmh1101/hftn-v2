@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { NewsletterForm } from "@/components/site/NewsletterForm";
@@ -20,7 +21,10 @@ export function Footer() {
     <footer className="border-t border-border bg-surface-soft-2">
       <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-8 px-8 pb-7 pt-14 sm:grid-cols-5">
         <div className="sm:col-span-1">
-          <div className="font-serif text-[19px] font-bold text-ink">Hope For The Nations</div>
+          <div className="flex items-center gap-3">
+            <Image src="/brand/logo.png" alt="" width={212} height={180} className="h-12 w-auto" />
+            <div className="font-serif text-[19px] font-bold leading-tight text-ink">Hope For The Nations</div>
+          </div>
           <p className="mt-2.5 max-w-[280px] text-[13.5px] leading-relaxed text-muted-2">{t("blurb")}</p>
         </div>
         <FooterColumn title={t("explore")}>
