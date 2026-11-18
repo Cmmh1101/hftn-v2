@@ -29,12 +29,15 @@ export function Footer() {
         </div>
         <FooterColumn title={t("explore")}>
           <Link href="/programs">{nav("programs")}</Link>
+          <Link href="/jornadas">{nav("jornadas")}</Link>
+          <Link href="/stories">{nav("storiesBlog")}</Link>
           <Link href="/impact">{nav("impact")}</Link>
           <Link href="/events">{nav("events")}</Link>
           <Link href="/gallery">{nav("gallery")}</Link>
         </FooterColumn>
         <FooterColumn title={t("organization")}>
-          <Link href="/about">{nav("about")}</Link>
+          <Link href="/about">{nav("aboutOurStory")}</Link>
+          <Link href="/about/team">{nav("team")}</Link>
           <Link href="/contact">{nav("contact")}</Link>
           <Link href="/impact">{t("form990")}</Link>
           <Link href="/impact">{t("the501c3")}</Link>

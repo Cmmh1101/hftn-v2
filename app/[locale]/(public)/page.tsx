@@ -1,3 +1,4 @@
+import { BookOpen, CalendarDays, ChartColumn, Compass, Images, Newspaper } from "lucide-react";
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
@@ -18,8 +19,9 @@ function locationLabel(location: string) {
 }
 
 export default async function HomePage() {
-  const [t, locale, stories, nextEvent, galleryGroups, settings] = await Promise.all([
+  const [t, tNav, locale, stories, nextEvent, galleryGroups, settings] = await Promise.all([
     getTranslations("home"),
+    getTranslations("nav"),
     getLocale(),
     getPublishedPosts("story"),
     getNextEvent(),
@@ -34,6 +36,15 @@ export default async function HomePage() {
     { value: settings.jornadas_completed, label: t("statJornadas") },
     { value: settings.scholarships_stat, label: t("statStudents") },
     { value: settings.families_reached, label: t("statFamilies") },
+  ];
+
+  const EXPLORE = [
+    { href: "/programs", Icon: BookOpen, title: tNav("programs"), desc: t("exploreProgramsDesc") },
+    { href: "/jornadas", Icon: Compass, title: tNav("jornadas"), desc: t("exploreJornadasDesc") },
+    { href: "/stories", Icon: Newspaper, title: tNav("storiesBlog"), desc: t("exploreStoriesDesc") },
+    { href: "/gallery", Icon: Images, title: tNav("gallery"), desc: t("exploreGalleryDesc") },
+    { href: "/events", Icon: CalendarDays, title: tNav("events"), desc: t("exploreEventsDesc") },
+    { href: "/impact", Icon: ChartColumn, title: tNav("impact"), desc: t("exploreImpactDesc") },
   ];
 
   const REGIONS = [
@@ -87,6 +98,32 @@ export default async function HomePage() {
             </Reveal>
           ))}
         </div>
+      </section>
+
+      {/* EXPLORE — a visible map of the whole site, so no page depends on finding it in a menu */}
+      <section aria-labelledby="explore-heading" className="mx-auto max-w-[1240px] px-8 pt-[72px]">
+        <h2 id="explore-heading" className="font-serif text-[30px] font-semibold">
+          {t("exploreTitle")}
+        </h2>
+        <ul role="list" className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {EXPLORE.map(({ href, Icon, title, desc }, i) => (
+            <li key={href}>
+              <Reveal delay={(i % 3) * 80} className="h-full">
+                <Link href={href} className="block h-full">
+                  <Card className="card-lift flex h-full items-start gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-blue transition-transform duration-300 group-hover:scale-110">
+                      <Icon aria-hidden className="h-5 w-5" />
+                    </span>
+                    <span>
+                      <span className="block text-[15px] font-bold text-ink">{title}</span>
+                      <span className="mt-1 block text-[13px] leading-relaxed text-muted-2">{desc}</span>
+                    </span>
+                  </Card>
+                </Link>
+              </Reveal>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* BEYOND VENEZUELA */}

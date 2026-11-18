@@ -20,6 +20,7 @@ export function NavLink({
     <Link
       href={href}
       onClick={onClick}
+      aria-current={isActive ? "page" : undefined}
       className={cn(
         "text-sm font-semibold",
         isActive ? "text-accent-deep" : "text-ink-soft hover:text-accent-deep",

@@ -1,24 +1,22 @@
-import { getTranslations, getLocale } from "next-intl/server";
+import { ArrowRight } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Photo } from "@/components/ui/Photo";
 import { PageIntro } from "@/components/site/PageIntro";
-import { JornadaTypesSection } from "@/components/site/JornadaTypesSection";
 import { ProgramCard } from "@/components/site/ProgramCard";
 import { getPrograms } from "@/lib/queries";
 import { PROGRAM_TYPES } from "@/lib/programTypes";
 import { PROGRAM_REGIONS } from "@/lib/regions";
-import { formatEventDateLong, toIntlLocale } from "@/lib/format";
 
 export default async function ProgramsPage() {
-  const [t, tCategory, tTypes, tRegions, locale, programs] = await Promise.all([
+  const [t, tCategory, tTypes, tRegions, programs] = await Promise.all([
     getTranslations("programs"),
     getTranslations("programCategory"),
     getTranslations("programTypes"),
     getTranslations("regions"),
-    getLocale(),
     getPrograms(),
   ]);
-  const intlLocale = toIntlLocale(locale);
 
   const flagship = programs.find((p) => p.category === "flagship");
   // Only ongoing ministries belong in this overview grid — a completed
@@ -28,25 +26,8 @@ export default async function ProgramsPage() {
     (p) => (p.category === "continuous" || p.category === "relief") && p.status === "Active",
   );
 
-  const jornadaPrograms = programs.filter((p) => p.category === "jornada");
   const regionLabel = (region: string) => tRegions(PROGRAM_REGIONS.find((r) => r.dbValue === region)?.labelKey ?? "southAmerica");
   const typeLabel = (type: string) => tTypes(PROGRAM_TYPES.find((pt) => pt.dbValue === type)?.labelKey ?? "continuous");
-  // Only types with at least one real jornada record show up — no empty
-  // cards for outreach types that haven't happened yet.
-  const jornadaGroups = PROGRAM_TYPES.map((pt) => ({
-    type: pt.dbValue,
-    label: tTypes(pt.labelKey),
-    entries: jornadaPrograms
-      .filter((p) => p.type === pt.dbValue)
-      .map((p) => ({
-        id: p.id,
-        name: p.name,
-        dateLabel: p.program_date ? formatEventDateLong(p.program_date, intlLocale) : "",
-        regionLabel: p.region ? regionLabel(p.region) : "",
-        summary: p.summary,
-        photo_path: p.photo_path,
-      })),
-  })).filter((g) => g.entries.length > 0);
 
   return (
     <main className="mx-auto max-w-[1240px] px-8 pb-20 pt-14">
@@ -97,13 +78,16 @@ export default async function ProgramsPage() {
         ))}
       </div>
 
-      {jornadaGroups.length > 0 ? (
-        <>
-          <h2 className="mb-2 mt-11 font-serif text-2xl font-semibold">{t("jornadasTitle")}</h2>
-          <p className="mb-5 max-w-[640px] text-[14.5px] leading-relaxed text-muted">{t("jornadasIntro")}</p>
-          <JornadaTypesSection groups={jornadaGroups} />
-        </>
-      ) : null}
+      <Card padding="lg" className="card-lift mt-11 flex flex-wrap items-center justify-between gap-6">
+        <div className="max-w-[640px]">
+          <h2 className="font-serif text-2xl font-semibold">{t("jornadasTitle")}</h2>
+          <p className="mt-2 text-[14.5px] leading-relaxed text-muted">{t("jornadasIntro")}</p>
+        </div>
+        <Button href="/jornadas" variant="primary">
+          {t("jornadasCta")}
+          <ArrowRight aria-hidden className="h-4 w-4" />
+        </Button>
+      </Card>
     </main>
   );
 }

@@ -36,9 +36,17 @@
     "about": "About",
     "contact": "Contact",
     "donate": "Donate",
-    "getInvolved": "Get Involved",
     "aboutGroup": "About Us",
-    "tagline": "Faith · Education · Relief"
+    "tagline": "Faith · Education · Relief",
+    "jornadas": "Jornadas",
+    "storiesBlog": "Stories & Blog",
+    "aboutOurStory": "Our story",
+    "aboutOurStoryDesc": "Mission, vision and journey",
+    "team": "Leadership & team",
+    "teamDesc": "The people behind the work",
+    "contactDesc": "Write to us or find us",
+    "mainNavLabel": "Main",
+    "menu": "Menu"
   },
   "footer": {
     "blurb": "Blessing communities with the tools to improve their living situation through hope and the Gospel.",
@@ -89,7 +97,14 @@
     "fullGallery": "Full gallery →",
     "followUs": "Follow Us",
     "latest": "LATEST — @hopeforthenations7",
-    "quote": "“Grateful for every hand that showed up this weekend’s jornada in Trujillo. Thank you for making this possible.”"
+    "quote": "“Grateful for every hand that showed up this weekend’s jornada in Trujillo. Thank you for making this possible.”",
+    "exploreTitle": "Explore",
+    "exploreProgramsDesc": "Education, ministries and relief for every age",
+    "exploreJornadasDesc": "Outreach days where communities need us",
+    "exploreStoriesDesc": "Real lives, and news from our blog",
+    "exploreGalleryDesc": "Photos from the field",
+    "exploreEventsDesc": "Fundraisers and ways to join in",
+    "exploreImpactDesc": "Numbers, milestones and reports"
   },
   "programCategory": {
     "flagship": "Flagship",
@@ -110,7 +125,8 @@
     "jornadaFeeding": "Feeding",
     "jornadaEvangelization": "Evangelization",
     "jornadaYouth": "Youth Outreach",
-    "jornadaResource": "Resource Drives"
+    "jornadaResource": "Resource Drives",
+    "jornadasCta": "Explore jornadas"
   },
   "impact": {
     "comingSoon": "Coming soon",
@@ -453,5 +469,20 @@
       "fieldIsGoal": "This is a future goal, not an achieved result",
       "edit": "Edit"
     }
+  },
+  "jornadas": {
+    "eyebrow": "Outreach days",
+    "title": "Jornadas",
+    "intro": "Short-term outreach days carried out wherever a community needs us — combining several forms of service in a single visit.",
+    "recentTitle": "Where we have been",
+    "recentIntro": "Each jornada brings medical care, food and supplies to a community. Open one to see its photos.",
+    "photosCount": "{count, plural, one {# photo} other {# photos}}",
+    "viewPhotos": "View photos",
+    "typesTitle": "What a jornada can include",
+    "typesIntro": "Select a type of service to see the jornadas where it was part of the visit.",
+    "ctaTitle": "Help us reach the next community",
+    "ctaBody": "Every jornada is made possible by the people who give and serve.",
+    "ctaDonate": "Donate",
+    "ctaEvents": "See upcoming events"
   }
 }

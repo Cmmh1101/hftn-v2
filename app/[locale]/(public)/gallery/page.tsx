@@ -3,6 +3,7 @@ import { Chip } from "@/components/ui/Chip";
 import { Photo } from "@/components/ui/Photo";
 import { PageIntro } from "@/components/site/PageIntro";
 import { getGalleryGroups } from "@/lib/queries";
+import { slugify } from "@/lib/slug";
 
 type RegionKey = "sa" | "ca" | "na" | "eu";
 
@@ -58,7 +59,7 @@ export default async function GalleryPage({
       ) : null}
 
       {groups.map((g) => (
-        <div key={g.location} className="mb-10">
+        <div key={g.location} id={slugify(g.location)} className="mb-10 scroll-mt-28">
           <h3 className="mb-1 font-serif text-xl font-semibold">{g.location}</h3>
           <div className="mb-3.5 text-xs text-label">
             {g.region} · {g.caption}

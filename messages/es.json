@@ -36,9 +36,17 @@
     "about": "Nosotros",
     "contact": "Contacto",
     "donate": "Donar",
-    "getInvolved": "Involúcrate",
     "aboutGroup": "Sobre Nosotros",
-    "tagline": "Fe · Educación · Ayuda"
+    "tagline": "Fe · Educación · Ayuda",
+    "jornadas": "Jornadas",
+    "storiesBlog": "Historias y Blog",
+    "aboutOurStory": "Nuestra historia",
+    "aboutOurStoryDesc": "Misión, visión y trayectoria",
+    "team": "Liderazgo y equipo",
+    "teamDesc": "Las personas detrás del trabajo",
+    "contactDesc": "Escríbenos o encuéntranos",
+    "mainNavLabel": "Principal",
+    "menu": "Menú"
   },
   "footer": {
     "blurb": "Bendiciendo comunidades con las herramientas para mejorar su situación de vida a través de la esperanza y el Evangelio.",
@@ -89,7 +97,14 @@
     "fullGallery": "Ver galería completa →",
     "followUs": "Síguenos",
     "latest": "LO ÚLTIMO — @hopeforthenations7",
-    "quote": "“Agradecidos por cada mano que se hizo presente en la jornada de este fin de semana en Trujillo. Gracias por hacer esto posible.”"
+    "quote": "“Agradecidos por cada mano que se hizo presente en la jornada de este fin de semana en Trujillo. Gracias por hacer esto posible.”",
+    "exploreTitle": "Explora",
+    "exploreProgramsDesc": "Educación, ministerios y ayuda para todas las edades",
+    "exploreJornadasDesc": "Jornadas de ayuda donde las comunidades nos necesitan",
+    "exploreStoriesDesc": "Vidas reales y novedades de nuestro blog",
+    "exploreGalleryDesc": "Fotos desde el terreno",
+    "exploreEventsDesc": "Eventos de recaudación y formas de participar",
+    "exploreImpactDesc": "Cifras, hitos e informes"
   },
   "programCategory": {
     "flagship": "Insignia",
@@ -110,7 +125,8 @@
     "jornadaFeeding": "Alimentación",
     "jornadaEvangelization": "Evangelización",
     "jornadaYouth": "Ayuda Juvenil",
-    "jornadaResource": "Recolección de Recursos"
+    "jornadaResource": "Recolección de Recursos",
+    "jornadasCta": "Explorar jornadas"
   },
   "impact": {
     "comingSoon": "Próximamente",
@@ -453,5 +469,20 @@
       "fieldIsGoal": "Esta es una meta futura, no un resultado alcanzado",
       "edit": "Editar"
     }
+  },
+  "jornadas": {
+    "eyebrow": "Jornadas de ayuda",
+    "title": "Jornadas",
+    "intro": "Días de ayuda de corto plazo realizados donde una comunidad nos necesita — combinando varias formas de servicio en una sola visita.",
+    "recentTitle": "Dónde hemos estado",
+    "recentIntro": "Cada jornada lleva atención médica, alimentos y suministros a una comunidad. Abre una para ver sus fotos.",
+    "photosCount": "{count, plural, one {# foto} other {# fotos}}",
+    "viewPhotos": "Ver fotos",
+    "typesTitle": "Qué puede incluir una jornada",
+    "typesIntro": "Elige un tipo de servicio para ver las jornadas donde fue parte de la visita.",
+    "ctaTitle": "Ayúdanos a llegar a la próxima comunidad",
+    "ctaBody": "Cada jornada es posible gracias a quienes dan y sirven.",
+    "ctaDonate": "Donar",
+    "ctaEvents": "Ver próximos eventos"
   }
 }
