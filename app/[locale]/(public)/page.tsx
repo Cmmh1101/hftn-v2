@@ -325,7 +325,7 @@ export default async function HomePage() {
                   {t("reliefCta")}
                 </Button>
                 <Button href={`/programs/${relief.slug}`} variant="outline">
-                  {t("learnMore")}
+                  {t("reliefLearn")}
                 </Button>
               </div>
             </div>

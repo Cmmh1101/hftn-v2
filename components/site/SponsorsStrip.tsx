@@ -23,7 +23,7 @@ export async function SponsorsStrip({ className }: { className?: string }) {
           </h2>
           <p className="mt-3 text-base leading-relaxed text-muted lg:text-[17px]">{t("intro")}</p>
         </div>
-        <ul role="list" className="mt-9 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <ul role="list" className="mt-9 flex flex-wrap justify-center gap-4">
           {visible.map((s, i) => {
             const logo = (
               <span className="flex h-28 items-center justify-center rounded-lg border border-border-soft bg-white p-4 transition-shadow group-hover:shadow-[0_6px_20px_rgba(3,48,124,0.12)] sm:h-32">
@@ -39,7 +39,7 @@ export async function SponsorsStrip({ className }: { className?: string }) {
               </span>
             );
             return (
-              <li key={s.id}>
+              <li key={s.id} className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.7rem)] lg:w-44">
                 <Reveal delay={(i % 6) * 60}>
                   {s.website_url ? (
                     <a href={s.website_url} target="_blank" rel="noopener noreferrer" className="group block">
