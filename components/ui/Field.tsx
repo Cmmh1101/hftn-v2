@@ -20,8 +20,8 @@ export function Select({ className, children, ...props }: SelectHTMLAttributes<H
   );
 }
 
-export function Label({ children }: { children: React.ReactNode }) {
-  return <label className="mb-1.5 block text-[13px] font-bold tracking-wide text-label">{children}</label>;
+export function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
+  return <label htmlFor={htmlFor} className="mb-1.5 block text-[13px] font-bold tracking-wide text-label">{children}</label>;
 }
 
 export function FieldGroup({ children }: { children: React.ReactNode }) {

@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import { AdminAuthCard } from "@/components/site/AdminAuthCard";
 import { Input } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { Spinner } from "@/components/ui/Spinner";
@@ -48,18 +48,7 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-surface-soft-2 px-6">
-      <form
-        onSubmit={handleSubmit}
-        aria-busy={loading}
-        className="w-full max-w-sm rounded-lg border border-border bg-surface p-8"
-      >
-        <Image src="/brand/logo.png" alt="" width={212} height={180} priority className="mb-3 h-14 w-auto" />
-        <div className="mb-1 font-serif text-lg font-bold">
-          Hope <span className="text-accent">Admin</span>
-        </div>
-        <div className="mb-7 text-[13px] tracking-wide text-label">{t("tagline")}</div>
-
+    <AdminAuthCard as="form" tagline={t("tagline")} onSubmit={handleSubmit} aria-busy={loading}>
         <div className="flex flex-col gap-3.5">
           <Input
             type="email"
@@ -68,6 +57,7 @@ export default function AdminLoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             required
             autoFocus
+            autoComplete="email"
           />
           <Input
             type="password"
@@ -75,6 +65,7 @@ export default function AdminLoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="current-password"
           />
         </div>
 
@@ -94,7 +85,11 @@ export default function AdminLoginPage() {
             t("signIn")
           )}
         </Button>
-      </form>
-    </main>
+        <div className="mt-4 text-center">
+          <Link href="/admin/forgot-password" className="inline-flex min-h-11 items-center text-[14px] font-bold">
+            {t("forgotPassword")}
+          </Link>
+        </div>
+    </AdminAuthCard>
   );
 }

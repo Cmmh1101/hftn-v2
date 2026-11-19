@@ -8,6 +8,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
 import { createClient } from "@/lib/supabase/server";
 import { initials, toIntlLocale } from "@/lib/format";
+import { Link } from "@/i18n/navigation";
 import { signOut } from "../actions";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -75,13 +76,17 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="mt-1 text-xs tracking-[2px] text-sidebar-inactive">FOR THE NATIONS</div>
       </div>
       <AdminSidebarNav overview={OVERVIEW} groups={NAV_GROUPS} />
-      <div className="mt-auto flex items-center gap-2.5 border-t border-white/10 pt-3.5">
+      <Link
+        href="/admin/profile"
+        aria-label={t("myProfile")}
+        className="group mt-auto flex items-center gap-2.5 rounded-md border-t border-white/10 px-1 pt-3.5 text-white hover:text-white"
+      >
         <Avatar initials={initials(name || "?")} />
-        <div>
-          <div className="text-[13.5px] font-bold">{name}</div>
+        <div className="min-w-0">
+          <div className="truncate text-[13.5px] font-bold group-hover:underline">{name}</div>
           <div className="text-xs capitalize text-sidebar-inactive">{tRoles(role)}</div>
         </div>
-      </div>
+      </Link>
       <SignOutButton action={signOut} label={t("signOut")} />
     </>
   );

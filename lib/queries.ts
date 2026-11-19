@@ -1,3 +1,4 @@
+import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import type {
   Donation,
@@ -207,6 +208,17 @@ export async function getProfiles(): Promise<Profile[]> {
   const supabase = await createClient();
   const { data } = await supabase.from("profiles").select("*").order("created_at", { ascending: true });
   return data ?? [];
+}
+
+/** Account details from Supabase Auth (email, last sign-in) for each admin user, keyed by id. Service-role: callers must check the viewer is an admin. */
+export async function getUserAccounts(): Promise<Map<string, { email: string; lastSignInAt: string | null; invitedAt: string | null }>> {
+  const { data } = await createAdminClient().auth.admin.listUsers({ page: 1, perPage: 200 });
+  return new Map(
+    (data?.users ?? []).map((u) => [
+      u.id,
+      { email: u.email ?? "", lastSignInAt: u.last_sign_in_at ?? null, invitedAt: u.last_sign_in_at ? null : (u.invited_at ?? u.created_at) },
+    ]),
+  );
 }
 
 export async function getSubscribers(): Promise<Subscriber[]> {

@@ -34,6 +34,12 @@ export async function updateSession(
   } = await supabase.auth.getUser();
 
   const isLoginRoute = pathWithoutLocale === "/admin/login";
+  // Reachable without being signed in: asking for a reset link, and the page
+  // the reset/invitation email lands on (which signs the person in itself).
+  const isPublicAuthRoute =
+    pathWithoutLocale === "/admin/forgot-password" || pathWithoutLocale === "/admin/reset-password";
+
+  if (isPublicAuthRoute) return response;
 
   if (!isLoginRoute && !user) {
     const url = request.nextUrl.clone();

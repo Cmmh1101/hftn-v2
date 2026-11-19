@@ -89,6 +89,7 @@ export default async function HomePage() {
 
   const REGIONS = [
     { label: t("regionSaLabel"), places: t("regionSaPlaces") },
+    { label: t("regionCaLabel"), places: t("regionCaPlaces") },
     { label: t("regionNaLabel"), places: t("regionNaPlaces") },
   ];
 
@@ -193,7 +194,7 @@ export default async function HomePage() {
           </Button>
         </div>
         <p className="mb-9 max-w-[760px] text-base leading-relaxed lg:text-[17px] text-muted">{t("beyondBody")}</p>
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {REGIONS.map((r, i) => (
             <Reveal key={r.label} delay={i * 120}>
               <Card className="card-lift h-full">

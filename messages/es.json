@@ -116,9 +116,11 @@
     "statFamilies": "Familias alcanzadas",
     "beyondTitle": "Más allá de Venezuela",
     "ourStory": "Nuestra historia →",
-    "beyondBody": "Hope for the Nations comenzó su labor en Venezuela. A medida que las necesidades han crecido, también lo ha hecho nuestro alcance — hoy también apoyamos jornadas y programas en Estados Unidos, con más regiones en el horizonte a medida que seguimos creciendo.",
+    "beyondBody": "Hope for the Nations comenzó su labor en Venezuela. A medida que las necesidades han crecido, también lo ha hecho nuestro alcance — hoy también apoyamos jornadas y programas en Centroamérica y Estados Unidos, con más regiones en el horizonte a medida que seguimos creciendo.",
     "regionSaLabel": "SUDAMÉRICA",
     "regionSaPlaces": "Venezuela",
+    "regionCaLabel": "CENTROAMÉRICA",
+    "regionCaPlaces": "Nicaragua, Guatemala, México",
     "regionNaLabel": "NORTEAMÉRICA",
     "regionNaPlaces": "Estados Unidos",
     "flagshipEyebrow": "Programa insignia",
@@ -374,7 +376,8 @@
       "emailPlaceholder": "Correo electrónico",
       "passwordPlaceholder": "Contraseña",
       "signIn": "Iniciar sesión",
-      "signingIn": "Iniciando sesión…"
+      "signingIn": "Iniciando sesión…",
+      "forgotPassword": "¿Olvidaste tu contraseña?"
     },
     "nav": {
       "overview": "Resumen",
@@ -390,7 +393,8 @@
       "settings": "Configuración",
       "signOut": "Cerrar sesión",
       "sponsors": "Patrocinadores",
-      "verses": "Versículos bíblicos"
+      "verses": "Versículos bíblicos",
+      "myProfile": "Mi perfil"
     },
     "navGroups": {
       "content": "Contenido",
@@ -554,7 +558,9 @@
       "colName": "NOMBRE",
       "colRole": "ROL",
       "colRegion": "REGIÓN",
-      "colLastActive": "ÚLTIMA ACTIVIDAD"
+      "colLastActive": "ÚLTIMA ACTIVIDAD",
+      "colEmail": "CORREO",
+      "pendingInvite": "Invitación pendiente"
     },
     "settings": {
       "title": "Configuración",
@@ -647,6 +653,42 @@
       "fieldText": "Texto del versículo",
       "fieldSortOrder": "Orden",
       "fieldActive": "Mostrar en el sitio"
+    },
+    "auth": {
+      "forgotTitle": "Restablecer tu contraseña",
+      "forgotIntro": "Escribe el correo con el que entras al admin y te enviaremos un enlace para elegir una nueva contraseña.",
+      "sendLink": "Enviar enlace",
+      "linkSent": "Si ese correo pertenece a una cuenta del admin, ya va en camino un enlace para restablecerla. Revisa tu bandeja de entrada (y el spam); el enlace funciona por tiempo limitado.",
+      "tooManyRequests": "Demasiadas solicitudes. Espera unos minutos e inténtalo de nuevo.",
+      "backToLogin": "Volver a iniciar sesión",
+      "resetTitle": "Elige tu contraseña",
+      "resetIntro": "Elige una contraseña de al menos {min} caracteres.",
+      "checkingLink": "Verificando tu enlace…",
+      "linkInvalid": "Este enlace venció o ya fue usado. Solicita uno nuevo e inténtalo otra vez.",
+      "requestNew": "Solicitar un enlace nuevo",
+      "newPassword": "Nueva contraseña",
+      "confirmPassword": "Confirmar nueva contraseña",
+      "savePassword": "Guardar contraseña",
+      "passwordTooShort": "La contraseña debe tener al menos {min} caracteres.",
+      "passwordMismatch": "Las dos contraseñas no coinciden.",
+      "passwordUpdated": "Contraseña actualizada.",
+      "samePassword": "Elige una contraseña distinta a la actual.",
+      "resetFailed": "No pudimos actualizar la contraseña. Solicita un enlace nuevo e inténtalo otra vez."
+    },
+    "profile": {
+      "title": "Mi perfil",
+      "intro": "Tus datos como los ven los demás administradores, y tu contraseña.",
+      "detailsTitle": "Tus datos",
+      "fieldName": "Nombre",
+      "fieldEmail": "Correo",
+      "fieldRole": "Rol",
+      "emailHint": "Es el correo con el que inicias sesión. Para cambiarlo, pídeselo a un administrador.",
+      "saveDetails": "Guardar datos",
+      "passwordTitle": "Cambiar contraseña",
+      "passwordIntro": "Al menos {min} caracteres.",
+      "newPassword": "Nueva contraseña",
+      "confirmPassword": "Confirmar nueva contraseña",
+      "savePassword": "Actualizar contraseña"
     }
   },
   "jornadas": {

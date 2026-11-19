@@ -116,9 +116,11 @@
     "statFamilies": "Families reached",
     "beyondTitle": "Beyond Venezuela",
     "ourStory": "Our story →",
-    "beyondBody": "Hope for the Nations began its work in Venezuela. As needs have grown, so has our reach — we now also support jornadas and programs in the United States, with more regions on the horizon as we continue to grow.",
+    "beyondBody": "Hope for the Nations began its work in Venezuela. As needs have grown, so has our reach — we now also support jornadas and programs in Central America and the United States, with more regions on the horizon as we continue to grow.",
     "regionSaLabel": "SOUTH AMERICA",
     "regionSaPlaces": "Venezuela",
+    "regionCaLabel": "CENTRAL AMERICA",
+    "regionCaPlaces": "Nicaragua, Guatemala, Mexico",
     "regionNaLabel": "NORTH AMERICA",
     "regionNaPlaces": "United States",
     "flagshipEyebrow": "Flagship program",
@@ -374,7 +376,8 @@
       "emailPlaceholder": "Email",
       "passwordPlaceholder": "Password",
       "signIn": "Sign in",
-      "signingIn": "Signing in…"
+      "signingIn": "Signing in…",
+      "forgotPassword": "Forgot your password?"
     },
     "nav": {
       "overview": "Overview",
@@ -390,7 +393,8 @@
       "settings": "Settings",
       "signOut": "Sign out",
       "sponsors": "Sponsors",
-      "verses": "Bible verses"
+      "verses": "Bible verses",
+      "myProfile": "My profile"
     },
     "navGroups": {
       "content": "Content",
@@ -554,7 +558,9 @@
       "colName": "NAME",
       "colRole": "ROLE",
       "colRegion": "REGION",
-      "colLastActive": "LAST ACTIVE"
+      "colLastActive": "LAST ACTIVE",
+      "colEmail": "EMAIL",
+      "pendingInvite": "Invite pending"
     },
     "settings": {
       "title": "Settings",
@@ -647,6 +653,42 @@
       "fieldText": "Verse text",
       "fieldSortOrder": "Sort order",
       "fieldActive": "Show on the website"
+    },
+    "auth": {
+      "forgotTitle": "Reset your password",
+      "forgotIntro": "Enter the email you use for the admin and we'll send you a link to choose a new password.",
+      "sendLink": "Send reset link",
+      "linkSent": "If that email belongs to an admin account, a reset link is on its way. Check your inbox (and spam folder); the link works for a limited time.",
+      "tooManyRequests": "Too many requests. Please wait a few minutes and try again.",
+      "backToLogin": "Back to sign in",
+      "resetTitle": "Choose your password",
+      "resetIntro": "Choose a password with at least {min} characters.",
+      "checkingLink": "Checking your link…",
+      "linkInvalid": "This link has expired or was already used. Request a new one and try again.",
+      "requestNew": "Request a new link",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "savePassword": "Save password",
+      "passwordTooShort": "The password must be at least {min} characters.",
+      "passwordMismatch": "The two passwords don't match.",
+      "passwordUpdated": "Password updated.",
+      "samePassword": "Choose a password different from the current one.",
+      "resetFailed": "We couldn't update the password. Request a new link and try again."
+    },
+    "profile": {
+      "title": "My profile",
+      "intro": "Your details as other admins see them, and your password.",
+      "detailsTitle": "Your details",
+      "fieldName": "Name",
+      "fieldEmail": "Email",
+      "fieldRole": "Role",
+      "emailHint": "This is the email you sign in with. To change it, ask an admin.",
+      "saveDetails": "Save details",
+      "passwordTitle": "Change password",
+      "passwordIntro": "At least {min} characters.",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "savePassword": "Update password"
     }
   },
   "jornadas": {
