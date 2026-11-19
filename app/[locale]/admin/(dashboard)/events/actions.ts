@@ -1,10 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { getLocale } from "next-intl/server";
-import { redirect } from "@/i18n/navigation";
-import { createClient } from "@/lib/supabase/server";
-import { uploadFile, deleteFile } from "@/lib/storage";
+import { getTranslations } from "next-intl/server";
+import { createWithPhoto, deleteWithPhoto, updateWithPhoto } from "@/lib/admin-crud";
+import { failure, type ActionResult } from "@/lib/action-result";
 import type { ProgramStatus } from "@/lib/types";
 
 function readFields(formData: FormData) {
@@ -25,6 +24,10 @@ function readFields(formData: FormData) {
   };
 }
 
+function isValid(fields: ReturnType<typeof readFields>) {
+  return Boolean((fields.name || fields.name_es) && fields.event_date && fields.status);
+}
+
 function revalidateEvents() {
   for (const locale of ["en", "es"]) {
     revalidatePath(`/${locale}/events`);
@@ -34,54 +37,24 @@ function revalidateEvents() {
   }
 }
 
-export async function createEvent(formData: FormData) {
+export async function createEvent(formData: FormData): Promise<ActionResult> {
   const fields = readFields(formData);
-  if (!(fields.name || fields.name_es) || !fields.event_date || !fields.status) return;
-
-  const supabase = await createClient();
-  const { data, error } = await supabase.from("events").insert(fields).select("id").single();
-  if (error || !data) return;
-
-  const photo = formData.get("photo") as File | null;
-  if (photo && photo.size > 0) {
-    const path = await uploadFile(photo, "events", data.id);
-    await supabase.from("events").update({ photo_path: path }).eq("id", data.id);
-  }
-
-  revalidateEvents();
-  redirect({ href: "/admin/events", locale: await getLocale() });
+  if (!isValid(fields)) return failure((await getTranslations("feedback"))("requiredName"));
+  return createWithPhoto({
+    table: "events", folder: "events", fields, formData,
+    revalidate: revalidateEvents, redirectTo: "/admin/events",
+  });
 }
 
-export async function updateEvent(id: string, formData: FormData) {
+export async function updateEvent(id: string, formData: FormData): Promise<ActionResult> {
   const fields = readFields(formData);
-  if (!(fields.name || fields.name_es) || !fields.event_date || !fields.status) return;
-
-  const supabase = await createClient();
-  await supabase.from("events").update(fields).eq("id", id);
-
-  const removePhoto = formData.get("removePhoto") === "on";
-  const photo = formData.get("photo") as File | null;
-  if (photo && photo.size > 0) {
-    const path = await uploadFile(photo, "events", id);
-    await supabase.from("events").update({ photo_path: path }).eq("id", id);
-  } else if (removePhoto) {
-    const { data: event } = await supabase.from("events").select("photo_path").eq("id", id).single();
-    await deleteFile(event?.photo_path);
-    await supabase.from("events").update({ photo_path: null }).eq("id", id);
-  }
-
-  revalidateEvents();
-  redirect({ href: "/admin/events", locale: await getLocale() });
+  if (!isValid(fields)) return failure((await getTranslations("feedback"))("requiredName"));
+  return updateWithPhoto({
+    table: "events", folder: "events", id, fields, formData,
+    revalidate: revalidateEvents, redirectTo: "/admin/events",
+  });
 }
 
-export async function deleteEvent(formData: FormData) {
-  const id = String(formData.get("id") ?? "");
-  if (!id) return;
-
-  const supabase = await createClient();
-  const { data: event } = await supabase.from("events").select("photo_path").eq("id", id).single();
-  await supabase.from("events").delete().eq("id", id);
-  await deleteFile(event?.photo_path);
-
-  revalidateEvents();
+export async function deleteEvent(formData: FormData): Promise<ActionResult> {
+  return deleteWithPhoto({ table: "events", id: String(formData.get("id") ?? ""), revalidate: revalidateEvents });
 }

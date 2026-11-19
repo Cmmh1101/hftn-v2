@@ -1,10 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { getLocale } from "next-intl/server";
-import { redirect } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
+import { describeDbError, failure, success, type ActionResult } from "@/lib/action-result";
+import { deleteWithPhoto } from "@/lib/admin-crud";
 import { createClient } from "@/lib/supabase/server";
-import { uploadFile, deleteFile } from "@/lib/storage";
+import { uploadFile } from "@/lib/storage";
 
 function revalidateGallery() {
   for (const locale of ["en", "es"]) {
@@ -14,56 +15,68 @@ function revalidateGallery() {
   }
 }
 
-export async function uploadGalleryPhoto(formData: FormData) {
-  const location = String(formData.get("location") ?? "").trim();
-  const region = String(formData.get("region") ?? "").trim();
-  const caption = String(formData.get("caption") ?? "").trim();
-  const captionEs = String(formData.get("caption_es") ?? "").trim() || null;
-  const photo = formData.get("photo") as File | null;
-  if (!location || !photo || photo.size === 0) return;
-
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("gallery_photos")
-    .insert({ location, region, caption, caption_es: captionEs })
-    .select("id")
-    .single();
-  if (error || !data) return;
-
-  const path = await uploadFile(photo, "gallery", data.id);
-  await supabase.from("gallery_photos").update({ storage_path: path }).eq("id", data.id);
-
-  revalidateGallery();
+function readFields(formData: FormData) {
+  return {
+    location: String(formData.get("location") ?? "").trim(),
+    region: String(formData.get("region") ?? "").trim(),
+    caption: String(formData.get("caption") ?? "").trim(),
+    caption_es: String(formData.get("caption_es") ?? "").trim() || null,
+  };
 }
 
-export async function updateGalleryPhoto(id: string, formData: FormData) {
-  const location = String(formData.get("location") ?? "").trim();
-  const region = String(formData.get("region") ?? "").trim();
-  const caption = String(formData.get("caption") ?? "").trim();
-  const captionEs = String(formData.get("caption_es") ?? "").trim() || null;
-  if (!location) return;
+export async function uploadGalleryPhoto(formData: FormData): Promise<ActionResult> {
+  const t = await getTranslations("feedback");
+  const fields = readFields(formData);
+  const photo = formData.get("photo") as File | null;
+  if (!fields.location || !photo || photo.size === 0) return failure(t("requiredFields"));
 
   const supabase = await createClient();
-  await supabase.from("gallery_photos").update({ location, region, caption, caption_es: captionEs }).eq("id", id);
+  const { data, error } = await supabase.from("gallery_photos").insert(fields).select("id").single();
+  if (error || !data) return failure(describeDbError(error, t, "saveFailed"));
 
-  const photo = formData.get("photo") as File | null;
-  if (photo && photo.size > 0) {
-    const path = await uploadFile(photo, "gallery", id);
-    await supabase.from("gallery_photos").update({ storage_path: path }).eq("id", id);
+  try {
+    const path = await uploadFile(photo, "gallery", data.id);
+    await supabase.from("gallery_photos").update({ storage_path: path }).eq("id", data.id);
+  } catch (e) {
+    console.error("Gallery upload failed:", e);
+    await supabase.from("gallery_photos").delete().eq("id", data.id);
+    return failure(t("uploadFailed"));
   }
 
   revalidateGallery();
-  redirect({ href: "/admin/gallery", locale: await getLocale() });
+  return success(t("photoAdded"));
 }
 
-export async function deleteGalleryPhoto(formData: FormData) {
-  const id = String(formData.get("id") ?? "");
-  if (!id) return;
+export async function updateGalleryPhoto(id: string, formData: FormData): Promise<ActionResult> {
+  const t = await getTranslations("feedback");
+  const fields = readFields(formData);
+  if (!fields.location) return failure(t("requiredFields"));
 
   const supabase = await createClient();
-  const { data: photo } = await supabase.from("gallery_photos").select("storage_path").eq("id", id).single();
-  await supabase.from("gallery_photos").delete().eq("id", id);
-  await deleteFile(photo?.storage_path);
+  const { error } = await supabase.from("gallery_photos").update(fields).eq("id", id);
+  if (error) return failure(describeDbError(error, t, "saveFailed"));
+
+  const photo = formData.get("photo") as File | null;
+  if (photo && photo.size > 0) {
+    try {
+      const path = await uploadFile(photo, "gallery", id);
+      await supabase.from("gallery_photos").update({ storage_path: path }).eq("id", id);
+    } catch (e) {
+      console.error("Gallery photo replace failed:", e);
+      revalidateGallery();
+      return failure(t("uploadFailed"));
+    }
+  }
 
   revalidateGallery();
+  return success(t("saved"), "/admin/gallery");
+}
+
+export async function deleteGalleryPhoto(formData: FormData): Promise<ActionResult> {
+  return deleteWithPhoto({
+    table: "gallery_photos",
+    photoColumn: "storage_path",
+    id: String(formData.get("id") ?? ""),
+    revalidate: revalidateGallery,
+  });
 }

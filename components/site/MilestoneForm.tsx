@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import { Input, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
+import { ActionForm, SubmitButton } from "@/components/site/ActionForm";
+import type { ActionResult } from "@/lib/action-result";
 import { LocaleTabs } from "@/components/site/LocaleTabs";
 import type { ImpactMilestone } from "@/lib/types";
 
@@ -8,7 +10,7 @@ export async function MilestoneForm({
   action,
   milestone,
 }: {
-  action: (formData: FormData) => void;
+  action: (formData: FormData) => Promise<ActionResult | void>;
   milestone?: ImpactMilestone;
 }) {
   const [t, tForm, tBi] = await Promise.all([
@@ -47,7 +49,7 @@ export async function MilestoneForm({
   };
 
   return (
-    <form action={action} className="flex max-w-2xl flex-col gap-4">
+    <ActionForm action={action} className="flex max-w-2xl flex-col gap-4">
       <div>
         <Label>{t("fieldPeriod")}</Label>
         <Input name="period" defaultValue={milestone?.period} placeholder="2021" required className="w-full" />
@@ -67,13 +69,11 @@ export async function MilestoneForm({
         </label>
       </div>
       <div className="mt-2 flex gap-3">
-        <Button type="submit" variant="primary">
-          {tForm("save")}
-        </Button>
+        <SubmitButton variant="primary">{tForm("save")}</SubmitButton>
         <Button href="/admin/impact-milestones" variant="outline">
           {tForm("cancel")}
         </Button>
       </div>
-    </form>
+    </ActionForm>
   );
 }

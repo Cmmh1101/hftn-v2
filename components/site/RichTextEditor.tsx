@@ -2,6 +2,8 @@
 
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useToast } from "@/components/ui/Toast";
+import { Spinner } from "@/components/ui/Spinner";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
@@ -49,6 +51,8 @@ export function RichTextEditor({
   lang?: string;
 }) {
   const t = useTranslations("admin.editor");
+  const tFeedback = useTranslations("feedback");
+  const toast = useToast();
   const [html, setHtml] = useState(defaultValue ?? "");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
@@ -78,10 +82,18 @@ export function RichTextEditor({
     setUploading(true);
     const formData = new FormData();
     formData.append("image", file);
-    const result = await uploadEditorImage(formData);
-    setUploading(false);
-    if ("url" in result) {
-      editor.chain().focus().setImage({ src: result.url }).run();
+    try {
+      const result = await uploadEditorImage(formData);
+      if ("url" in result) {
+        editor.chain().focus().setImage({ src: result.url }).run();
+        toast.success(tFeedback("imageUploaded"));
+      } else {
+        toast.error(result.error);
+      }
+    } catch {
+      toast.error(tFeedback("uploadFailed"));
+    } finally {
+      setUploading(false);
     }
   }
 
@@ -127,7 +139,14 @@ export function RichTextEditor({
           {t("link")}
         </ToolbarButton>
         <ToolbarButton title={t("image")} onClick={() => fileInputRef.current?.click()}>
-          {uploading ? "…" : t("image")}
+          {uploading ? (
+            <span className="inline-flex items-center gap-1.5">
+              <Spinner className="h-3.5 w-3.5" />
+              {tFeedback("uploading")}
+            </span>
+          ) : (
+            t("image")
+          )}
         </ToolbarButton>
         <input ref={fileInputRef} type="file" accept="image/png,image/jpeg,image/webp,image/gif" className="hidden" onChange={handleImagePick} />
       </div>

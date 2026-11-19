@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { AdminTable, AdminTableRow } from "@/components/site/AdminTable";
 import { Input } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { ActionForm, SubmitButton } from "@/components/site/ActionForm";
 import { RoleSelect } from "@/components/site/RoleSelect";
 import { getProfiles } from "@/lib/queries";
 import { inviteUser, updateUserRole } from "./actions";
@@ -9,9 +9,10 @@ import { inviteUser, updateUserRole } from "./actions";
 const GRID = "1.5fr 1.2fr 1fr 1fr";
 
 export default async function AdminUsersPage() {
-  const [t, tRoles, profiles] = await Promise.all([
+  const [t, tRoles, tFeedback, profiles] = await Promise.all([
     getTranslations("admin.users"),
     getTranslations("admin.roles"),
+    getTranslations("feedback"),
     getProfiles(),
   ]);
 
@@ -25,12 +26,12 @@ export default async function AdminUsersPage() {
     <main className="p-4 sm:p-8">
       <div className="mb-5 flex items-center justify-between gap-4">
         <h1 className="font-serif text-[26px] font-semibold">{t("title")}</h1>
-        <form action={inviteUser} className="flex gap-2">
+        <ActionForm action={inviteUser} resetOnSuccess className="flex gap-2">
           <Input type="email" name="email" placeholder={t("invitePlaceholder")} required className="w-56" />
-          <Button type="submit" variant="primary" size="sm">
+          <SubmitButton variant="primary" size="sm" pendingLabel={tFeedback("sending")}>
             {t("inviteButton")}
-          </Button>
-        </form>
+          </SubmitButton>
+        </ActionForm>
       </div>
       <AdminTable columns={[t("colName"), t("colRole"), t("colRegion"), t("colLastActive")]} gridTemplate={GRID}>
         {profiles.map((p) => (

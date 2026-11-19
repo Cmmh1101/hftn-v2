@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import { Input, Textarea, Select, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
+import { ActionForm, SubmitButton } from "@/components/site/ActionForm";
+import type { ActionResult } from "@/lib/action-result";
 import { Photo } from "@/components/ui/Photo";
 import { LocaleTabs } from "@/components/site/LocaleTabs";
 import type { Event } from "@/lib/types";
@@ -9,7 +11,7 @@ export async function EventForm({
   action,
   event,
 }: {
-  action: (formData: FormData) => void;
+  action: (formData: FormData) => Promise<ActionResult | void>;
   event?: Event;
 }) {
   const [t, tStatus, tForm, tBi] = await Promise.all([
@@ -52,7 +54,7 @@ export async function EventForm({
   };
 
   return (
-    <form action={action} className="flex max-w-2xl flex-col gap-4">
+    <ActionForm action={action} className="flex max-w-2xl flex-col gap-4">
       <LocaleTabs
         missingLabel={tBi("missing")}
         hint={tBi("hint")}
@@ -114,13 +116,11 @@ export async function EventForm({
         <p className="mt-1 text-[13px] text-label">{tForm("uploadHint")}</p>
       </div>
       <div className="mt-2 flex gap-3">
-        <Button type="submit" variant="primary">
-          {tForm("save")}
-        </Button>
+        <SubmitButton variant="primary">{tForm("save")}</SubmitButton>
         <Button href="/admin/events" variant="outline">
           {tForm("cancel")}
         </Button>
       </div>
-    </form>
+    </ActionForm>
   );
 }

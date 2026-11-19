@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Input, Label } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { ActionForm, SubmitButton } from "@/components/site/ActionForm";
 import { Card } from "@/components/ui/Card";
 import { Photo } from "@/components/ui/Photo";
 import { getSiteSettings } from "@/lib/queries";
@@ -25,7 +25,7 @@ export default async function AdminSettingsPage() {
       <h1 className="mb-2 font-serif text-[26px] font-semibold">{t("title")}</h1>
       <p className="mb-6 max-w-xl text-[15px] text-muted-2">{t("intro")}</p>
 
-      <form action={updateSiteSettings} className="flex max-w-xl flex-col gap-6">
+      <ActionForm action={updateSiteSettings} className="flex max-w-xl flex-col gap-6">
         <Card className="flex flex-col gap-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
@@ -94,11 +94,9 @@ export default async function AdminSettingsPage() {
         </Card>
 
         <div className="flex gap-3">
-          <Button type="submit" variant="primary">
-            {tForm("save")}
-          </Button>
+          <SubmitButton variant="primary">{tForm("save")}</SubmitButton>
         </div>
-      </form>
+      </ActionForm>
     </main>
   );
 }

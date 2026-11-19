@@ -5,6 +5,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Field";
+import { Spinner } from "@/components/ui/Spinner";
+import { useToast } from "@/components/ui/Toast";
 import { cn } from "@/lib/cn";
 import type { DonationKind, Program } from "@/lib/types";
 
@@ -36,6 +38,8 @@ function DesignationPill({
 
 export function DonateForm({ programs }: { programs: Program[] }) {
   const t = useTranslations("donate");
+  const tFeedback = useTranslations("feedback");
+  const toast = useToast();
   const locale = useLocale();
 
   const designationPrograms = useMemo(
@@ -52,7 +56,8 @@ export function DonateForm({ programs }: { programs: Program[] }) {
   const [tierIndex, setTierIndex] = useState<number | "custom">(2);
   const [customAmount, setCustomAmount] = useState("");
   const [programId, setProgramId] = useState<string | null>(null);
-  const [submitting, setSubmitting] = useState(false);
+  // Which button was pressed, so only that one shows the spinner.
+  const [submitting, setSubmitting] = useState<DonationKind | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const selectedProgram = programId ? designationPrograms.find((p) => p.id === programId) : null;
@@ -66,9 +71,10 @@ export function DonateForm({ programs }: { programs: Program[] }) {
     const finalAmountCents = kind === "sponsorship" ? SPONSORSHIP_CENTS : amountCents;
     if (!Number.isFinite(finalAmountCents) || finalAmountCents < 100) {
       setError(t("errorAmount"));
+      toast.error(t("errorAmount"));
       return;
     }
-    setSubmitting(true);
+    setSubmitting(kind);
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -83,14 +89,20 @@ export function DonateForm({ programs }: { programs: Program[] }) {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error ?? t("errorGeneric"));
-        setSubmitting(false);
+        const message = data.error ?? t("errorGeneric");
+        setError(message);
+        toast.error(message);
+        setSubmitting(null);
         return;
       }
+      // The button keeps its spinner until the browser actually leaves the page.
+      toast.info(tFeedback("donateRedirect"));
       window.location.href = data.url;
     } catch {
-      setError(t("errorGeneric"));
-      setSubmitting(false);
+      const message = navigator.onLine ? t("errorGeneric") : tFeedback("networkError");
+      setError(message);
+      toast.error(message);
+      setSubmitting(null);
     }
   }
 
@@ -146,15 +158,36 @@ export function DonateForm({ programs }: { programs: Program[] }) {
       </div>
 
       <div className="flex flex-wrap gap-3.5">
-        <Button variant="accent" size="lg" className="max-sm:w-full" onClick={() => donate("one_time")} disabled={submitting}>
-          {t("giveOnce")}
+        <Button variant="accent" size="lg" className="max-sm:w-full" onClick={() => donate("one_time")} disabled={submitting !== null} aria-busy={submitting === "one_time"}>
+          {submitting === "one_time" ? (
+            <>
+              <Spinner />
+              {tFeedback("processing")}
+            </>
+          ) : (
+            t("giveOnce")
+          )}
         </Button>
-        <Button variant="outline" size="lg" className="max-sm:w-full" onClick={() => donate("monthly")} disabled={submitting}>
-          {t("giveMonthly")}
+        <Button variant="outline" size="lg" className="max-sm:w-full" onClick={() => donate("monthly")} disabled={submitting !== null} aria-busy={submitting === "monthly"}>
+          {submitting === "monthly" ? (
+            <>
+              <Spinner />
+              {tFeedback("processing")}
+            </>
+          ) : (
+            t("giveMonthly")
+          )}
         </Button>
         {isSchoolOfHope ? (
-          <Button variant="outline" size="lg" className="max-sm:w-full" onClick={() => donate("sponsorship")} disabled={submitting}>
-            {t("sponsorStudent")}
+          <Button variant="outline" size="lg" className="max-sm:w-full" onClick={() => donate("sponsorship")} disabled={submitting !== null} aria-busy={submitting === "sponsorship"}>
+          {submitting === "sponsorship" ? (
+            <>
+              <Spinner />
+              {tFeedback("processing")}
+            </>
+          ) : (
+            t("sponsorStudent")
+          )}
           </Button>
         ) : null}
       </div>

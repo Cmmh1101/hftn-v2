@@ -1,10 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { getLocale } from "next-intl/server";
-import { redirect } from "@/i18n/navigation";
-import { createClient } from "@/lib/supabase/server";
-import { uploadFile, deleteFile, getPublicUrl } from "@/lib/storage";
+import { getTranslations } from "next-intl/server";
+import { createWithPhoto, deleteWithPhoto, updateWithPhoto } from "@/lib/admin-crud";
+import { failure, type ActionResult } from "@/lib/action-result";
+import { uploadFile, getPublicUrl } from "@/lib/storage";
 import { slugify } from "@/lib/slug";
 import type { PostStatus, PostType } from "@/lib/types";
 
@@ -60,64 +60,39 @@ function revalidatePosts() {
   }
 }
 
-export async function createPost(formData: FormData) {
+export async function createPost(formData: FormData): Promise<ActionResult> {
   const fields = readFields(formData);
-  if (!isValid(fields)) return;
-
-  const supabase = await createClient();
-  const { data, error } = await supabase.from("posts").insert(fields).select("id").single();
-  if (error || !data) return;
-
-  const photo = formData.get("photo") as File | null;
-  if (photo && photo.size > 0) {
-    const path = await uploadFile(photo, "posts", data.id);
-    await supabase.from("posts").update({ photo_path: path }).eq("id", data.id);
-  }
-
-  revalidatePosts();
-  redirect({ href: "/admin/content", locale: await getLocale() });
+  if (!isValid(fields)) return failure((await getTranslations("feedback"))("requiredName"));
+  return createWithPhoto({
+    table: "posts", folder: "posts", fields, formData,
+    revalidate: revalidatePosts, redirectTo: "/admin/content",
+  });
 }
 
-export async function updatePost(id: string, formData: FormData) {
+export async function updatePost(id: string, formData: FormData): Promise<ActionResult> {
   const fields = readFields(formData);
-  if (!isValid(fields)) return;
-
-  const supabase = await createClient();
-  await supabase.from("posts").update(fields).eq("id", id);
-
-  const removePhoto = formData.get("removePhoto") === "on";
-  const photo = formData.get("photo") as File | null;
-  if (photo && photo.size > 0) {
-    const path = await uploadFile(photo, "posts", id);
-    await supabase.from("posts").update({ photo_path: path }).eq("id", id);
-  } else if (removePhoto) {
-    const { data: post } = await supabase.from("posts").select("photo_path").eq("id", id).single();
-    await deleteFile(post?.photo_path);
-    await supabase.from("posts").update({ photo_path: null }).eq("id", id);
-  }
-
-  revalidatePosts();
-  redirect({ href: "/admin/content", locale: await getLocale() });
+  if (!isValid(fields)) return failure((await getTranslations("feedback"))("requiredName"));
+  return updateWithPhoto({
+    table: "posts", folder: "posts", id, fields, formData,
+    revalidate: revalidatePosts, redirectTo: "/admin/content",
+  });
 }
 
-export async function deletePost(formData: FormData) {
-  const id = String(formData.get("id") ?? "");
-  if (!id) return;
-
-  const supabase = await createClient();
-  const { data: post } = await supabase.from("posts").select("photo_path").eq("id", id).single();
-  await supabase.from("posts").delete().eq("id", id);
-  await deleteFile(post?.photo_path);
-
-  revalidatePosts();
+export async function deletePost(formData: FormData): Promise<ActionResult> {
+  return deleteWithPhoto({ table: "posts", id: String(formData.get("id") ?? ""), revalidate: revalidatePosts });
 }
 
 export async function uploadEditorImage(formData: FormData): Promise<{ url: string } | { error: string }> {
+  const t = await getTranslations("feedback");
   const file = formData.get("image") as File | null;
-  if (!file || file.size === 0) return { error: "No file provided" };
+  if (!file || file.size === 0) return { error: t("uploadFailed") };
 
-  const id = crypto.randomUUID();
-  const path = await uploadFile(file, "post-content", id);
-  const url = getPublicUrl(path);
-  return url ? { url } : { error: "Upload failed" };
+  try {
+    const path = await uploadFile(file, "post-content", crypto.randomUUID());
+    const url = getPublicUrl(path);
+    return url ? { url } : { error: t("uploadFailed") };
+  } catch (e) {
+    console.error("Editor image upload failed:", e);
+    return { error: t("uploadFailed") };
+  }
 }

@@ -1,26 +1,31 @@
 "use client";
 
 import { useRef } from "react";
+import { ActionForm, useFormPending } from "@/components/site/ActionForm";
 import { Select } from "@/components/ui/Field";
+import { Spinner } from "@/components/ui/Spinner";
+import type { ActionResult } from "@/lib/action-result";
 
-export function RoleSelect({
-  action,
+// Changing the role saves immediately, so the select locks and shows a spinner
+// while it saves, and a toast confirms (or reports the failure).
+function RoleField({
   defaultValue,
   options,
+  onChange,
 }: {
-  action: (formData: FormData) => void;
   defaultValue: string;
   options: { value: string; label: string }[];
+  onChange: () => void;
 }) {
-  const formRef = useRef<HTMLFormElement>(null);
-
+  const pending = useFormPending();
   return (
-    <form ref={formRef} action={action}>
+    <div className="flex items-center gap-2">
       <Select
         name="role"
         defaultValue={defaultValue}
-        onChange={() => formRef.current?.requestSubmit()}
-        className="py-1.5 text-[13px]"
+        onChange={onChange}
+        disabled={pending}
+        className="py-1.5 text-[15px]"
       >
         {options.map((o) => (
           <option key={o.value} value={o.value}>
@@ -28,6 +33,25 @@ export function RoleSelect({
           </option>
         ))}
       </Select>
-    </form>
+      {pending ? <Spinner className="text-blue" /> : null}
+    </div>
+  );
+}
+
+export function RoleSelect({
+  action,
+  defaultValue,
+  options,
+}: {
+  action: (formData: FormData) => Promise<ActionResult | void>;
+  defaultValue: string;
+  options: { value: string; label: string }[];
+}) {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  return (
+    <ActionForm ref={formRef} action={action}>
+      <RoleField defaultValue={defaultValue} options={options} onChange={() => formRef.current?.requestSubmit()} />
+    </ActionForm>
   );
 }

@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import { Input, Textarea, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
+import { ActionForm, SubmitButton } from "@/components/site/ActionForm";
+import type { ActionResult } from "@/lib/action-result";
 import { Photo } from "@/components/ui/Photo";
 import { LocaleTabs } from "@/components/site/LocaleTabs";
 import type { Leader } from "@/lib/types";
@@ -9,7 +11,7 @@ export async function LeaderForm({
   action,
   leader,
 }: {
-  action: (formData: FormData) => void;
+  action: (formData: FormData) => Promise<ActionResult | void>;
   leader?: Leader;
 }) {
   const [t, tForm, tBi] = await Promise.all([
@@ -37,7 +39,7 @@ export async function LeaderForm({
   };
 
   return (
-    <form action={action} className="flex max-w-2xl flex-col gap-4">
+    <ActionForm action={action} className="flex max-w-2xl flex-col gap-4">
       <div>
         <Label>{t("colName")}</Label>
         <Input name="name" defaultValue={leader?.name} required className="w-full" />
@@ -65,13 +67,11 @@ export async function LeaderForm({
         <p className="mt-1 text-[13px] text-label">{tForm("uploadHint")}</p>
       </div>
       <div className="mt-2 flex gap-3">
-        <Button type="submit" variant="primary">
-          {tForm("save")}
-        </Button>
+        <SubmitButton variant="primary">{tForm("save")}</SubmitButton>
         <Button href="/admin/leadership" variant="outline">
           {tForm("cancel")}
         </Button>
       </div>
-    </form>
+    </ActionForm>
   );
 }

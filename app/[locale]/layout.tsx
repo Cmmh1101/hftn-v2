@@ -4,6 +4,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { ToastProvider } from "@/components/ui/Toast";
 import "../globals.css";
 
 const newsreader = Newsreader({
@@ -39,7 +40,9 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
   return (
     <html lang={locale} className={`${newsreader.variable} ${manrope.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-bg text-ink font-sans">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

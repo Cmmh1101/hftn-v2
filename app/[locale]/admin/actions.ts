@@ -1,12 +1,10 @@
 "use server";
 
-import { getLocale } from "next-intl/server";
-import { redirect } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { success, type ActionResult } from "@/lib/action-result";
 
-export async function signOut() {
+export async function signOut(): Promise<ActionResult> {
   const supabase = await createClient();
   await supabase.auth.signOut();
-  const locale = await getLocale();
-  redirect({ href: "/admin/login", locale });
+  return success(undefined, "/admin/login");
 }

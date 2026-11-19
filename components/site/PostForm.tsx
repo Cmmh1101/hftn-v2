@@ -1,12 +1,14 @@
 import { getTranslations } from "next-intl/server";
 import { Input, Select, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
+import { ActionForm, SubmitButton } from "@/components/site/ActionForm";
+import type { ActionResult } from "@/lib/action-result";
 import { Photo } from "@/components/ui/Photo";
 import { RichTextEditor } from "@/components/site/RichTextEditor";
 import { LocaleTabs } from "@/components/site/LocaleTabs";
 import type { Post } from "@/lib/types";
 
-export async function PostForm({ action, post }: { action: (formData: FormData) => void; post?: Post }) {
+export async function PostForm({ action, post }: { action: (formData: FormData) => Promise<ActionResult | void>; post?: Post }) {
   const [t, tStatus, tForm, tBi] = await Promise.all([
     getTranslations("admin.content"),
     getTranslations("status"),
@@ -51,7 +53,7 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
   };
 
   return (
-    <form action={action} className="flex max-w-3xl flex-col gap-5">
+    <ActionForm action={action} className="flex max-w-3xl flex-col gap-5">
       <LocaleTabs
         panels={{ en: languagePanel("en"), es: languagePanel("es") }}
         missingLabel={tBi("missing")}
@@ -102,13 +104,11 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
         <p className="mt-1 text-[13px] text-label">{tForm("uploadHint")}</p>
       </div>
       <div className="mt-2 flex gap-3">
-        <Button type="submit" variant="primary">
-          {tForm("save")}
-        </Button>
+        <SubmitButton variant="primary">{tForm("save")}</SubmitButton>
         <Button href="/admin/content" variant="outline">
           {tForm("cancel")}
         </Button>
       </div>
-    </form>
+    </ActionForm>
   );
 }

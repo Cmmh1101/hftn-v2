@@ -6,10 +6,14 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { Input } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
+import { Spinner } from "@/components/ui/Spinner";
+import { useToast } from "@/components/ui/Toast";
 import { createClient } from "@/lib/supabase/client";
 
 export default function AdminLoginPage() {
   const t = useTranslations("admin.login");
+  const tFeedback = useTranslations("feedback");
+  const toast = useToast();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,12 +25,24 @@ export default function AdminLoginPage() {
     setLoading(true);
     setError(null);
     const supabase = createClient();
-    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
-    setLoading(false);
-    if (signInError) {
-      setError(signInError.message);
+    try {
+      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+      if (signInError) {
+        // Supabase's wording is English-only; show our own translated message.
+        const message = signInError.status === 400 ? tFeedback("invalidLogin") : tFeedback("errorGeneric");
+        setError(message);
+        toast.error(message);
+        setLoading(false);
+        return;
+      }
+    } catch {
+      const message = tFeedback("networkError");
+      setError(message);
+      toast.error(message);
+      setLoading(false);
       return;
     }
+    // Keep the spinner up until the dashboard has actually loaded.
     router.push("/admin");
     router.refresh();
   }
@@ -35,6 +51,7 @@ export default function AdminLoginPage() {
     <main className="flex min-h-screen items-center justify-center bg-surface-soft-2 px-6">
       <form
         onSubmit={handleSubmit}
+        aria-busy={loading}
         className="w-full max-w-sm rounded-lg border border-border bg-surface p-8"
       >
         <Image src="/brand/logo.png" alt="" width={212} height={180} priority className="mb-3 h-14 w-auto" />
@@ -61,10 +78,21 @@ export default function AdminLoginPage() {
           />
         </div>
 
-        {error ? <p className="mt-3 text-[13px] text-red-600">{error}</p> : null}
+        {error ? (
+          <p role="alert" className="mt-3 text-[14px] font-semibold text-red-700">
+            {error}
+          </p>
+        ) : null}
 
         <Button type="submit" variant="primary" className="mt-5 w-full justify-center" disabled={loading}>
-          {loading ? t("signingIn") : t("signIn")}
+          {loading ? (
+            <>
+              <Spinner />
+              {t("signingIn")}
+            </>
+          ) : (
+            t("signIn")
+          )}
         </Button>
       </form>
     </main>

@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import { Input, Select, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
+import { ActionForm, SubmitButton } from "@/components/site/ActionForm";
+import type { ActionResult } from "@/lib/action-result";
 import { Photo } from "@/components/ui/Photo";
 import { GALLERY_REGIONS } from "@/lib/regions";
 import type { GalleryPhoto } from "@/lib/types";
@@ -9,7 +11,7 @@ export async function GalleryPhotoForm({
   action,
   photo,
 }: {
-  action: (formData: FormData) => void;
+  action: (formData: FormData) => Promise<ActionResult | void>;
   photo?: GalleryPhoto;
 }) {
   const [t, tRegions, tForm] = await Promise.all([
@@ -19,7 +21,7 @@ export async function GalleryPhotoForm({
   ]);
 
   return (
-    <form action={action} className="flex max-w-xl flex-col gap-4">
+    <ActionForm action={action} className="flex max-w-xl flex-col gap-4">
       <div>
         <Label>{t("fieldLocation")}</Label>
         <Input name="location" defaultValue={photo?.location} required className="w-full" />
@@ -59,13 +61,11 @@ export async function GalleryPhotoForm({
         <p className="mt-1 text-[13px] text-label">{tForm("uploadHint")}</p>
       </div>
       <div className="mt-2 flex gap-3">
-        <Button type="submit" variant="primary">
-          {tForm("save")}
-        </Button>
+        <SubmitButton variant="primary">{tForm("save")}</SubmitButton>
         <Button href="/admin/gallery" variant="outline">
           {tForm("cancel")}
         </Button>
       </div>
-    </form>
+    </ActionForm>
   );
 }

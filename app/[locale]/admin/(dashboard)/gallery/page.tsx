@@ -3,16 +3,18 @@ import { Photo } from "@/components/ui/Photo";
 import { Input, Select } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ActionForm, SubmitButton } from "@/components/site/ActionForm";
 import { DeleteButton } from "@/components/site/DeleteButton";
 import { getGalleryPhotos } from "@/lib/queries";
 import { GALLERY_REGIONS } from "@/lib/regions";
 import { uploadGalleryPhoto, deleteGalleryPhoto } from "./actions";
 
 export default async function AdminGalleryPage() {
-  const [t, tForm, tRegions, photos] = await Promise.all([
+  const [t, tForm, tRegions, tFeedback, photos] = await Promise.all([
     getTranslations("admin.gallery"),
     getTranslations("admin.form"),
     getTranslations("regions"),
+    getTranslations("feedback"),
     getGalleryPhotos(),
   ]);
 
@@ -21,7 +23,7 @@ export default async function AdminGalleryPage() {
       <h1 className="mb-5 font-serif text-[26px] font-semibold">{t("title")}</h1>
 
       <Card className="mb-7 max-w-2xl">
-        <form action={uploadGalleryPhoto} className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+        <ActionForm action={uploadGalleryPhoto} resetOnSuccess className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
           <Input name="location" placeholder={t("fieldLocation")} required />
           <Select name="region" defaultValue={GALLERY_REGIONS[0].dbValue} required>
             {GALLERY_REGIONS.map((r) => (
@@ -39,10 +41,10 @@ export default async function AdminGalleryPage() {
             required
             className="sm:col-span-2"
           />
-          <Button type="submit" variant="primary" className="w-fit">
+          <SubmitButton variant="primary" className="w-fit" pendingLabel={tFeedback("uploading")}>
             {t("upload")}
-          </Button>
-        </form>
+          </SubmitButton>
+        </ActionForm>
       </Card>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">

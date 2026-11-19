@@ -3,6 +3,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { Input } from "@/components/ui/Field";
 import { AdminSidebarNav } from "@/components/site/AdminSidebarNav";
 import { AdminMenuButton, AdminShell } from "@/components/site/AdminShell";
+import { SignOutButton } from "@/components/site/SignOutButton";
 import { Avatar } from "@/components/ui/Avatar";
 import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
 import { createClient } from "@/lib/supabase/server";
@@ -79,14 +80,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <div className="text-xs capitalize text-sidebar-inactive">{tRoles(role)}</div>
         </div>
       </div>
-      <form action={signOut}>
-        <button
-          type="submit"
-          className="mt-1 w-full cursor-pointer py-2 text-left text-[12.5px] text-sidebar-inactive hover:text-white"
-        >
-          {t("signOut")}
-        </button>
-      </form>
+      <SignOutButton action={signOut} label={t("signOut")} />
     </>
   );
 

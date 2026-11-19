@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
+import { describeDbError, failure, success, type ActionResult } from "@/lib/action-result";
 import { createClient } from "@/lib/supabase/server";
 import { uploadFile, deleteFile } from "@/lib/storage";
 
@@ -14,10 +16,11 @@ function revalidateSettings() {
   }
 }
 
-export async function updateSiteSettings(formData: FormData) {
+export async function updateSiteSettings(formData: FormData): Promise<ActionResult> {
+  const t = await getTranslations("feedback");
   const supabase = await createClient();
 
-  await supabase
+  const { error: statsError } = await supabase
     .from("site_settings")
     .update({
       countries_served: String(formData.get("countries_served") ?? "").trim(),
@@ -28,6 +31,23 @@ export async function updateSiteSettings(formData: FormData) {
       updated_at: new Date().toISOString(),
     })
     .eq("id", true);
+  if (statsError) return failure(describeDbError(statsError, t, "saveFailed"));
+
+  try {
+    await saveFiles(formData);
+  } catch (e) {
+    console.error("Settings file update failed:", e);
+    revalidateSettings();
+    return failure(t("uploadFailed"));
+  }
+
+  revalidateSettings();
+  return success(t("settingsSaved"));
+}
+
+// Reports (PDFs) and the home-page photo; runs after the numbers are saved.
+async function saveFiles(formData: FormData) {
+  const supabase = await createClient();
 
   for (const key of REPORTS) {
     const pathColumn = `${key}_path`;
@@ -59,6 +79,4 @@ export async function updateSiteSettings(formData: FormData) {
     }
     await deleteFile(current?.hero_photo_path);
   }
-
-  revalidateSettings();
 }

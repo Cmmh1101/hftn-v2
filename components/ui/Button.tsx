@@ -43,7 +43,7 @@ export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 export function Button({ variant = "primary", size = "md", className, children, ...props }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 whitespace-nowrap font-bold cursor-pointer transition-all",
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap font-bold cursor-pointer transition-all disabled:cursor-not-allowed disabled:opacity-70",
     variantClasses[variant],
     variant !== "link" && sizeClasses[size],
     className,
