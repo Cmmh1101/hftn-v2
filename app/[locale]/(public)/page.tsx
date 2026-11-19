@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
+import { getVideoPoster } from "@/lib/video";
 import { VideoBadge } from "@/components/ui/VideoBadge";
 import { SectionWave } from "@/components/ui/SectionWave";
 import { StatTile } from "@/components/ui/StatTile";
@@ -60,6 +61,7 @@ export default async function HomePage() {
     getVerses(contentLocale),
   ]);
   const featuredStories = stories.slice(0, 3);
+  const homeVideoPoster = settings.home_video_url ? await getVideoPoster(settings.home_video_url) : null;
   const mosaic = mosaicPhotos(galleryGroups, 9);
 
   const flagship = programs.find((p) => p.category === "flagship");
@@ -155,7 +157,7 @@ export default async function HomePage() {
               <p className="mt-4 text-base leading-relaxed text-muted lg:text-[17px]">{t("videoBody")}</p>
             </div>
             <Reveal>
-              <VideoEmbed url={settings.home_video_url} title={t("videoTitle")} className="shadow-[0_18px_50px_rgba(1,19,50,0.2)]" />
+              <VideoEmbed url={settings.home_video_url} title={t("videoTitle")} poster={homeVideoPoster} className="shadow-[0_18px_50px_rgba(1,19,50,0.2)]" />
             </Reveal>
           </div>
         </section>

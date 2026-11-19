@@ -11,6 +11,7 @@ import { ProseText } from "@/components/ui/ProseText";
 import { VideoEmbed } from "@/components/ui/VideoEmbed";
 import { getPrograms, getProgramBySlug, getProgramPhotos } from "@/lib/queries";
 import { getPublicUrl } from "@/lib/storage";
+import { getVideoPoster } from "@/lib/video";
 import { PROGRAM_TYPES } from "@/lib/programTypes";
 import { PROGRAM_REGIONS } from "@/lib/regions";
 
@@ -43,6 +44,7 @@ export default async function ProgramDetailPage({ params }: Params) {
   ]);
 
   if (!program) notFound();
+  const videoPoster = program.video_url ? await getVideoPoster(program.video_url) : null;
 
   const photos = await getProgramPhotos(program.id, locale);
   const cover = program.photo_path ?? photos[0]?.storage_path ?? null;
@@ -123,7 +125,7 @@ export default async function ProgramDetailPage({ params }: Params) {
           <h2 id="program-video" className="mb-5 font-serif text-[26px] font-semibold">
             {t("videoTitle")}
           </h2>
-          <VideoEmbed url={program.video_url} title={program.name} className="max-w-[920px]" />
+          <VideoEmbed url={program.video_url} title={program.name} poster={videoPoster} className="max-w-[920px]" />
         </section>
       ) : null}
 

@@ -16,10 +16,10 @@ const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
-  `img-src 'self' data: ${supabaseOrigin} https://i.ytimg.com`,
+  `img-src 'self' data: ${supabaseOrigin} https://i.ytimg.com https://i.vimeocdn.com`,
   // Videos: files from the media library, or a YouTube player once a visitor presses play.
   `media-src 'self' ${supabaseOrigin}`,
-  "frame-src https://www.youtube-nocookie.com",
+  "frame-src https://www.youtube-nocookie.com https://player.vimeo.com",
   "font-src 'self' data:",
   `connect-src 'self' ${supabaseOrigin}`,
   "frame-ancestors 'none'",

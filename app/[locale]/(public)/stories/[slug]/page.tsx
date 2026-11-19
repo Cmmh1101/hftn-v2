@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { Photo } from "@/components/ui/Photo";
 import { VideoEmbed } from "@/components/ui/VideoEmbed";
 import { getPostBySlug } from "@/lib/queries";
+import { getVideoPoster } from "@/lib/video";
 import { isFallback, localizeRow, toContentLocale } from "@/lib/localize";
 import { formatPostDate, toIntlLocale } from "@/lib/format";
 
@@ -22,6 +23,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
   const articleLang = showingOtherLanguage ? (lang === "es" ? "en" : "es") : lang;
 
   const intlLocale = toIntlLocale(locale);
+  const videoPoster = post.video_url ? await getVideoPoster(post.video_url) : null;
 
   return (
     <main className="mx-auto max-w-[760px] px-5 sm:px-8 pb-16 sm:pb-20 pt-10 sm:pt-14">
@@ -48,7 +50,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
       </div>
 
       {post.video_url ? (
-        <VideoEmbed url={post.video_url} title={post.title} className="my-8" />
+        <VideoEmbed url={post.video_url} title={post.title} poster={videoPoster} className="my-8" />
       ) : post.photo_path ? (
         <Photo path={post.photo_path} alt={post.title} aspect="16/9" rounded="10px" className="my-8" />
       ) : null}

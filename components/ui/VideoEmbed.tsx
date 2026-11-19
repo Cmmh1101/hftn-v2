@@ -4,40 +4,31 @@ import { Play } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { cn } from "@/lib/cn";
-
-// Accepts a YouTube link (watch, youtu.be, shorts, embed) or a direct video file.
-function youTubeId(url: string): string | null {
-  try {
-    const u = new URL(url);
-    if (u.hostname === "youtu.be") return u.pathname.slice(1) || null;
-    if (u.hostname.endsWith("youtube.com") || u.hostname.endsWith("youtube-nocookie.com")) {
-      if (u.pathname === "/watch") return u.searchParams.get("v");
-      const m = u.pathname.match(/^\/(?:embed|shorts|live)\/([\w-]{6,})/);
-      return m ? m[1] : null;
-    }
-  } catch {
-    /* not a URL */
-  }
-  return null;
-}
+import { parseVideoUrl } from "@/lib/video";
 
 /**
- * Responsive 16:9 video. YouTube videos stay a plain thumbnail until clicked
- * (no third-party requests or cookies before the visitor chooses to play).
+ * Responsive 16:9 video. YouTube and Vimeo videos stay a plain thumbnail until
+ * clicked (no third-party player or cookies before the visitor chooses to play).
+ * `poster` is the thumbnail for Vimeo (YouTube's is derived from the link).
  * For a direct file, an optional poster image is looked up next to it:
  * `…/overview.mp4` → `…/overview-poster.jpg`.
  */
-export function VideoEmbed({ url, title, className }: { url: string; title: string; className?: string }) {
+export function VideoEmbed({ url, title, className, poster }: { url: string; title: string; className?: string; poster?: string | null }) {
   const t = useTranslations("a11y");
   const [playing, setPlaying] = useState(false);
-  const id = youTubeId(url);
+  const source = parseVideoUrl(url);
 
-  if (id) {
+  if (source.kind === "youtube" || source.kind === "vimeo") {
+    const src =
+      source.kind === "youtube"
+        ? `https://www.youtube-nocookie.com/embed/${source.id}?autoplay=1&rel=0`
+        : `https://player.vimeo.com/video/${source.id}?${source.hash ? `h=${source.hash}&` : ""}autoplay=1&dnt=1`;
+    const thumb = source.kind === "youtube" ? `https://i.ytimg.com/vi/${source.id}/hqdefault.jpg` : (poster ?? null);
     return (
       <div className={cn("relative aspect-video w-full overflow-hidden rounded-xl bg-ink-dark", className)}>
         {playing ? (
           <iframe
-            src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}
+            src={src}
             title={title}
             allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
             allowFullScreen
@@ -50,12 +41,14 @@ export function VideoEmbed({ url, title, className }: { url: string; title: stri
             aria-label={`${t("playVideo")}: ${title}`}
             className="group absolute inset-0 cursor-pointer"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
-              alt=""
-              className="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
-            />
+            {thumb ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={thumb}
+                alt=""
+                className="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
+              />
+            ) : null}
             <PlayBadge />
           </button>
         )}

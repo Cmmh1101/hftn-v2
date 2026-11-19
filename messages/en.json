@@ -474,7 +474,7 @@
       "fieldDescription": "Full description",
       "fieldDescriptionHint": "Shown on the program’s own page. Leave a blank line between paragraphs; start a line with \"## \" for a heading, or with \"- \" for a bullet list.",
       "fieldVideoUrl": "Video (optional)",
-      "fieldVideoUrlHint": "A YouTube link, or the address of a video file uploaded to the media library.",
+      "fieldVideoUrlHint": "A YouTube or Vimeo link.",
       "fieldCoverPhoto": "Cover photo"
     },
     "events": {
@@ -525,14 +525,7 @@
       "fieldBody": "Body",
       "fieldPublishedAt": "Published date",
       "fieldVideo": "Video (optional)",
-      "fieldVideoHint": "Paste a YouTube link, or upload an MP4/WebM file (up to 50MB). The video shows at the top of the story, above the text; photos can still be added inside the text.",
-      "uploadVideo": "Upload video",
-      "uploadingVideo": "Uploading…",
-      "removeVideo": "Remove video",
-      "videoUploaded": "Video uploaded. Save the post to publish it.",
-      "videoBadType": "Please choose an MP4 or WebM video.",
-      "videoTooBig": "That video is over 50MB. Compress it or upload it to YouTube and paste the link.",
-      "videoUploadFailed": "We couldn't upload the video. Try again or paste a YouTube link."
+      "fieldVideoHint": "Paste a YouTube or Vimeo link. The video shows at the top of the story, above the text; photos can still be added inside the text."
     },
     "gallery": {
       "title": "Gallery / Media",
@@ -589,7 +582,7 @@
       "viewCurrent": "View current PDF",
       "noFileYet": "No file uploaded yet",
       "homeVideoTitle": "Home page video",
-      "homeVideoHint": "A YouTube link, or the address of a video file in the media library. Leave empty to hide the video section."
+      "homeVideoHint": "A YouTube or Vimeo link. Leave empty to hide the video section."
     },
     "subscribers": {
       "title": "Subscribers",

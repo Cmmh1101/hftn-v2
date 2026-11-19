@@ -474,7 +474,7 @@
       "fieldDescription": "Descripción completa",
       "fieldDescriptionHint": "Se muestra en la página propia del programa. Deja una línea en blanco entre párrafos; empieza una línea con \"## \" para un título, o con \"- \" para una lista.",
       "fieldVideoUrl": "Video (opcional)",
-      "fieldVideoUrlHint": "Un enlace de YouTube, o la dirección de un video subido a la biblioteca de medios.",
+      "fieldVideoUrlHint": "Un enlace de YouTube o Vimeo.",
       "fieldCoverPhoto": "Foto de portada"
     },
     "events": {
@@ -525,14 +525,7 @@
       "fieldBody": "Contenido",
       "fieldPublishedAt": "Fecha de publicación",
       "fieldVideo": "Video (opcional)",
-      "fieldVideoHint": "Pega un enlace de YouTube o sube un archivo MP4/WebM (hasta 50MB). El video aparece al inicio de la historia, sobre el texto; las fotos se pueden seguir agregando dentro del texto.",
-      "uploadVideo": "Subir video",
-      "uploadingVideo": "Subiendo…",
-      "removeVideo": "Quitar video",
-      "videoUploaded": "Video subido. Guarda la publicación para que se publique.",
-      "videoBadType": "Elige un video MP4 o WebM.",
-      "videoTooBig": "Ese video pesa más de 50MB. Comprímelo o súbelo a YouTube y pega el enlace.",
-      "videoUploadFailed": "No pudimos subir el video. Inténtalo de nuevo o pega un enlace de YouTube."
+      "fieldVideoHint": "Pega un enlace de YouTube o Vimeo. El video aparece al inicio de la historia, sobre el texto; las fotos se pueden seguir agregando dentro del texto."
     },
     "gallery": {
       "title": "Galería / Medios",
@@ -589,7 +582,7 @@
       "viewCurrent": "Ver PDF actual",
       "noFileYet": "Aún no se ha subido un archivo",
       "homeVideoTitle": "Video de la página de inicio",
-      "homeVideoHint": "Un enlace de YouTube, o la dirección de un video en la biblioteca de medios. Déjalo vacío para ocultar la sección de video."
+      "homeVideoHint": "Un enlace de YouTube o Vimeo. Déjalo vacío para ocultar la sección de video."
     },
     "subscribers": {
       "title": "Suscriptores",
