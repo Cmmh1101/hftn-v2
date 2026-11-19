@@ -6,7 +6,8 @@ import { getEvents } from "@/lib/queries";
 import { formatEventDay, formatEventMonth, toIntlLocale } from "@/lib/format";
 
 export default async function EventsPage() {
-  const [t, locale, events] = await Promise.all([getTranslations("events"), getLocale(), getEvents()]);
+  const contentLocale = await getLocale();
+  const [t, locale, events] = await Promise.all([getTranslations("events"), getLocale(), getEvents(contentLocale)]);
   const intlLocale = toIntlLocale(locale);
 
   return (

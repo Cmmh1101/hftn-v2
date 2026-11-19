@@ -30,7 +30,7 @@ export default async function AdminProgramsPage() {
       >
         {programs.map((p) => (
           <AdminTableRow key={p.id} gridTemplate={GRID}>
-            <span className="font-semibold">{p.name}</span>
+            <span className="font-semibold">{p.name || p.name_es}</span>
             <span className="text-muted-2">{p.type}</span>
             <span className="text-muted-2">{p.region}</span>
             <span>{p.participants}</span>

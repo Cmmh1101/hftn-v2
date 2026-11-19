@@ -3,21 +3,60 @@ import { Input, Select, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { Photo } from "@/components/ui/Photo";
 import { RichTextEditor } from "@/components/site/RichTextEditor";
+import { LocaleTabs } from "@/components/site/LocaleTabs";
 import type { Post } from "@/lib/types";
 
 export async function PostForm({ action, post }: { action: (formData: FormData) => void; post?: Post }) {
-  const [t, tStatus, tForm] = await Promise.all([
+  const [t, tStatus, tForm, tBi] = await Promise.all([
     getTranslations("admin.content"),
     getTranslations("status"),
     getTranslations("admin.form"),
+    getTranslations("admin.bilingual"),
   ]);
 
+  // Title, category, tags and body exist once per language; everything else
+  // (slug, type, status, author, date, photo) is shared by both versions.
+  const languagePanel = (lang: "en" | "es") => {
+    const suffix = lang === "es" ? "_es" : "";
+    const title = lang === "es" ? post?.title_es : post?.title;
+    const category = lang === "es" ? post?.category_es : post?.category;
+    const tags = lang === "es" ? post?.tags_es : post?.tags;
+    const body = lang === "es" ? post?.body_es : post?.body;
+    return (
+      <>
+        <div>
+          <Label>{t("colTitle")}</Label>
+          <Input name={`title${suffix}`} defaultValue={title ?? ""} data-primary className="w-full" />
+        </div>
+        <div>
+          <Label>{t("fieldCategory")}</Label>
+          <Input name={`category${suffix}`} defaultValue={category ?? ""} className="w-full" />
+        </div>
+        <div>
+          <Label>{t("fieldTags")}</Label>
+          <Input
+            name={`tags${suffix}`}
+            defaultValue={tags?.join(", ") ?? ""}
+            placeholder={t("fieldTagsPlaceholder")}
+            className="w-full"
+          />
+          <p className="mt-1 text-[13px] text-label">{t("fieldTagsHint")}</p>
+        </div>
+        <div>
+          <Label>{t("fieldBody")}</Label>
+          <RichTextEditor name={`body${suffix}`} defaultValue={body ?? ""} placeholder={tBi("bodyPlaceholder")} lang={lang} />
+        </div>
+      </>
+    );
+  };
+
   return (
-    <form action={action} className="flex max-w-2xl flex-col gap-4">
-      <div>
-        <Label>{t("colTitle")}</Label>
-        <Input name="title" defaultValue={post?.title} required className="w-full" />
-      </div>
+    <form action={action} className="flex max-w-3xl flex-col gap-5">
+      <LocaleTabs
+        panels={{ en: languagePanel("en"), es: languagePanel("es") }}
+        missingLabel={tBi("missing")}
+        hint={tBi("hint")}
+      />
       <div>
         <Label>{t("fieldSlug")}</Label>
         <Input name="slug" defaultValue={post?.slug} placeholder={t("fieldSlugPlaceholder")} className="w-full" />
@@ -45,28 +84,15 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
           <Input name="author" defaultValue={post?.author} className="w-full" />
         </div>
         <div>
-          <Label>{t("fieldCategory")}</Label>
-          <Input name="category" defaultValue={post?.category} className="w-full" />
+          <Label>{t("fieldPublishedAt")}</Label>
+          <Input type="date" name="published_at" defaultValue={post?.published_at ?? undefined} className="w-full" />
         </div>
-      </div>
-      <div>
-        <Label>{t("fieldTags")}</Label>
-        <Input name="tags" defaultValue={post?.tags?.join(", ")} placeholder={t("fieldTagsPlaceholder")} className="w-full" />
-        <p className="mt-1 text-[13px] text-label">{t("fieldTagsHint")}</p>
-      </div>
-      <div>
-        <Label>{t("fieldPublishedAt")}</Label>
-        <Input type="date" name="published_at" defaultValue={post?.published_at ?? undefined} className="w-full" />
-      </div>
-      <div>
-        <Label>{t("fieldBody")}</Label>
-        <RichTextEditor name="body" defaultValue={post?.body} />
       </div>
       <div>
         <Label>{tForm("photo")}</Label>
         {post?.photo_path ? (
           <div className="mb-2 flex items-center gap-3">
-            <Photo path={post.photo_path} alt={post.title} aspect="1" rounded="6px" className="w-20" />
+            <Photo path={post.photo_path} alt={post.title || post.title_es || ""} aspect="1" rounded="6px" className="w-20" />
             <label className="flex items-center gap-2 text-[13px] text-muted">
               <input type="checkbox" name="removePhoto" /> {tForm("removePhoto")}
             </label>

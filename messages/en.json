@@ -4,7 +4,8 @@
     "description": "Faith · Education · Relief — blessing communities with the tools to thrive."
   },
   "a11y": {
-    "opensInNewTab": "(opens in a new tab)"
+    "opensInNewTab": "(opens in a new tab)",
+    "close": "Close"
   },
   "regions": {
     "southAmerica": "South America",
@@ -162,7 +163,9 @@
     "eyebrow": "Real lives, real impact",
     "title": "Stories of Hope",
     "fromBlog": "From the Blog",
-    "backToStories": "Back to Stories"
+    "backToStories": "Back to Stories",
+    "onlyInSpanish": "This story is only available in Spanish for now.",
+    "onlyInEnglish": "This story is only available in English for now."
   },
   "gallery": {
     "eyebrow": "Jornadas realized",
@@ -304,6 +307,25 @@
       "newButton": "+ New",
       "openMenu": "Open menu",
       "closeMenu": "Close menu"
+    },
+    "editor": {
+      "heading2": "Heading",
+      "heading3": "Subheading",
+      "bold": "Bold",
+      "italic": "Italic",
+      "quote": "Quote",
+      "bulletList": "Bulleted list",
+      "numberedList": "Numbered list",
+      "link": "Link",
+      "image": "Image",
+      "bulletShort": "• List",
+      "numberedShort": "1. List",
+      "linkPrompt": "URL"
+    },
+    "bilingual": {
+      "missing": "Missing",
+      "hint": "Write each language in its own tab. If one is left empty, visitors will see the other language instead.",
+      "bodyPlaceholder": "Write the post…"
     },
     "form": {
       "save": "Save",

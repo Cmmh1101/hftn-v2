@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Photo } from "@/components/ui/Photo";
@@ -10,12 +10,13 @@ import { PROGRAM_TYPES } from "@/lib/programTypes";
 import { PROGRAM_REGIONS } from "@/lib/regions";
 
 export default async function ProgramsPage() {
+  const contentLocale = await getLocale();
   const [t, tCategory, tTypes, tRegions, programs] = await Promise.all([
     getTranslations("programs"),
     getTranslations("programCategory"),
     getTranslations("programTypes"),
     getTranslations("regions"),
-    getPrograms(),
+    getPrograms(contentLocale),
   ]);
 
   const flagship = programs.find((p) => p.category === "flagship");

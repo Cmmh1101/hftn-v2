@@ -8,23 +8,48 @@ import { uploadFile, deleteFile, getPublicUrl } from "@/lib/storage";
 import { slugify } from "@/lib/slug";
 import type { PostStatus, PostType } from "@/lib/types";
 
+function readTags(input: FormDataEntryValue | null): string[] {
+  const raw = String(input ?? "").trim();
+  return raw ? raw.split(",").map((t) => t.trim()).filter(Boolean) : [];
+}
+
+// A bare "<p></p>" is what the editor leaves behind when a language is empty;
+// store that as NULL so the site correctly falls back to the other language.
+function readRichText(input: FormDataEntryValue | null): string {
+  const html = String(input ?? "").trim();
+  const hasContent = html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim().length > 0 || /<img\b/i.test(html);
+  return hasContent ? html : "";
+}
+
 function readFields(formData: FormData) {
   const status = formData.get("status") as PostStatus;
   const publishedAtInput = String(formData.get("published_at") ?? "").trim();
   const title = String(formData.get("title") ?? "").trim();
+  const titleEs = String(formData.get("title_es") ?? "").trim();
   const slugInput = String(formData.get("slug") ?? "").trim();
-  const tagsInput = String(formData.get("tags") ?? "").trim();
+  const categoryEs = String(formData.get("category_es") ?? "").trim();
+  const bodyEs = readRichText(formData.get("body_es"));
   return {
     title,
-    slug: slugify(slugInput || title),
+    title_es: titleEs || null,
+    // One slug for both languages, so a shared link works in either one.
+    slug: slugify(slugInput || title || titleEs),
     type: formData.get("type") as PostType,
     author: String(formData.get("author") ?? "").trim(),
     category: String(formData.get("category") ?? "").trim(),
-    tags: tagsInput ? tagsInput.split(",").map((t) => t.trim()).filter(Boolean) : [],
-    body: String(formData.get("body") ?? "").trim(),
+    category_es: categoryEs || null,
+    tags: readTags(formData.get("tags")),
+    tags_es: readTags(formData.get("tags_es")),
+    body: readRichText(formData.get("body")),
+    body_es: bodyEs || null,
     status,
     published_at: publishedAtInput || (status === "published" ? new Date().toISOString().slice(0, 10) : null),
   };
+}
+
+// At least one language needs a title: it is the post's identity and its slug.
+function isValid(fields: ReturnType<typeof readFields>) {
+  return Boolean((fields.title || fields.title_es) && fields.slug && fields.type && fields.status);
 }
 
 function revalidatePosts() {
@@ -37,7 +62,7 @@ function revalidatePosts() {
 
 export async function createPost(formData: FormData) {
   const fields = readFields(formData);
-  if (!fields.title || !fields.type || !fields.status) return;
+  if (!isValid(fields)) return;
 
   const supabase = await createClient();
   const { data, error } = await supabase.from("posts").insert(fields).select("id").single();
@@ -55,7 +80,7 @@ export async function createPost(formData: FormData) {
 
 export async function updatePost(id: string, formData: FormData) {
   const fields = readFields(formData);
-  if (!fields.title || !fields.type || !fields.status) return;
+  if (!isValid(fields)) return;
 
   const supabase = await createClient();
   await supabase.from("posts").update(fields).eq("id", id);

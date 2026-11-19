@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Card } from "@/components/ui/Card";
 import { StatTile } from "@/components/ui/StatTile";
 import { Button } from "@/components/ui/Button";
@@ -7,12 +7,13 @@ import { getImpactMilestones, getPrograms, getSiteSettings } from "@/lib/queries
 import { getPublicUrl } from "@/lib/storage";
 
 export default async function ImpactPage() {
+  const contentLocale = await getLocale();
   const [t, tRegions, settings, programs, milestones] = await Promise.all([
     getTranslations("impact"),
     getTranslations("regions"),
     getSiteSettings(),
-    getPrograms(),
-    getImpactMilestones(),
+    getPrograms(contentLocale),
+    getImpactMilestones(contentLocale),
   ]);
 
   const IMPACT_STATS = [

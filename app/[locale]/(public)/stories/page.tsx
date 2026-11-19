@@ -8,11 +8,12 @@ import { formatPostDate, toIntlLocale } from "@/lib/format";
 import { excerptFromHtml } from "@/lib/excerpt";
 
 export default async function StoriesPage() {
+  const contentLocale = await getLocale();
   const [t, locale, stories, posts] = await Promise.all([
     getTranslations("stories"),
     getLocale(),
-    getPublishedPosts("story"),
-    getPublishedPosts("blog"),
+    getPublishedPosts("story", contentLocale),
+    getPublishedPosts("blog", contentLocale),
   ]);
   const intlLocale = toIntlLocale(locale);
 

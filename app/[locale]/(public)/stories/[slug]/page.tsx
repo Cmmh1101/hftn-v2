@@ -3,17 +3,22 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Photo } from "@/components/ui/Photo";
 import { getPostBySlug } from "@/lib/queries";
+import { isFallback, localizeRow, toContentLocale } from "@/lib/localize";
 import { formatPostDate, toIntlLocale } from "@/lib/format";
 
 export default async function PostDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const contentLocale = await getLocale();
   const { slug } = await params;
-  const [t, locale, post] = await Promise.all([
-    getTranslations("stories"),
-    getLocale(),
-    getPostBySlug(slug),
-  ]);
+  const [t, locale, rawPost] = await Promise.all([getTranslations("stories"), getLocale(), getPostBySlug(slug)]);
 
-  if (!post) notFound();
+  if (!rawPost) notFound();
+
+  // A post may exist in only one language; the visitor then sees it in that
+  // language, with a notice, and the article is tagged with its real language.
+  const lang = toContentLocale(contentLocale);
+  const post = localizeRow(rawPost, ["title", "category", "tags", "body"], lang);
+  const showingOtherLanguage = isFallback(rawPost.title, rawPost.title_es, lang);
+  const articleLang = showingOtherLanguage ? (lang === "es" ? "en" : "es") : lang;
 
   const intlLocale = toIntlLocale(locale);
 
@@ -23,7 +28,13 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
         ← {t("backToStories")}
       </Link>
 
-      <div className="mt-6">
+      {showingOtherLanguage ? (
+        <p role="note" className="mt-6 rounded-lg border border-border bg-surface-soft-2 px-4 py-3 text-[15px] text-muted">
+          {t(articleLang === "es" ? "onlyInSpanish" : "onlyInEnglish")}
+        </p>
+      ) : null}
+
+      <div lang={articleLang} className="mt-6">
         {post.category ? (
           <span className="text-[13px] font-bold tracking-wide text-blue">{post.category.toUpperCase()}</span>
         ) : null}
@@ -39,10 +50,10 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
         <Photo path={post.photo_path} alt={post.title} aspect="16/9" rounded="10px" className="my-8" />
       ) : null}
 
-      <div className="article-body" dangerouslySetInnerHTML={{ __html: post.body }} />
+      <div lang={articleLang} className="article-body" dangerouslySetInnerHTML={{ __html: post.body }} />
 
       {post.tags.length > 0 ? (
-        <div className="mt-10 flex flex-wrap gap-2 border-t border-border-soft pt-6">
+        <div lang={articleLang} className="mt-10 flex flex-wrap gap-2 border-t border-border-soft pt-6">
           {post.tags.map((tag) => (
             <span key={tag} className="rounded-full bg-surface-soft-2 px-3 py-1 text-[13px] font-semibold text-muted-2">
               #{tag}

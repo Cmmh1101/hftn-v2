@@ -4,7 +4,8 @@
     "description": "Fe · Educación · Ayuda — bendiciendo comunidades con las herramientas para prosperar."
   },
   "a11y": {
-    "opensInNewTab": "(se abre en una pestaña nueva)"
+    "opensInNewTab": "(se abre en una pestaña nueva)",
+    "close": "Cerrar"
   },
   "regions": {
     "southAmerica": "Sudamérica",
@@ -162,7 +163,9 @@
     "eyebrow": "Vidas reales, impacto real",
     "title": "Historias de Esperanza",
     "fromBlog": "Del Blog",
-    "backToStories": "Volver a Historias"
+    "backToStories": "Volver a Historias",
+    "onlyInSpanish": "Por ahora esta historia solo está disponible en español.",
+    "onlyInEnglish": "Por ahora esta historia solo está disponible en inglés."
   },
   "gallery": {
     "eyebrow": "Jornadas realizadas",
@@ -304,6 +307,25 @@
       "newButton": "+ Nuevo",
       "openMenu": "Abrir menú",
       "closeMenu": "Cerrar menú"
+    },
+    "editor": {
+      "heading2": "Título",
+      "heading3": "Subtítulo",
+      "bold": "Negrita",
+      "italic": "Cursiva",
+      "quote": "Cita",
+      "bulletList": "Lista con viñetas",
+      "numberedList": "Lista numerada",
+      "link": "Enlace",
+      "image": "Imagen",
+      "bulletShort": "• Lista",
+      "numberedShort": "1. Lista",
+      "linkPrompt": "URL"
+    },
+    "bilingual": {
+      "missing": "Falta",
+      "hint": "Escribe cada idioma en su pestaña. Si dejas uno vacío, los visitantes verán el otro idioma.",
+      "bodyPlaceholder": "Escribe la publicación…"
     },
     "form": {
       "save": "Guardar",

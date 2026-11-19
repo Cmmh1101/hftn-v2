@@ -12,6 +12,15 @@ import type {
   Subscriber,
 } from "@/lib/types";
 import { relativeTime } from "@/lib/format";
+import { localizeRow, toContentLocale } from "@/lib/localize";
+
+// Public pages pass the visitor's locale and get rows already in their language
+// (falling back to the other one). Admin screens omit it and get both languages.
+const PROGRAM_FIELDS = ["name", "summary"] as const;
+const EVENT_FIELDS = ["name", "description", "cta_label"] as const;
+const POST_FIELDS = ["title", "category", "tags", "body"] as const;
+const LEADER_FIELDS = ["role", "bio"] as const;
+const MILESTONE_FIELDS = ["area", "impact_value"] as const;
 
 const DEFAULT_SITE_SETTINGS: SiteSettings = {
   countries_served: "3",
@@ -31,29 +40,31 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   return data ?? DEFAULT_SITE_SETTINGS;
 }
 
-export async function getPrograms(): Promise<Program[]> {
+export async function getPrograms(locale?: string): Promise<Program[]> {
   const supabase = await createClient();
   const { data } = await supabase.from("programs").select("*").order("created_at", { ascending: true });
-  return data ?? [];
+  const rows = data ?? [];
+  return locale ? rows.map((r) => localizeRow(r, PROGRAM_FIELDS, toContentLocale(locale))) : rows;
 }
 
-export async function getActivePrograms(): Promise<Program[]> {
-  const programs = await getPrograms();
+export async function getActivePrograms(locale?: string): Promise<Program[]> {
+  const programs = await getPrograms(locale);
   return programs.filter((p) => p.status === "Active");
 }
 
-export async function getEvents(): Promise<Event[]> {
+export async function getEvents(locale?: string): Promise<Event[]> {
   const supabase = await createClient();
   const { data } = await supabase.from("events").select("*").order("event_date", { ascending: true });
-  return data ?? [];
+  const rows = data ?? [];
+  return locale ? rows.map((r) => localizeRow(r, EVENT_FIELDS, toContentLocale(locale))) : rows;
 }
 
-export async function getNextEvent(): Promise<Event | null> {
-  const events = await getEvents();
+export async function getNextEvent(locale?: string): Promise<Event | null> {
+  const events = await getEvents(locale);
   return events.find((e) => e.status === "Active") ?? events[0] ?? null;
 }
 
-export async function getPublishedPosts(type: "blog" | "story"): Promise<Post[]> {
+export async function getPublishedPosts(type: "blog" | "story", locale?: string): Promise<Post[]> {
   const supabase = await createClient();
   const { data } = await supabase
     .from("posts")
@@ -61,19 +72,22 @@ export async function getPublishedPosts(type: "blog" | "story"): Promise<Post[]>
     .eq("type", type)
     .eq("status", "published")
     .order("published_at", { ascending: false });
-  return data ?? [];
+  const rows = data ?? [];
+  return locale ? rows.map((r) => localizeRow(r, POST_FIELDS, toContentLocale(locale))) : rows;
 }
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
+export async function getPostBySlug(slug: string, locale?: string): Promise<Post | null> {
   const supabase = await createClient();
   const { data } = await supabase.from("posts").select("*").eq("slug", slug).eq("status", "published").single();
-  return data ?? null;
+  if (!data) return null;
+  return locale ? localizeRow(data, POST_FIELDS, toContentLocale(locale)) : data;
 }
 
-export async function getLeaders(): Promise<Leader[]> {
+export async function getLeaders(locale?: string): Promise<Leader[]> {
   const supabase = await createClient();
   const { data } = await supabase.from("leaders").select("*").order("sort_order", { ascending: true });
-  return data ?? [];
+  const rows = data ?? [];
+  return locale ? rows.map((r) => localizeRow(r, LEADER_FIELDS, toContentLocale(locale))) : rows;
 }
 
 export type GalleryGroup = {
@@ -84,17 +98,18 @@ export type GalleryGroup = {
   photos: GalleryPhoto[];
 };
 
-export async function getGalleryPhotos(): Promise<GalleryPhoto[]> {
+export async function getGalleryPhotos(locale?: string): Promise<GalleryPhoto[]> {
   const supabase = await createClient();
   const { data } = await supabase
     .from("gallery_photos")
     .select("*")
     .order("created_at", { ascending: false });
-  return data ?? [];
+  const rows = data ?? [];
+  return locale ? rows.map((r) => localizeRow(r, ["caption"] as const, toContentLocale(locale))) : rows;
 }
 
-export async function getGalleryGroups(): Promise<GalleryGroup[]> {
-  const photos = await getGalleryPhotos();
+export async function getGalleryGroups(locale?: string): Promise<GalleryGroup[]> {
+  const photos = await getGalleryPhotos(locale);
   const byLocation = new Map<string, GalleryGroup>();
   for (const photo of photos) {
     const existing = byLocation.get(photo.location);
@@ -140,14 +155,15 @@ export async function getSubscribers(): Promise<Subscriber[]> {
   return data ?? [];
 }
 
-export async function getImpactMilestones(): Promise<ImpactMilestone[]> {
+export async function getImpactMilestones(locale?: string): Promise<ImpactMilestone[]> {
   const supabase = await createClient();
   const { data } = await supabase
     .from("impact_milestones")
     .select("*")
     .order("sort_order", { ascending: true })
     .order("period", { ascending: true });
-  return data ?? [];
+  const rows = data ?? [];
+  return locale ? rows.map((r) => localizeRow(r, MILESTONE_FIELDS, toContentLocale(locale))) : rows;
 }
 
 export type MonthlyDonationTotal = { label: string; cents: number };
@@ -199,7 +215,7 @@ export async function getRecentActivity(locale = "en-US"): Promise<(ActivityItem
       .limit(5),
     supabase
       .from("posts")
-      .select("title, status, created_at")
+      .select("title, title_es, status, created_at")
       .order("created_at", { ascending: false })
       .limit(5),
     supabase
@@ -216,7 +232,7 @@ export async function getRecentActivity(locale = "en-US"): Promise<(ActivityItem
   for (const p of postsRes.data ?? []) {
     items.push({
       kind: p.status === "published" ? "postPublished" : "postDrafted",
-      title: p.title,
+      title: p.title || p.title_es || "",
       at: p.created_at,
     });
   }

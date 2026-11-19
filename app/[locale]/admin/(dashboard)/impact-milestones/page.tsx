@@ -30,8 +30,8 @@ export default async function AdminImpactMilestonesPage() {
         {milestones.map((m) => (
           <AdminTableRow key={m.id} gridTemplate={GRID}>
             <span className="font-semibold">{m.period}</span>
-            <span className="text-muted-2">{m.area}</span>
-            <span className="text-muted-2">{m.impact_value}</span>
+            <span className="text-muted-2">{m.area || m.area_es}</span>
+            <span className="text-muted-2">{m.impact_value || m.impact_value_es}</span>
             {m.is_goal ? <Badge status="Planned">{t("goalYes")}</Badge> : <span className="text-muted-2">—</span>}
             <div className="flex gap-3">
               <Button href={`/admin/impact-milestones/${m.id}/edit`} variant="link" size="sm">

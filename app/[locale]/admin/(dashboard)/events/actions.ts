@@ -12,13 +12,16 @@ function readFields(formData: FormData) {
   const raisedDollars = Number(formData.get("raised") ?? 0) || 0;
   return {
     name: String(formData.get("name") ?? "").trim(),
+    name_es: String(formData.get("name_es") ?? "").trim() || null,
     event_date: String(formData.get("event_date") ?? ""),
     location: String(formData.get("location") ?? "").trim(),
     description: String(formData.get("description") ?? "").trim(),
+    description_es: String(formData.get("description_es") ?? "").trim() || null,
     goal_cents: Math.round(goalDollars * 100),
     raised_cents: Math.round(raisedDollars * 100),
     status: formData.get("status") as ProgramStatus,
     cta_label: String(formData.get("cta_label") ?? "").trim() || "Register",
+    cta_label_es: String(formData.get("cta_label_es") ?? "").trim() || null,
   };
 }
 
@@ -33,7 +36,7 @@ function revalidateEvents() {
 
 export async function createEvent(formData: FormData) {
   const fields = readFields(formData);
-  if (!fields.name || !fields.event_date || !fields.status) return;
+  if (!(fields.name || fields.name_es) || !fields.event_date || !fields.status) return;
 
   const supabase = await createClient();
   const { data, error } = await supabase.from("events").insert(fields).select("id").single();
@@ -51,7 +54,7 @@ export async function createEvent(formData: FormData) {
 
 export async function updateEvent(id: string, formData: FormData) {
   const fields = readFields(formData);
-  if (!fields.name || !fields.event_date || !fields.status) return;
+  if (!(fields.name || fields.name_es) || !fields.event_date || !fields.status) return;
 
   const supabase = await createClient();
   await supabase.from("events").update(fields).eq("id", id);

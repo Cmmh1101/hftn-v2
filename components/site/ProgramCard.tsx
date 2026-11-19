@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Card } from "@/components/ui/Card";
 import { Photo } from "@/components/ui/Photo";
@@ -27,6 +28,7 @@ export function ProgramCard({
   participantsFieldLabel: string;
   visitWebsiteLabel: string;
 }) {
+  const tA11y = useTranslations("a11y");
   const [open, setOpen] = useState(false);
 
   return (
@@ -62,7 +64,7 @@ export function ProgramCard({
                 type="button"
                 onClick={() => setOpen(false)}
                 className="cursor-pointer text-xl leading-none text-muted-2 hover:text-ink"
-                aria-label="Close"
+                aria-label={tA11y("close")}
               >
                 ×
               </button>

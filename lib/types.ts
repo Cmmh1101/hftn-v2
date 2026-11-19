@@ -8,12 +8,14 @@ export type ProfileRole = "admin" | "editor" | "viewer";
 export type Program = {
   id: string;
   name: string;
+  name_es: string | null;
   category: ProgramCategory;
   type: string;
   region: string;
   participants: number;
   status: ProgramStatus;
   summary: string;
+  summary_es: string | null;
   photo_path: string | null;
   program_date: string | null;
   website_url: string | null;
@@ -23,13 +25,16 @@ export type Program = {
 export type Event = {
   id: string;
   name: string;
+  name_es: string | null;
   event_date: string;
   location: string;
   description: string;
+  description_es: string | null;
   goal_cents: number;
   raised_cents: number;
   status: ProgramStatus;
   cta_label: string;
+  cta_label_es: string | null;
   photo_path: string | null;
   created_at: string;
 };
@@ -50,12 +55,16 @@ export type Donation = {
 export type Post = {
   id: string;
   title: string;
+  title_es: string | null;
   slug: string;
   type: PostType;
   author: string;
   category: string;
+  category_es: string | null;
   tags: string[];
+  tags_es: string[];
   body: string;
+  body_es: string | null;
   status: PostStatus;
   published_at: string | null;
   photo_path: string | null;
@@ -68,6 +77,7 @@ export type GalleryPhoto = {
   region: string;
   storage_path: string | null;
   caption: string;
+  caption_es: string | null;
   program_id: string | null;
   created_at: string;
 };
@@ -76,7 +86,9 @@ export type Leader = {
   id: string;
   name: string;
   role: string;
+  role_es: string | null;
   bio: string;
+  bio_es: string | null;
   photo_path: string | null;
   sort_order: number;
 };
@@ -102,7 +114,9 @@ export type ImpactMilestone = {
   id: string;
   period: string;
   area: string;
+  area_es: string | null;
   impact_value: string;
+  impact_value_es: string | null;
   is_goal: boolean;
   sort_order: number;
   created_at: string;

@@ -9,7 +9,9 @@ function readFields(formData: FormData) {
   return {
     period: String(formData.get("period") ?? "").trim(),
     area: String(formData.get("area") ?? "").trim(),
+    area_es: String(formData.get("area_es") ?? "").trim() || null,
     impact_value: String(formData.get("impact_value") ?? "").trim(),
+    impact_value_es: String(formData.get("impact_value_es") ?? "").trim() || null,
     is_goal: formData.get("is_goal") === "on",
     sort_order: Number(formData.get("sort_order") ?? 0) || 0,
   };
@@ -24,7 +26,7 @@ function revalidateMilestones() {
 
 export async function createMilestone(formData: FormData) {
   const fields = readFields(formData);
-  if (!fields.period || !fields.area || !fields.impact_value) return;
+  if (!fields.period || !(fields.area || fields.area_es) || !(fields.impact_value || fields.impact_value_es)) return;
 
   const supabase = await createClient();
   await supabase.from("impact_milestones").insert(fields);
@@ -35,7 +37,7 @@ export async function createMilestone(formData: FormData) {
 
 export async function updateMilestone(id: string, formData: FormData) {
   const fields = readFields(formData);
-  if (!fields.period || !fields.area || !fields.impact_value) return;
+  if (!fields.period || !(fields.area || fields.area_es) || !(fields.impact_value || fields.impact_value_es)) return;
 
   const supabase = await createClient();
   await supabase.from("impact_milestones").update(fields).eq("id", id);

@@ -10,12 +10,14 @@ import type { ProgramCategory, ProgramStatus } from "@/lib/types";
 function readFields(formData: FormData) {
   return {
     name: String(formData.get("name") ?? "").trim(),
+    name_es: String(formData.get("name_es") ?? "").trim() || null,
     category: formData.get("category") as ProgramCategory,
     type: String(formData.get("type") ?? "").trim(),
     region: String(formData.get("region") ?? "").trim(),
     participants: Number(formData.get("participants") ?? 0) || 0,
     status: formData.get("status") as ProgramStatus,
     summary: String(formData.get("summary") ?? "").trim(),
+    summary_es: String(formData.get("summary_es") ?? "").trim() || null,
     program_date: String(formData.get("program_date") ?? "").trim() || null,
     website_url: String(formData.get("website_url") ?? "").trim() || null,
   };
@@ -32,7 +34,7 @@ function revalidatePrograms() {
 
 export async function createProgram(formData: FormData) {
   const fields = readFields(formData);
-  if (!fields.name || !fields.category || !fields.status) return;
+  if (!(fields.name || fields.name_es) || !fields.category || !fields.status) return;
 
   const supabase = await createClient();
   const { data, error } = await supabase.from("programs").insert(fields).select("id").single();
@@ -50,7 +52,7 @@ export async function createProgram(formData: FormData) {
 
 export async function updateProgram(id: string, formData: FormData) {
   const fields = readFields(formData);
-  if (!fields.name || !fields.category || !fields.status) return;
+  if (!(fields.name || fields.name_es) || !fields.category || !fields.status) return;
 
   const supabase = await createClient();
   await supabase.from("programs").update(fields).eq("id", id);

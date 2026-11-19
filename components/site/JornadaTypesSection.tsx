@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Card } from "@/components/ui/Card";
 import { Photo } from "@/components/ui/Photo";
@@ -20,6 +21,7 @@ type TypeGroup = {
 };
 
 export function JornadaTypesSection({ groups }: { groups: TypeGroup[] }) {
+  const tA11y = useTranslations("a11y");
   const [openType, setOpenType] = useState<string | null>(null);
   const active = groups.find((g) => g.type === openType) ?? null;
 
@@ -51,7 +53,7 @@ export function JornadaTypesSection({ groups }: { groups: TypeGroup[] }) {
                 type="button"
                 onClick={() => setOpenType(null)}
                 className="cursor-pointer text-xl leading-none text-muted-2 hover:text-ink"
-                aria-label="Close"
+                aria-label={tA11y("close")}
               >
                 ×
               </button>

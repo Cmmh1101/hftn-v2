@@ -1,11 +1,12 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Photo } from "@/components/ui/Photo";
 import { Card } from "@/components/ui/Card";
 import { PageIntro } from "@/components/site/PageIntro";
 import { getLeaders } from "@/lib/queries";
 
 export default async function TeamPage() {
-  const [t, leaders] = await Promise.all([getTranslations("team"), getLeaders()]);
+  const contentLocale = await getLocale();
+  const [t, leaders] = await Promise.all([getTranslations("team"), getLeaders(contentLocale)]);
 
   const VALUES = [
     { title: t("valueIntegrityTitle"), body: t("valueIntegrityBody") },

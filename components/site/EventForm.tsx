@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Input, Textarea, Select, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { Photo } from "@/components/ui/Photo";
+import { LocaleTabs } from "@/components/site/LocaleTabs";
 import type { Event } from "@/lib/types";
 
 export async function EventForm({
@@ -11,18 +12,52 @@ export async function EventForm({
   action: (formData: FormData) => void;
   event?: Event;
 }) {
-  const [t, tStatus, tForm] = await Promise.all([
+  const [t, tStatus, tForm, tBi] = await Promise.all([
     getTranslations("admin.events"),
     getTranslations("status"),
     getTranslations("admin.form"),
+    getTranslations("admin.bilingual"),
   ]);
 
+  // Name, description and button label exist once per language; date, place
+  // (a proper noun), goal, status and photo are shared.
+  const languagePanel = (lang: "en" | "es") => {
+    const suffix = lang === "es" ? "_es" : "";
+    const isEs = lang === "es";
+    return (
+      <>
+        <div>
+          <Label>{t("fieldName")}</Label>
+          <Input name={`name${suffix}`} defaultValue={(isEs ? event?.name_es : event?.name) ?? ""} data-primary className="w-full" />
+        </div>
+        <div>
+          <Label>{t("fieldDescription")}</Label>
+          <Textarea
+            name={`description${suffix}`}
+            defaultValue={(isEs ? event?.description_es : event?.description) ?? ""}
+            rows={3}
+            className="w-full"
+          />
+        </div>
+        <div>
+          <Label>{t("fieldCtaLabel")}</Label>
+          <Input
+            name={`cta_label${suffix}`}
+            defaultValue={(isEs ? event?.cta_label_es ?? "Registrarse" : event?.cta_label ?? "Register")}
+            className="w-full"
+          />
+        </div>
+      </>
+    );
+  };
+
   return (
-    <form action={action} className="flex max-w-xl flex-col gap-4">
-      <div>
-        <Label>{t("fieldName")}</Label>
-        <Input name="name" defaultValue={event?.name} required className="w-full" />
-      </div>
+    <form action={action} className="flex max-w-2xl flex-col gap-4">
+      <LocaleTabs
+        missingLabel={tBi("missing")}
+        hint={tBi("hint")}
+        panels={{ en: languagePanel("en"), es: languagePanel("es") }}
+      />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label>{t("fieldDate")}</Label>
@@ -40,10 +75,6 @@ export async function EventForm({
       <div>
         <Label>{t("fieldLocation")}</Label>
         <Input name="location" defaultValue={event?.location} className="w-full" />
-      </div>
-      <div>
-        <Label>{t("fieldDescription")}</Label>
-        <Textarea name="description" defaultValue={event?.description} rows={3} className="w-full" />
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
@@ -68,10 +99,6 @@ export async function EventForm({
             className="w-full"
           />
         </div>
-      </div>
-      <div>
-        <Label>{t("fieldCtaLabel")}</Label>
-        <Input name="cta_label" defaultValue={event?.cta_label ?? "Register"} className="w-full" />
       </div>
       <div>
         <Label>{tForm("photo")}</Label>

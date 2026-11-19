@@ -26,7 +26,7 @@ export default async function AdminLeadershipPage() {
         {leaders.map((l) => (
           <AdminTableRow key={l.id} gridTemplate={GRID}>
             <span className="font-semibold">{l.name}</span>
-            <span className="text-muted-2">{l.role}</span>
+            <span className="text-muted-2">{l.role || l.role_es}</span>
             <div className="flex gap-3">
               <Button href={`/admin/leadership/${l.id}/edit`} variant="link" size="sm">
                 {t("edit")}

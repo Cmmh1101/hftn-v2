@@ -10,7 +10,9 @@ function readFields(formData: FormData) {
   return {
     name: String(formData.get("name") ?? "").trim(),
     role: String(formData.get("role") ?? "").trim(),
+    role_es: String(formData.get("role_es") ?? "").trim() || null,
     bio: String(formData.get("bio") ?? "").trim(),
+    bio_es: String(formData.get("bio_es") ?? "").trim() || null,
     sort_order: Number(formData.get("sort_order") ?? 0) || 0,
   };
 }

@@ -1,11 +1,12 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Photo } from "@/components/ui/Photo";
 import { PageIntro } from "@/components/site/PageIntro";
 import { Button } from "@/components/ui/Button";
 import { getLeaders } from "@/lib/queries";
 
 export default async function AboutPage() {
-  const [t, leaders] = await Promise.all([getTranslations("about"), getLeaders()]);
+  const contentLocale = await getLocale();
+  const [t, leaders] = await Promise.all([getTranslations("about"), getLeaders(contentLocale)]);
 
   const JOURNEY = [
     { year: "2018", desc: t("journey2018") },

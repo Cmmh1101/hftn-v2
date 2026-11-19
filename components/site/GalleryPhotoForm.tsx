@@ -35,8 +35,12 @@ export async function GalleryPhotoForm({
         </Select>
       </div>
       <div>
-        <Label>{t("fieldCaption")}</Label>
-        <Input name="caption" defaultValue={photo?.caption} className="w-full" />
+        <Label>{t("fieldCaption")} — English</Label>
+        <Input name="caption" lang="en" defaultValue={photo?.caption ?? ""} className="w-full" />
+      </div>
+      <div>
+        <Label>{t("fieldCaption")} — Español</Label>
+        <Input name="caption_es" lang="es" defaultValue={photo?.caption_es ?? ""} className="w-full" />
       </div>
       <div>
         <Label>{tForm("photo")}</Label>

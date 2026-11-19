@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Input, Textarea, Select, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { Photo } from "@/components/ui/Photo";
+import { LocaleTabs } from "@/components/site/LocaleTabs";
 import { PROGRAM_REGIONS } from "@/lib/regions";
 import { PROGRAM_TYPES } from "@/lib/programTypes";
 import type { Program } from "@/lib/types";
@@ -13,21 +14,54 @@ export async function ProgramForm({
   action: (formData: FormData) => void;
   program?: Program;
 }) {
-  const [t, tCategory, tStatus, tRegions, tTypes, tForm] = await Promise.all([
+  const [t, tCategory, tStatus, tRegions, tTypes, tForm, tBi] = await Promise.all([
     getTranslations("admin.programs"),
     getTranslations("programCategory"),
     getTranslations("status"),
     getTranslations("regions"),
     getTranslations("programTypes"),
     getTranslations("admin.form"),
+    getTranslations("admin.bilingual"),
   ]);
 
+  // Name and summary exist once per language; category, type, region, status,
+  // dates and photo are shared.
+  const languagePanel = (lang: "en" | "es") => {
+    const suffix = lang === "es" ? "_es" : "";
+    return (
+      <>
+        <div>
+          <Label>{t("colName")}</Label>
+          <Input
+            name={`name${suffix}`}
+            defaultValue={(lang === "es" ? program?.name_es : program?.name) ?? ""}
+            data-primary
+            className="w-full"
+          />
+        </div>
+        <div>
+          <Label>{t("fieldSummary")}</Label>
+          <Textarea
+            name={`summary${suffix}`}
+            defaultValue={(lang === "es" ? program?.summary_es : program?.summary) ?? ""}
+            rows={4}
+            className="w-full"
+          />
+        </div>
+      </>
+    );
+  };
+
   return (
-    <form action={action} className="flex max-w-xl flex-col gap-4">
-      <div>
-        <Label>{t("colName")}</Label>
-        <Input name="name" defaultValue={program?.name} required className="w-full" />
-      </div>
+    <form action={action} className="flex max-w-2xl flex-col gap-4">
+      <LocaleTabs
+        missingLabel={tBi("missing")}
+        hint={tBi("hint")}
+        panels={{
+          en: languagePanel("en"),
+          es: languagePanel("es"),
+        }}
+      />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label>{t("fieldCategory")}</Label>
@@ -78,10 +112,6 @@ export async function ProgramForm({
           <Label>{t("fieldDate")}</Label>
           <Input type="date" name="program_date" defaultValue={program?.program_date ?? ""} className="w-full" />
         </div>
-      </div>
-      <div>
-        <Label>{t("fieldSummary")}</Label>
-        <Textarea name="summary" defaultValue={program?.summary} rows={4} className="w-full" />
       </div>
       <div>
         <Label>{t("fieldWebsiteUrl")}</Label>

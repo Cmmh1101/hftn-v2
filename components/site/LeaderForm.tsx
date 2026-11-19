@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Input, Textarea, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { Photo } from "@/components/ui/Photo";
+import { LocaleTabs } from "@/components/site/LocaleTabs";
 import type { Leader } from "@/lib/types";
 
 export async function LeaderForm({
@@ -11,22 +12,41 @@ export async function LeaderForm({
   action: (formData: FormData) => void;
   leader?: Leader;
 }) {
-  const [t, tForm] = await Promise.all([getTranslations("admin.leadership"), getTranslations("admin.form")]);
+  const [t, tForm, tBi] = await Promise.all([
+    getTranslations("admin.leadership"),
+    getTranslations("admin.form"),
+    getTranslations("admin.bilingual"),
+  ]);
+
+  // A person's name is the same in both languages; role and bio are translated.
+  const languagePanel = (lang: "en" | "es") => {
+    const suffix = lang === "es" ? "_es" : "";
+    const isEs = lang === "es";
+    return (
+      <>
+        <div>
+          <Label>{t("colRole")}</Label>
+          <Input name={`role${suffix}`} defaultValue={(isEs ? leader?.role_es : leader?.role) ?? ""} data-primary className="w-full" />
+        </div>
+        <div>
+          <Label>{t("fieldBio")}</Label>
+          <Textarea name={`bio${suffix}`} defaultValue={(isEs ? leader?.bio_es : leader?.bio) ?? ""} rows={5} className="w-full" />
+        </div>
+      </>
+    );
+  };
 
   return (
-    <form action={action} className="flex max-w-xl flex-col gap-4">
+    <form action={action} className="flex max-w-2xl flex-col gap-4">
       <div>
         <Label>{t("colName")}</Label>
         <Input name="name" defaultValue={leader?.name} required className="w-full" />
       </div>
-      <div>
-        <Label>{t("colRole")}</Label>
-        <Input name="role" defaultValue={leader?.role} className="w-full" />
-      </div>
-      <div>
-        <Label>{t("fieldBio")}</Label>
-        <Textarea name="bio" defaultValue={leader?.bio} rows={5} className="w-full" />
-      </div>
+      <LocaleTabs
+        missingLabel={tBi("missing")}
+        hint={tBi("hint")}
+        panels={{ en: languagePanel("en"), es: languagePanel("es") }}
+      />
       <div>
         <Label>{t("fieldSortOrder")}</Label>
         <Input type="number" name="sort_order" defaultValue={leader?.sort_order ?? 0} className="w-full" />

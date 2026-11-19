@@ -30,7 +30,8 @@ export default async function AdminGalleryPage() {
               </option>
             ))}
           </Select>
-          <Input name="caption" placeholder={t("fieldCaption")} className="sm:col-span-2" />
+          <Input name="caption" lang="en" placeholder={`${t("fieldCaption")} — English`} aria-label={`${t("fieldCaption")} — English`} />
+          <Input name="caption_es" lang="es" placeholder={`${t("fieldCaption")} — Español`} aria-label={`${t("fieldCaption")} — Español`} />
           <Input
             type="file"
             name="photo"

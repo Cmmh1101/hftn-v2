@@ -32,7 +32,7 @@ export default async function AdminEventsPage() {
           return (
             <Card key={e.id} className="grid grid-cols-1 items-center gap-5 sm:grid-cols-[2fr_1fr_1fr_auto]">
               <div>
-                <div className="text-base font-bold">{e.name}</div>
+                <div className="text-base font-bold">{e.name || e.name_es}</div>
                 <div className="mt-1 text-[13.5px] text-muted-2">
                   {e.event_date} · {e.location}
                 </div>

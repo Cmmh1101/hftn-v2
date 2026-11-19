@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Chip } from "@/components/ui/Chip";
 import { Photo } from "@/components/ui/Photo";
 import { PageIntro } from "@/components/site/PageIntro";
@@ -22,11 +22,12 @@ export default async function GalleryPage({
 }: {
   searchParams: Promise<{ region?: string }>;
 }) {
+  const contentLocale = await getLocale();
   const [t, tRegions, { region: rawRegion }, allGroups] = await Promise.all([
     getTranslations("gallery"),
     getTranslations("regions"),
     searchParams,
-    getGalleryGroups(),
+    getGalleryGroups(contentLocale),
   ]);
 
   // Only show a region filter once a jornada has actually happened there —

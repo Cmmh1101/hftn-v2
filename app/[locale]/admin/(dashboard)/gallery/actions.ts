@@ -18,13 +18,14 @@ export async function uploadGalleryPhoto(formData: FormData) {
   const location = String(formData.get("location") ?? "").trim();
   const region = String(formData.get("region") ?? "").trim();
   const caption = String(formData.get("caption") ?? "").trim();
+  const captionEs = String(formData.get("caption_es") ?? "").trim() || null;
   const photo = formData.get("photo") as File | null;
   if (!location || !photo || photo.size === 0) return;
 
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("gallery_photos")
-    .insert({ location, region, caption })
+    .insert({ location, region, caption, caption_es: captionEs })
     .select("id")
     .single();
   if (error || !data) return;
@@ -39,10 +40,11 @@ export async function updateGalleryPhoto(id: string, formData: FormData) {
   const location = String(formData.get("location") ?? "").trim();
   const region = String(formData.get("region") ?? "").trim();
   const caption = String(formData.get("caption") ?? "").trim();
+  const captionEs = String(formData.get("caption_es") ?? "").trim() || null;
   if (!location) return;
 
   const supabase = await createClient();
-  await supabase.from("gallery_photos").update({ location, region, caption }).eq("id", id);
+  await supabase.from("gallery_photos").update({ location, region, caption, caption_es: captionEs }).eq("id", id);
 
   const photo = formData.get("photo") as File | null;
   if (photo && photo.size > 0) {

@@ -19,13 +19,14 @@ function locationLabel(location: string) {
 }
 
 export default async function HomePage() {
+  const contentLocale = await getLocale();
   const [t, tNav, locale, stories, nextEvent, galleryGroups, settings] = await Promise.all([
     getTranslations("home"),
     getTranslations("nav"),
     getLocale(),
-    getPublishedPosts("story"),
-    getNextEvent(),
-    getGalleryGroups(),
+    getPublishedPosts("story", contentLocale),
+    getNextEvent(contentLocale),
+    getGalleryGroups(contentLocale),
     getSiteSettings(),
   ]);
   const featuredStories = stories.slice(0, 3);

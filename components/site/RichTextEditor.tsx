@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
@@ -36,7 +37,18 @@ function ToolbarButton({
   );
 }
 
-export function RichTextEditor({ name, defaultValue }: { name: string; defaultValue?: string }) {
+export function RichTextEditor({
+  name,
+  defaultValue,
+  placeholder = "Write the post…",
+  lang,
+}: {
+  name: string;
+  defaultValue?: string;
+  placeholder?: string;
+  lang?: string;
+}) {
+  const t = useTranslations("admin.editor");
   const [html, setHtml] = useState(defaultValue ?? "");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
@@ -47,12 +59,13 @@ export function RichTextEditor({ name, defaultValue }: { name: string; defaultVa
       StarterKit,
       Link.configure({ openOnClick: false, autolink: true, protocols: ["http", "https", "mailto"] }),
       Image,
-      Placeholder.configure({ placeholder: "Write the post…" }),
+      Placeholder.configure({ placeholder }),
     ],
     content: defaultValue ?? "",
     editorProps: {
       attributes: {
         class: "article-body min-h-[260px] px-3.5 py-3 focus:outline-none",
+        ...(lang ? { lang } : {}),
       },
     },
     onUpdate: ({ editor }) => setHtml(editor.getHTML()),
@@ -75,7 +88,7 @@ export function RichTextEditor({ name, defaultValue }: { name: string; defaultVa
   function setLink() {
     if (!editor) return;
     const previous = editor.getAttributes("link").href as string | undefined;
-    const url = window.prompt("URL", previous ?? "https://");
+    const url = window.prompt(t("linkPrompt"), previous ?? "https://");
     if (url === null) return;
     if (url === "") {
       editor.chain().focus().unsetLink().run();
@@ -89,32 +102,32 @@ export function RichTextEditor({ name, defaultValue }: { name: string; defaultVa
   return (
     <div className="rounded-md border border-border-soft">
       <div className="flex flex-wrap items-center gap-0.5 border-b border-border-soft bg-surface-soft-2 p-1.5">
-        <ToolbarButton title="Heading 2" active={editor.isActive("heading", { level: 2 })} onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}>
+        <ToolbarButton title={t("heading2")} active={editor.isActive("heading", { level: 2 })} onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}>
           H2
         </ToolbarButton>
-        <ToolbarButton title="Heading 3 (subtitle)" active={editor.isActive("heading", { level: 3 })} onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}>
+        <ToolbarButton title={t("heading3")} active={editor.isActive("heading", { level: 3 })} onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}>
           H3
         </ToolbarButton>
-        <ToolbarButton title="Bold" active={editor.isActive("bold")} onClick={() => editor.chain().focus().toggleBold().run()}>
+        <ToolbarButton title={t("bold")} active={editor.isActive("bold")} onClick={() => editor.chain().focus().toggleBold().run()}>
           B
         </ToolbarButton>
-        <ToolbarButton title="Italic" active={editor.isActive("italic")} onClick={() => editor.chain().focus().toggleItalic().run()}>
+        <ToolbarButton title={t("italic")} active={editor.isActive("italic")} onClick={() => editor.chain().focus().toggleItalic().run()}>
           I
         </ToolbarButton>
-        <ToolbarButton title="Quote" active={editor.isActive("blockquote")} onClick={() => editor.chain().focus().toggleBlockquote().run()}>
+        <ToolbarButton title={t("quote")} active={editor.isActive("blockquote")} onClick={() => editor.chain().focus().toggleBlockquote().run()}>
           “ ”
         </ToolbarButton>
-        <ToolbarButton title="Bullet list" active={editor.isActive("bulletList")} onClick={() => editor.chain().focus().toggleBulletList().run()}>
-          • List
+        <ToolbarButton title={t("bulletList")} active={editor.isActive("bulletList")} onClick={() => editor.chain().focus().toggleBulletList().run()}>
+          {t("bulletShort")}
         </ToolbarButton>
-        <ToolbarButton title="Numbered list" active={editor.isActive("orderedList")} onClick={() => editor.chain().focus().toggleOrderedList().run()}>
-          1. List
+        <ToolbarButton title={t("numberedList")} active={editor.isActive("orderedList")} onClick={() => editor.chain().focus().toggleOrderedList().run()}>
+          {t("numberedShort")}
         </ToolbarButton>
-        <ToolbarButton title="Link" active={editor.isActive("link")} onClick={setLink}>
-          Link
+        <ToolbarButton title={t("link")} active={editor.isActive("link")} onClick={setLink}>
+          {t("link")}
         </ToolbarButton>
-        <ToolbarButton title="Image" onClick={() => fileInputRef.current?.click()}>
-          {uploading ? "…" : "Image"}
+        <ToolbarButton title={t("image")} onClick={() => fileInputRef.current?.click()}>
+          {uploading ? "…" : t("image")}
         </ToolbarButton>
         <input ref={fileInputRef} type="file" accept="image/png,image/jpeg,image/webp,image/gif" className="hidden" onChange={handleImagePick} />
       </div>

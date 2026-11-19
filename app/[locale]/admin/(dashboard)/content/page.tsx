@@ -27,7 +27,7 @@ export default async function AdminContentPage() {
       <AdminTable columns={[t("colTitle"), t("colType"), t("colAuthor"), t("colStatus"), ""]} gridTemplate={GRID}>
         {posts.map((p) => (
           <AdminTableRow key={p.id} gridTemplate={GRID}>
-            <span className="font-semibold">{p.title}</span>
+            <span className="font-semibold">{p.title || p.title_es}</span>
             <span className="text-muted-2">{p.type === "blog" ? t("typeBlog") : t("typeStory")}</span>
             <span className="text-muted-2">{p.author}</span>
             <Badge status={(p.status === "published" ? "Published" : "Draft") as BadgeStatus}>

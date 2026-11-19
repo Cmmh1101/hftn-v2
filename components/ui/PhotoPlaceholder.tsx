@@ -28,23 +28,17 @@ export type PhotoPlaceholderProps = {
 export function PhotoPlaceholder({
   tone = "neutral",
   aspect = "4/3",
-  label = "PHOTO",
   rounded = "8px",
   className,
 }: PhotoPlaceholderProps) {
+  // Purely decorative: it carries no text, so nothing here needs translating
+  // and visitors never see developer scaffolding such as "PHOTO — name".
+  // (`label` stays in the props type so existing call sites keep compiling.)
   return (
     <div
-      className={cn("relative flex items-end overflow-hidden p-4", className)}
+      aria-hidden
+      className={cn("relative overflow-hidden", className)}
       style={{ aspectRatio: aspect, background: patterns[tone], borderRadius: rounded }}
-    >
-      <span
-        className={cn(
-          "max-w-[60%] whitespace-pre-line text-xs font-semibold uppercase leading-snug tracking-[1.4px]",
-          tone === "dark" ? "text-white/55" : "text-ink/45",
-        )}
-      >
-        {label}
-      </span>
-    </div>
+    />
   );
 }

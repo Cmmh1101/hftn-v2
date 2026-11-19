@@ -14,13 +14,14 @@ import { formatEventDateLong, toIntlLocale } from "@/lib/format";
 import { slugify } from "@/lib/slug";
 
 export default async function JornadasPage() {
+  const contentLocale = await getLocale();
   const [t, tTypes, tRegions, locale, programs, galleryGroups] = await Promise.all([
     getTranslations("jornadas"),
     getTranslations("programTypes"),
     getTranslations("regions"),
     getLocale(),
-    getPrograms(),
-    getGalleryGroups(),
+    getPrograms(contentLocale),
+    getGalleryGroups(contentLocale),
   ]);
   const intlLocale = toIntlLocale(locale);
 
