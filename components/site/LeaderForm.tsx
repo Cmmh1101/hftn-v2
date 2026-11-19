@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Input, Textarea, Label } from "@/components/ui/Field";
+import { Input, Textarea, Select, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { ActionForm, SubmitButton } from "@/components/site/ActionForm";
 import type { ActionResult } from "@/lib/action-result";
@@ -43,6 +43,14 @@ export async function LeaderForm({
       <div>
         <Label>{t("colName")}</Label>
         <Input name="name" defaultValue={leader?.name} required className="w-full" />
+      </div>
+      <div>
+        <Label>{t("fieldTeam")}</Label>
+        <Select name="team" defaultValue={leader?.team ?? "leadership"} className="w-full">
+          <option value="leadership">{t("teamLeadership")}</option>
+          <option value="outreach">{t("teamOutreach")}</option>
+        </Select>
+        <p className="mt-1 text-[13px] text-label">{t("fieldTeamHint")}</p>
       </div>
       <LocaleTabs
         missingLabel={tBi("missing")}

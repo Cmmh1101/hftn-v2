@@ -13,6 +13,7 @@ function readFields(formData: FormData) {
     bio: String(formData.get("bio") ?? "").trim(),
     bio_es: String(formData.get("bio_es") ?? "").trim() || null,
     sort_order: Number(formData.get("sort_order") ?? 0) || 0,
+    team: formData.get("team") === "outreach" ? "outreach" : "leadership",
   };
 }
 

@@ -115,6 +115,7 @@ export type Leader = {
   bio_es: string | null;
   photo_path: string | null;
   sort_order: number;
+  team: "leadership" | "outreach";
 };
 
 export type ContactMessage = {
