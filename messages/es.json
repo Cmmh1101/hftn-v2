@@ -5,7 +5,11 @@
   },
   "a11y": {
     "opensInNewTab": "(se abre en una pestaña nueva)",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "playVideo": "Reproducir video",
+    "openPhoto": "Abrir foto {number} de {total}",
+    "previous": "Foto anterior",
+    "next": "Foto siguiente"
   },
   "feedback": {
     "saving": "Guardando…",
@@ -136,7 +140,15 @@
     "exploreStoriesDesc": "Vidas reales y novedades de nuestro blog",
     "exploreGalleryDesc": "Fotos desde el terreno",
     "exploreEventsDesc": "Eventos de recaudación y formas de participar",
-    "exploreImpactDesc": "Cifras, hitos e informes"
+    "exploreImpactDesc": "Cifras, hitos e informes",
+    "videoEyebrow": "Velo por ti mismo",
+    "videoTitle": "Hope for the Nations en acción",
+    "videoBody": "Un breve vistazo de cómo se unen la educación, la ayuda humanitaria y el servicio a la comunidad.",
+    "reliefEyebrow": "Ayuda por el terremoto en Venezuela",
+    "reliefTitle": "Junto a las familias cuando más nos necesitan",
+    "reliefBody": "Podemos ayudar y generar un impacto gracias a contribuyentes como tú. Ayúdanos a seguir sirviendo a nuestros niños y a nuestra comunidad en tiempos difíciles.",
+    "reliefCta": "Ayuda a las familias a recuperarse",
+    "flagshipPhotoAlt": "Un estudiante de School of Hope International"
   },
   "programCategory": {
     "flagship": "Insignia",
@@ -158,7 +170,16 @@
     "jornadaEvangelization": "Evangelización",
     "jornadaYouth": "Ayuda Juvenil",
     "jornadaResource": "Recolección de Recursos",
-    "jornadasCta": "Explorar jornadas"
+    "jornadasCta": "Explorar jornadas",
+    "seeMore": "Ver más",
+    "viewFullProgram": "Ver programa completo",
+    "showPhoto": "Mostrar foto {number}",
+    "backToPrograms": "Todos los programas",
+    "fieldStatus": "Estado",
+    "supportProgram": "Apoya este programa",
+    "videoTitle": "Mira el video",
+    "photosTitle": "Fotos",
+    "moreProgramsTitle": "Más programas"
   },
   "impact": {
     "comingSoon": "Próximamente",
@@ -326,7 +347,8 @@
       "users": "Usuarios y Roles",
       "subscribers": "Suscriptores",
       "settings": "Configuración",
-      "signOut": "Cerrar sesión"
+      "signOut": "Cerrar sesión",
+      "sponsors": "Patrocinadores"
     },
     "navGroups": {
       "content": "Contenido",
@@ -401,7 +423,12 @@
       "fieldDate": "Fecha",
       "fieldWebsiteUrl": "Enlace del sitio web",
       "fieldWebsiteUrlHint": "Si este programa tiene su propio sitio web separado (por ejemplo, School of Hope International), enlázalo aquí para que los visitantes puedan navegar hasta él.",
-      "edit": "Editar"
+      "edit": "Editar",
+      "fieldDescription": "Descripción completa",
+      "fieldDescriptionHint": "Se muestra en la página propia del programa. Deja una línea en blanco entre párrafos; empieza una línea con \"## \" para un título, o con \"- \" para una lista.",
+      "fieldVideoUrl": "Video (opcional)",
+      "fieldVideoUrlHint": "Un enlace de YouTube, o la dirección de un video subido a la biblioteca de medios.",
+      "fieldCoverPhoto": "Foto de portada"
     },
     "events": {
       "title": "Eventos y Recaudación",
@@ -497,7 +524,9 @@
       "reportForm990": "Formulario 990",
       "reportLetter501c3": "Carta 501(c)(3)",
       "viewCurrent": "Ver PDF actual",
-      "noFileYet": "Aún no se ha subido un archivo"
+      "noFileYet": "Aún no se ha subido un archivo",
+      "homeVideoTitle": "Video de la página de inicio",
+      "homeVideoHint": "Un enlace de YouTube, o la dirección de un video en la biblioteca de medios. Déjalo vacío para ocultar la sección de video."
     },
     "subscribers": {
       "title": "Suscriptores",
@@ -523,6 +552,38 @@
       "fieldSortOrder": "Orden",
       "fieldIsGoal": "Esta es una meta futura, no un resultado alcanzado",
       "edit": "Editar"
+    },
+    "sponsors": {
+      "title": "Patrocinadores y aliados",
+      "intro": "Logos que se muestran en la página de inicio. Oculta un patrocinador para quitarlo del sitio sin eliminarlo.",
+      "newSponsor": "+ Nuevo patrocinador",
+      "newTitle": "Nuevo patrocinador",
+      "editTitle": "Editar patrocinador",
+      "colLogo": "LOGO",
+      "colName": "NOMBRE",
+      "colWebsite": "SITIO WEB",
+      "colStatus": "ESTADO",
+      "hidden": "Oculto",
+      "edit": "Editar",
+      "fieldWebsite": "Sitio web (opcional)",
+      "fieldWebsiteHint": "Quien haga clic en el logo irá a esta dirección.",
+      "fieldSortOrder": "Orden",
+      "fieldActive": "Mostrar en el sitio",
+      "fieldLogo": "Logo",
+      "fieldLogoHint": "PNG, JPG o WebP. Funciona mejor un logo cuadrado o ancho sobre fondo liso."
+    },
+    "programPhotos": {
+      "title": "Galería de fotos",
+      "hint": "Más fotos de este programa. Aparecen en su página y en la ventana de detalles.",
+      "empty": "Aún no hay fotos adicionales.",
+      "files": "Fotos (puedes elegir varias)",
+      "captionEn": "Pie de foto (English)",
+      "captionEs": "Pie de foto (Español)",
+      "captionHint": "El pie de foto, si lo hay, se aplica a todas las fotos de esta subida.",
+      "chooseFiles": "Elige al menos una foto.",
+      "upload": "Subir fotos",
+      "uploading": "Subiendo {done} de {total}…",
+      "uploaded": "{count, plural, one {# foto agregada.} other {# fotos agregadas.}}"
     }
   },
   "jornadas": {
@@ -539,5 +600,9 @@
     "ctaBody": "Cada jornada es posible gracias a quienes dan y sirven.",
     "ctaDonate": "Donar",
     "ctaEvents": "Ver próximos eventos"
+  },
+  "sponsors": {
+    "title": "Nuestros patrocinadores y aliados",
+    "intro": "Gracias a las empresas y organizaciones cuya generosidad hace posible este trabajo."
   }
 }

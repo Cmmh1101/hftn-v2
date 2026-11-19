@@ -21,7 +21,7 @@ export default async function StoriesPage() {
     <main className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-16 sm:pb-20 pt-10 sm:pt-14">
       <PageIntro eyebrow={t("eyebrow")} title={t("title")} />
 
-      <div className="mb-14 grid grid-cols-2 gap-5 md:grid-cols-4">
+      <div className="mb-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {stories.map((s) => (
           <Link key={s.id} href={`/stories/${s.slug}`}>
             <Card padding="none" className="card-lift h-full overflow-hidden">

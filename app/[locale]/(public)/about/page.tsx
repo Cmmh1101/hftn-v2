@@ -2,6 +2,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { Photo } from "@/components/ui/Photo";
 import { PageIntro } from "@/components/site/PageIntro";
 import { Button } from "@/components/ui/Button";
+import { SponsorsStrip } from "@/components/site/SponsorsStrip";
 import { getLeaders } from "@/lib/queries";
 
 export default async function AboutPage() {
@@ -15,6 +16,7 @@ export default async function AboutPage() {
   ];
 
   return (
+    <>
     <main className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-16 sm:pb-20 pt-10 sm:pt-14">
       <PageIntro eyebrow={t("eyebrow")} title={t("title")} />
 
@@ -55,5 +57,7 @@ export default async function AboutPage() {
         ))}
       </div>
     </main>
+    <SponsorsStrip className="border-t border-border bg-surface" />
+    </>
   );
 }

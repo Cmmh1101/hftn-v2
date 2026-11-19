@@ -16,7 +16,10 @@ const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
-  `img-src 'self' data: ${supabaseOrigin}`,
+  `img-src 'self' data: ${supabaseOrigin} https://i.ytimg.com`,
+  // Videos: files from the media library, or a YouTube player once a visitor presses play.
+  `media-src 'self' ${supabaseOrigin}`,
+  "frame-src https://www.youtube-nocookie.com",
   "font-src 'self' data:",
   `connect-src 'self' ${supabaseOrigin}`,
   "frame-ancestors 'none'",
@@ -34,6 +37,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Photos are shrunk in the browser before upload; this only needs to cover one
+  // of them (and stay under Netlify's 6 MB request limit).
+  experimental: { serverActions: { bodySizeLimit: "5mb" } },
   images: {
     remotePatterns: supabaseHostname
       ? [

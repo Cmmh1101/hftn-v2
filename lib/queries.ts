@@ -8,7 +8,9 @@ import type {
   Post,
   Profile,
   Program,
+  ProgramPhoto,
   SiteSettings,
+  Sponsor,
   Subscriber,
 } from "@/lib/types";
 import { relativeTime } from "@/lib/format";
@@ -16,7 +18,7 @@ import { localizeRow, toContentLocale } from "@/lib/localize";
 
 // Public pages pass the visitor's locale and get rows already in their language
 // (falling back to the other one). Admin screens omit it and get both languages.
-const PROGRAM_FIELDS = ["name", "summary"] as const;
+const PROGRAM_FIELDS = ["name", "summary", "description"] as const;
 const EVENT_FIELDS = ["name", "description", "cta_label"] as const;
 const POST_FIELDS = ["title", "category", "tags", "body"] as const;
 const LEADER_FIELDS = ["role", "bio"] as const;
@@ -32,6 +34,7 @@ const DEFAULT_SITE_SETTINGS: SiteSettings = {
   form_990_path: null,
   letter_501c3_path: null,
   hero_photo_path: null,
+  home_video_url: null,
 };
 
 export async function getSiteSettings(): Promise<SiteSettings> {
@@ -45,6 +48,52 @@ export async function getPrograms(locale?: string): Promise<Program[]> {
   const { data } = await supabase.from("programs").select("*").order("created_at", { ascending: true });
   const rows = data ?? [];
   return locale ? rows.map((r) => localizeRow(r, PROGRAM_FIELDS, toContentLocale(locale))) : rows;
+}
+
+export async function getProgramBySlug(slug: string, locale?: string): Promise<Program | null> {
+  const supabase = await createClient();
+  const { data } = await supabase.from("programs").select("*").eq("slug", slug).maybeSingle();
+  if (!data) return null;
+  return locale ? localizeRow(data, PROGRAM_FIELDS, toContentLocale(locale)) : data;
+}
+
+const PHOTO_FIELDS = ["caption"] as const;
+
+/** Photos of one program, in the order the editor arranged them. */
+export async function getProgramPhotos(programId: string, locale?: string): Promise<ProgramPhoto[]> {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("program_photos")
+    .select("*")
+    .eq("program_id", programId)
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: true });
+  const rows = data ?? [];
+  return locale ? rows.map((r) => localizeRow(r, PHOTO_FIELDS, toContentLocale(locale))) : rows;
+}
+
+/** Photos of every program at once, keyed by program id (one query for a list page). */
+export async function getProgramPhotosByProgram(locale?: string): Promise<Map<string, ProgramPhoto[]>> {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("program_photos")
+    .select("*")
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: true });
+  const byProgram = new Map<string, ProgramPhoto[]>();
+  for (const row of data ?? []) {
+    const photo = locale ? localizeRow(row, PHOTO_FIELDS, toContentLocale(locale)) : row;
+    byProgram.set(photo.program_id, [...(byProgram.get(photo.program_id) ?? []), photo]);
+  }
+  return byProgram;
+}
+
+export async function getSponsors(options: { includeInactive?: boolean } = {}): Promise<Sponsor[]> {
+  const supabase = await createClient();
+  let query = supabase.from("sponsors").select("*").order("sort_order", { ascending: true }).order("created_at", { ascending: true });
+  if (!options.includeInactive) query = query.eq("active", true);
+  const { data } = await query;
+  return data ?? [];
 }
 
 export async function getActivePrograms(locale?: string): Promise<Program[]> {

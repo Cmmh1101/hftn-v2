@@ -46,9 +46,19 @@ export async function ProgramForm({
           <Textarea
             name={`summary${suffix}`}
             defaultValue={(lang === "es" ? program?.summary_es : program?.summary) ?? ""}
-            rows={4}
+            rows={3}
             className="w-full"
           />
+        </div>
+        <div>
+          <Label>{t("fieldDescription")}</Label>
+          <Textarea
+            name={`description${suffix}`}
+            defaultValue={(lang === "es" ? program?.description_es : program?.description) ?? ""}
+            rows={9}
+            className="w-full"
+          />
+          <p className="mt-1 text-[13px] text-label">{t("fieldDescriptionHint")}</p>
         </div>
       </>
     );
@@ -127,7 +137,18 @@ export async function ProgramForm({
         <p className="mt-1 text-[13px] text-label">{t("fieldWebsiteUrlHint")}</p>
       </div>
       <div>
-        <Label>{tForm("photo")}</Label>
+        <Label>{t("fieldVideoUrl")}</Label>
+        <Input
+          type="url"
+          name="video_url"
+          defaultValue={program?.video_url ?? ""}
+          placeholder="https://www.youtube.com/watch?v=…"
+          className="w-full"
+        />
+        <p className="mt-1 text-[13px] text-label">{t("fieldVideoUrlHint")}</p>
+      </div>
+      <div>
+        <Label>{t("fieldCoverPhoto")}</Label>
         {program?.photo_path ? (
           <div className="mb-2 flex items-center gap-3">
             <Photo path={program.photo_path} alt={program.name} aspect="1" rounded="6px" className="w-20" />

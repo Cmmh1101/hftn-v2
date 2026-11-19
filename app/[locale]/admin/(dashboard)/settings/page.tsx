@@ -67,6 +67,18 @@ export default async function AdminSettingsPage() {
           <Input type="file" name="hero_photo_file" accept="image/png,image/jpeg,image/webp" className="w-full" />
         </Card>
 
+        <Card className="flex flex-col gap-3">
+          <h2 className="font-serif text-lg font-semibold">{t("homeVideoTitle")}</h2>
+          <p className="text-[13px] text-label">{t("homeVideoHint")}</p>
+          <Input
+            type="url"
+            name="home_video_url"
+            defaultValue={settings.home_video_url ?? ""}
+            placeholder="https://www.youtube.com/watch?v=…"
+            className="w-full"
+          />
+        </Card>
+
         <Card className="flex flex-col gap-4">
           <h2 className="font-serif text-lg font-semibold">{t("reportsTitle")}</h2>
           {REPORTS.map((r) => {

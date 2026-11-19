@@ -6,21 +6,42 @@ import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionWave } from "@/components/ui/SectionWave";
 import { StatTile } from "@/components/ui/StatTile";
-import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
+import Image from "next/image";
 import { Photo } from "@/components/ui/Photo";
-import { getGalleryGroups, getNextEvent, getPublishedPosts, getSiteSettings } from "@/lib/queries";
+import { VideoEmbed } from "@/components/ui/VideoEmbed";
+import { SponsorsStrip } from "@/components/site/SponsorsStrip";
+import { getGalleryGroups, getNextEvent, getPrograms, getProgramPhotosByProgram, getPublishedPosts, getSiteSettings } from "@/lib/queries";
+import { getPublicUrl } from "@/lib/storage";
 import { formatEventDateLong, toIntlLocale } from "@/lib/format";
 import { excerptFromHtml } from "@/lib/excerpt";
 import { SocialButtons } from "@/components/site/SocialButtons";
 
-function locationLabel(location: string) {
-  const parts = location.split(",");
-  return parts[parts.length - 1].trim();
+// "Puerto Píritu, Anzoátegui, Venezuela" -> "Puerto Píritu"
+function placeName(location: string) {
+  return location.split(",")[0].trim();
+}
+
+// A mix of real photos from every place we have worked: take one from each
+// location in turn, so the mosaic never shows the same jornada eight times.
+function mosaicPhotos<T extends { photos: { storage_path: string | null }[] }>(groups: T[], max: number) {
+  const picked: { group: T; path: string }[] = [];
+  for (let round = 0; picked.length < max; round++) {
+    let added = false;
+    for (const group of groups) {
+      const path = group.photos[round]?.storage_path;
+      if (path && picked.length < max) {
+        picked.push({ group, path });
+        added = true;
+      }
+    }
+    if (!added) break;
+  }
+  return picked;
 }
 
 export default async function HomePage() {
   const contentLocale = await getLocale();
-  const [t, tNav, locale, stories, nextEvent, galleryGroups, settings] = await Promise.all([
+  const [t, tNav, locale, stories, nextEvent, galleryGroups, settings, programs, programPhotos] = await Promise.all([
     getTranslations("home"),
     getTranslations("nav"),
     getLocale(),
@@ -28,9 +49,16 @@ export default async function HomePage() {
     getNextEvent(contentLocale),
     getGalleryGroups(contentLocale),
     getSiteSettings(),
+    getPrograms(contentLocale),
+    getProgramPhotosByProgram(contentLocale),
   ]);
   const featuredStories = stories.slice(0, 3);
-  const galleryTeaser = galleryGroups.slice(0, 6);
+  const mosaic = mosaicPhotos(galleryGroups, 9);
+
+  const flagship = programs.find((p) => p.category === "flagship");
+  const flagshipCover = flagship ? (flagship.photo_path ?? programPhotos.get(flagship.id)?.[0]?.storage_path ?? null) : null;
+  const relief = programs.find((p) => p.slug === "disaster-relief");
+  const reliefCover = relief ? (relief.photo_path ?? programPhotos.get(relief.id)?.[0]?.storage_path ?? null) : null;
 
   const HOME_STATS = [
     { value: settings.countries_served, label: t("statCountries") },
@@ -101,6 +129,24 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* VIDEO — shown once a video is set in Admin > Settings */}
+      {settings.home_video_url ? (
+        <section aria-labelledby="home-video-heading" className="mx-auto max-w-[1240px] px-5 sm:px-8 pt-12 md:pt-[72px]">
+          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-12">
+            <div>
+              <span className="text-[13px] font-bold uppercase tracking-[2px] text-blue">{t("videoEyebrow")}</span>
+              <h2 id="home-video-heading" className="mt-3 font-serif text-[28px] font-semibold leading-tight sm:text-[34px]">
+                {t("videoTitle")}
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted lg:text-[17px]">{t("videoBody")}</p>
+            </div>
+            <Reveal>
+              <VideoEmbed url={settings.home_video_url} title={t("videoTitle")} className="shadow-[0_18px_50px_rgba(1,19,50,0.2)]" />
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
       {/* EXPLORE — a visible map of the whole site, so no page depends on finding it in a menu */}
       <section aria-labelledby="explore-heading" className="mx-auto max-w-[1240px] px-5 sm:px-8 pt-12 md:pt-[72px]">
         <h2 id="explore-heading" className="font-serif text-[26px] font-semibold sm:text-[30px]">
@@ -164,12 +210,19 @@ export default async function HomePage() {
             <h2 className="mt-3.5 font-serif text-[28px] sm:text-[32px] font-semibold">{t("flagshipTitle")}</h2>
             <p className="mt-4 max-w-[460px] text-base leading-relaxed lg:text-[17px] text-white/85">{t("flagshipBody")}</p>
             <div className="mt-5">
-              <Button href="/programs" variant="accentOnDark">
+              <Button href={flagship?.slug ? `/programs/${flagship.slug}` : "/programs"} variant="accentOnDark">
                 {t("learnMore")}
               </Button>
             </div>
           </div>
-          <PhotoPlaceholder tone="dark" aspect="16/10" label={"PHOTO\nSchool of Hope student"} rounded="10px" />
+          <Photo
+            path={flagshipCover}
+            alt={t("flagshipPhotoAlt")}
+            tone="dark"
+            aspect="16/10"
+            label={"PHOTO\nSchool of Hope student"}
+            rounded="10px"
+          />
         </div>
       </section>
 
@@ -231,19 +284,57 @@ export default async function HomePage() {
             {t("fullGallery")}
           </Button>
         </div>
-        <div className="grid grid-cols-3 gap-3 md:grid-cols-6">
-          {galleryTeaser.map((g) => (
-            <Photo
-              key={g.location}
-              path={g.photos[0]?.storage_path}
-              alt={g.location}
-              aspect="1"
-              label={locationLabel(g.location)}
-              rounded="6px"
-            />
-          ))}
-        </div>
+        <ul role="list" className="grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[190px] md:grid-cols-4">
+          {mosaic.map(({ group, path }, i) => {
+            const url = getPublicUrl(path);
+            if (!url) return null;
+            const feature = i === 0 && mosaic.length >= 5;
+            return (
+              <li key={path} className={feature ? "col-span-2 row-span-2" : undefined}>
+                <Link href="/gallery" className="group relative block h-full w-full overflow-hidden rounded-lg bg-surface-soft-2">
+                  <Image
+                    src={url}
+                    alt={group.caption || group.location}
+                    fill
+                    sizes={feature ? "(max-width: 768px) 100vw, 620px" : "(max-width: 768px) 50vw, 310px"}
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-dark/80 to-transparent px-3 pb-2.5 pt-8 text-[13px] font-semibold text-white">
+                    {placeName(group.location)}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </section>
+
+      {/* EARTHQUAKE RELIEF */}
+      {relief && reliefCover ? (
+        <section aria-labelledby="relief-heading" className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-12 md:pb-[72px]">
+          <Card padding="none" highlight className="grid grid-cols-1 overflow-hidden md:grid-cols-2">
+            <Photo path={reliefCover} alt={relief.name} aspect="4/3" rounded="0" className="md:h-full md:aspect-auto!" />
+            <div className="flex flex-col justify-center p-6 sm:p-10">
+              <span className="text-[13px] font-bold uppercase tracking-[2px] text-blue">{t("reliefEyebrow")}</span>
+              <h2 id="relief-heading" className="mt-3 font-serif text-[26px] font-semibold leading-tight sm:text-[32px]">
+                {t("reliefTitle")}
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted lg:text-[17px]">{t("reliefBody")}</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button href="/donate" variant="primary">
+                  {t("reliefCta")}
+                </Button>
+                <Button href={`/programs/${relief.slug}`} variant="outline">
+                  {t("learnMore")}
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </section>
+      ) : null}
+
+      {/* SPONSORS */}
+      <SponsorsStrip className="border-t border-border bg-surface" />
 
       {/* FOLLOW US */}
       <section className="border-t border-border bg-gradient-to-b from-surface-soft-2 to-surface-soft">

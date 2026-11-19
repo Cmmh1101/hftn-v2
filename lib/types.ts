@@ -16,9 +16,33 @@ export type Program = {
   status: ProgramStatus;
   summary: string;
   summary_es: string | null;
+  slug: string | null;
+  description: string;
+  description_es: string | null;
+  video_url: string | null;
   photo_path: string | null;
   program_date: string | null;
   website_url: string | null;
+  created_at: string;
+};
+
+export type ProgramPhoto = {
+  id: string;
+  program_id: string;
+  storage_path: string;
+  caption: string;
+  caption_es: string | null;
+  sort_order: number;
+  created_at: string;
+};
+
+export type Sponsor = {
+  id: string;
+  name: string;
+  logo_path: string | null;
+  website_url: string | null;
+  sort_order: number;
+  active: boolean;
   created_at: string;
 };
 
@@ -142,4 +166,5 @@ export type SiteSettings = {
   form_990_path: string | null;
   letter_501c3_path: string | null;
   hero_photo_path: string | null;
+  home_video_url: string | null;
 };

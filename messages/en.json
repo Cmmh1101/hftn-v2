@@ -5,7 +5,11 @@
   },
   "a11y": {
     "opensInNewTab": "(opens in a new tab)",
-    "close": "Close"
+    "close": "Close",
+    "playVideo": "Play video",
+    "openPhoto": "Open photo {number} of {total}",
+    "previous": "Previous photo",
+    "next": "Next photo"
   },
   "feedback": {
     "saving": "Saving…",
@@ -136,7 +140,15 @@
     "exploreStoriesDesc": "Real lives, and news from our blog",
     "exploreGalleryDesc": "Photos from the field",
     "exploreEventsDesc": "Fundraisers and ways to join in",
-    "exploreImpactDesc": "Numbers, milestones and reports"
+    "exploreImpactDesc": "Numbers, milestones and reports",
+    "videoEyebrow": "See it for yourself",
+    "videoTitle": "Hope for the Nations in action",
+    "videoBody": "A short look at how education, humanitarian aid and community outreach come together.",
+    "reliefEyebrow": "Venezuela earthquake relief",
+    "reliefTitle": "Standing with families when they need it most",
+    "reliefBody": "We are able to support and make an impact thanks to contributors like you. Help us continue serving our children and community during difficult times.",
+    "reliefCta": "Help families recover",
+    "flagshipPhotoAlt": "A School of Hope International student"
   },
   "programCategory": {
     "flagship": "Flagship",
@@ -158,7 +170,16 @@
     "jornadaEvangelization": "Evangelization",
     "jornadaYouth": "Youth Outreach",
     "jornadaResource": "Resource Drives",
-    "jornadasCta": "Explore jornadas"
+    "jornadasCta": "Explore jornadas",
+    "seeMore": "See more",
+    "viewFullProgram": "View full program",
+    "showPhoto": "Show photo {number}",
+    "backToPrograms": "All programs",
+    "fieldStatus": "Status",
+    "supportProgram": "Support this program",
+    "videoTitle": "Watch",
+    "photosTitle": "Photos",
+    "moreProgramsTitle": "More programs"
   },
   "impact": {
     "comingSoon": "Coming soon",
@@ -326,7 +347,8 @@
       "users": "Users & Roles",
       "subscribers": "Subscribers",
       "settings": "Settings",
-      "signOut": "Sign out"
+      "signOut": "Sign out",
+      "sponsors": "Sponsors"
     },
     "navGroups": {
       "content": "Content",
@@ -401,7 +423,12 @@
       "fieldDate": "Date",
       "fieldWebsiteUrl": "Website link",
       "fieldWebsiteUrlHint": "If this program has its own separate website (e.g. School of Hope International), link it here so visitors can navigate to it.",
-      "edit": "Edit"
+      "edit": "Edit",
+      "fieldDescription": "Full description",
+      "fieldDescriptionHint": "Shown on the program’s own page. Leave a blank line between paragraphs; start a line with \"## \" for a heading, or with \"- \" for a bullet list.",
+      "fieldVideoUrl": "Video (optional)",
+      "fieldVideoUrlHint": "A YouTube link, or the address of a video file uploaded to the media library.",
+      "fieldCoverPhoto": "Cover photo"
     },
     "events": {
       "title": "Events & Fundraising",
@@ -497,7 +524,9 @@
       "reportForm990": "Form 990",
       "reportLetter501c3": "501(c)(3) Letter",
       "viewCurrent": "View current PDF",
-      "noFileYet": "No file uploaded yet"
+      "noFileYet": "No file uploaded yet",
+      "homeVideoTitle": "Home page video",
+      "homeVideoHint": "A YouTube link, or the address of a video file in the media library. Leave empty to hide the video section."
     },
     "subscribers": {
       "title": "Subscribers",
@@ -523,6 +552,38 @@
       "fieldSortOrder": "Sort order",
       "fieldIsGoal": "This is a future goal, not an achieved result",
       "edit": "Edit"
+    },
+    "sponsors": {
+      "title": "Sponsors & partners",
+      "intro": "Logos shown on the Home page. Hide a sponsor to remove it from the site without deleting it.",
+      "newSponsor": "+ New Sponsor",
+      "newTitle": "New Sponsor",
+      "editTitle": "Edit Sponsor",
+      "colLogo": "LOGO",
+      "colName": "NAME",
+      "colWebsite": "WEBSITE",
+      "colStatus": "STATUS",
+      "hidden": "Hidden",
+      "edit": "Edit",
+      "fieldWebsite": "Website (optional)",
+      "fieldWebsiteHint": "Visitors who click the logo go here.",
+      "fieldSortOrder": "Sort order",
+      "fieldActive": "Show on the website",
+      "fieldLogo": "Logo",
+      "fieldLogoHint": "PNG, JPG or WebP. A square or wide logo on a plain background works best."
+    },
+    "programPhotos": {
+      "title": "Photo gallery",
+      "hint": "More photos for this program. They appear on its page and in the details window.",
+      "empty": "No extra photos yet.",
+      "files": "Photos (you can pick several)",
+      "captionEn": "Caption (English)",
+      "captionEs": "Caption (Español)",
+      "captionHint": "The caption, if any, is applied to every photo in this upload.",
+      "chooseFiles": "Choose at least one photo.",
+      "upload": "Upload photos",
+      "uploading": "Uploading {done} of {total}…",
+      "uploaded": "{count, plural, one {# photo added.} other {# photos added.}}"
     }
   },
   "jornadas": {
@@ -539,5 +600,9 @@
     "ctaBody": "Every jornada is made possible by the people who give and serve.",
     "ctaDonate": "Donate",
     "ctaEvents": "See upcoming events"
+  },
+  "sponsors": {
+    "title": "Our sponsors & partners",
+    "intro": "Thank you to the businesses and organizations whose generosity makes this work possible."
   }
 }

@@ -28,6 +28,7 @@ export async function updateSiteSettings(formData: FormData): Promise<ActionResu
       scholarships_stat: String(formData.get("scholarships_stat") ?? "").trim(),
       families_reached: String(formData.get("families_reached") ?? "").trim(),
       total_deployed: String(formData.get("total_deployed") ?? "").trim(),
+      home_video_url: String(formData.get("home_video_url") ?? "").trim() || null,
       updated_at: new Date().toISOString(),
     })
     .eq("id", true);
