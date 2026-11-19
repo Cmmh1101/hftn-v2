@@ -42,6 +42,7 @@ function readFields(formData: FormData) {
     tags_es: readTags(formData.get("tags_es")),
     body: readRichText(formData.get("body")),
     body_es: bodyEs || null,
+    video_url: String(formData.get("video_url") ?? "").trim() || null,
     status,
     published_at: publishedAtInput || (status === "published" ? new Date().toISOString().slice(0, 10) : null),
   };

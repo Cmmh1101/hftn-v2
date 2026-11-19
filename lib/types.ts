@@ -89,6 +89,7 @@ export type Post = {
   tags_es: string[];
   body: string;
   body_es: string | null;
+  video_url: string | null;
   status: PostStatus;
   published_at: string | null;
   photo_path: string | null;

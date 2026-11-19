@@ -1,6 +1,7 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Card } from "@/components/ui/Card";
+import { VideoBadge } from "@/components/ui/VideoBadge";
 import { Photo } from "@/components/ui/Photo";
 import { PageIntro } from "@/components/site/PageIntro";
 import { getPublishedPosts } from "@/lib/queries";
@@ -25,7 +26,10 @@ export default async function StoriesPage() {
         {stories.map((s) => (
           <Link key={s.id} href={`/stories/${s.slug}`}>
             <Card padding="none" className="card-lift h-full overflow-hidden">
-              <Photo path={s.photo_path} alt={s.title} aspect="4/3" label="PHOTO" rounded="0" />
+              <div className="relative">
+                <Photo path={s.photo_path} alt={s.title} aspect="4/3" label="PHOTO" rounded="0" />
+                {s.video_url ? <VideoBadge label={t("video")} /> : null}
+              </div>
               <div className="p-4.5">
                 <div className="text-base font-bold">{s.title}</div>
                 <div className="mt-1.5 text-[15px] leading-relaxed text-muted-2">{excerptFromHtml(s.body)}</div>

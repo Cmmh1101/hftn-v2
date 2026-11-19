@@ -5,6 +5,7 @@ import { ActionForm, SubmitButton } from "@/components/site/ActionForm";
 import type { ActionResult } from "@/lib/action-result";
 import { Photo } from "@/components/ui/Photo";
 import { RichTextEditor } from "@/components/site/RichTextEditor";
+import { VideoField } from "@/components/site/VideoField";
 import { LocaleTabs } from "@/components/site/LocaleTabs";
 import type { Post } from "@/lib/types";
 
@@ -89,6 +90,11 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
           <Label>{t("fieldPublishedAt")}</Label>
           <Input type="date" name="published_at" defaultValue={post?.published_at ?? undefined} className="w-full" />
         </div>
+      </div>
+      <div>
+        <Label>{t("fieldVideo")}</Label>
+        <VideoField name="video_url" defaultValue={post?.video_url} />
+        <p className="mt-1 text-[13px] text-label">{t("fieldVideoHint")}</p>
       </div>
       <div>
         <Label>{tForm("photo")}</Label>

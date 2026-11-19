@@ -224,7 +224,8 @@
     "fromBlog": "From the Blog",
     "backToStories": "Back to Stories",
     "onlyInSpanish": "This story is only available in Spanish for now.",
-    "onlyInEnglish": "This story is only available in English for now."
+    "onlyInEnglish": "This story is only available in English for now.",
+    "video": "Video"
   },
   "gallery": {
     "eyebrow": "Jornadas realized",
@@ -522,7 +523,16 @@
       "fieldSlugPlaceholder": "auto-generated-from-title",
       "fieldSlugHint": "Leave blank to auto-generate from the title.",
       "fieldBody": "Body",
-      "fieldPublishedAt": "Published date"
+      "fieldPublishedAt": "Published date",
+      "fieldVideo": "Video (optional)",
+      "fieldVideoHint": "Paste a YouTube link, or upload an MP4/WebM file (up to 50MB). The video shows at the top of the story, above the text; photos can still be added inside the text.",
+      "uploadVideo": "Upload video",
+      "uploadingVideo": "Uploading…",
+      "removeVideo": "Remove video",
+      "videoUploaded": "Video uploaded. Save the post to publish it.",
+      "videoBadType": "Please choose an MP4 or WebM video.",
+      "videoTooBig": "That video is over 50MB. Compress it or upload it to YouTube and paste the link.",
+      "videoUploadFailed": "We couldn't upload the video. Try again or paste a YouTube link."
     },
     "gallery": {
       "title": "Gallery / Media",

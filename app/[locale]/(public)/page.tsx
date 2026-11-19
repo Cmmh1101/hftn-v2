@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
+import { VideoBadge } from "@/components/ui/VideoBadge";
 import { SectionWave } from "@/components/ui/SectionWave";
 import { StatTile } from "@/components/ui/StatTile";
 import Image from "next/image";
@@ -45,9 +46,10 @@ function mosaicPhotos<T extends { photos: { storage_path: string | null }[] }>(g
 
 export default async function HomePage() {
   const contentLocale = await getLocale();
-  const [t, tNav, locale, stories, nextEvent, galleryGroups, settings, programs, programPhotos, verses] = await Promise.all([
+  const [t, tNav, tStories, locale, stories, nextEvent, galleryGroups, settings, programs, programPhotos, verses] = await Promise.all([
     getTranslations("home"),
     getTranslations("nav"),
+    getTranslations("stories"),
     getLocale(),
     getPublishedPosts("story", contentLocale),
     getNextEvent(contentLocale),
@@ -314,7 +316,10 @@ export default async function HomePage() {
             <Reveal key={s.id} delay={i * 110}>
             <Link href={`/stories/${s.slug}`} className="block h-full">
               <Card padding="none" className="card-lift h-full overflow-hidden">
-                <Photo path={s.photo_path} alt={s.title} aspect="4/3" label={`PHOTO — ${s.title.split(" ")[0]}`} rounded="0" />
+                <div className="relative">
+                  <Photo path={s.photo_path} alt={s.title} aspect="4/3" label={`PHOTO — ${s.title.split(" ")[0]}`} rounded="0" />
+                  {s.video_url ? <VideoBadge label={tStories("video")} /> : null}
+                </div>
                 <div className="p-5">
                   <div className="text-base font-bold">{s.title}</div>
                   <div className="mt-1.5 text-[15px] leading-relaxed text-muted-2">{excerptFromHtml(s.body)}</div>

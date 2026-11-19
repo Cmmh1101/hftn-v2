@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Photo } from "@/components/ui/Photo";
+import { VideoEmbed } from "@/components/ui/VideoEmbed";
 import { getPostBySlug } from "@/lib/queries";
 import { isFallback, localizeRow, toContentLocale } from "@/lib/localize";
 import { formatPostDate, toIntlLocale } from "@/lib/format";
@@ -46,7 +47,9 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
         </div>
       </div>
 
-      {post.photo_path ? (
+      {post.video_url ? (
+        <VideoEmbed url={post.video_url} title={post.title} className="my-8" />
+      ) : post.photo_path ? (
         <Photo path={post.photo_path} alt={post.title} aspect="16/9" rounded="10px" className="my-8" />
       ) : null}
 
