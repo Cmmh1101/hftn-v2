@@ -281,3 +281,22 @@
     transform: translateX(-50%);
   }
 }
+
+/* Sponsors: continuous one-line logo carousel (see SponsorsStrip). Pauses on
+   hover or keyboard focus; edges fade out. */
+.sponsors-marquee {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.sponsors-track {
+  animation: marquee 40s linear infinite;
+}
+.sponsors-marquee:hover .sponsors-track,
+.sponsors-marquee:focus-within .sponsors-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sponsors-track {
+    animation: none;
+  }
+}
