@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { Reveal } from "@/components/ui/Reveal";
 import { getSponsors } from "@/lib/queries";
 import { getPublicUrl } from "@/lib/storage";
 
