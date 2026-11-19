@@ -29,12 +29,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur-sm">
-      <div className="relative mx-auto flex max-w-[1240px] items-center justify-between gap-6 px-5 sm:px-8 py-4">
+      <div className="relative flex w-full items-center justify-between gap-6 px-5 py-4 sm:px-8 min-[1440px]:px-12">
         <Link href="/" className="flex items-center gap-3 leading-none">
           <Image src="/brand/logo.png" alt="" width={212} height={180} priority className="h-12 w-auto" />
           {/* Under 540px and between 1280-1439px the badge (which already reads "Hope For The Nations") stands alone;
               the text stays in the DOM, visually hidden, so the link keeps its accessible name. */}
-          <span className="flex flex-col max-[540px]:sr-only xl:max-[1439px]:sr-only">
+          <span className="flex flex-col whitespace-nowrap max-[540px]:sr-only xl:max-[1439px]:sr-only">
             <span className="font-serif text-[22px] font-bold tracking-wide text-ink">
               Hope <span className="text-accent">For The Nations</span>
             </span>
