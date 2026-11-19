@@ -42,6 +42,7 @@ export function Header() {
           </span>
         </Link>
         <nav aria-label={t("mainNavLabel")} className="hidden items-center gap-6 xl:flex">
+          <NavLink href="/">{t("home")}</NavLink>
           {MAIN_NAV.map((item) => (
             <NavLink key={item.href} href={item.href}>
               {item.label}
