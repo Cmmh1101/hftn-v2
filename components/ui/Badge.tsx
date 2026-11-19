@@ -11,7 +11,7 @@ const statusClasses: Record<BadgeStatus, string> = {
 export function Badge({ status, children }: { status: BadgeStatus; children: React.ReactNode }) {
   return (
     <span
-      className={`inline-block w-fit rounded-full px-2.5 py-1 text-[11.5px] font-bold ${statusClasses[status]}`}
+      className={`inline-block w-fit rounded-full px-2.5 py-1 text-[12.5px] font-bold ${statusClasses[status]}`}
     >
       {children}
     </span>

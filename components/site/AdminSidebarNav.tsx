@@ -26,10 +26,10 @@ export function AdminSidebarNav({ overview, groups }: { overview: NavItem; group
             <button
               type="button"
               onClick={() => setManuallyToggled((prev) => ({ ...prev, [group.label]: !expanded }))}
-              className="flex w-full cursor-pointer items-center justify-between px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-wide text-sidebar-inactive hover:text-white"
+              className="flex w-full cursor-pointer items-center justify-between px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-sidebar-inactive hover:text-white"
             >
               {group.label}
-              <span className={cn("text-[9px] transition-transform", !expanded && "-rotate-90")}>▾</span>
+              <span className={cn("text-[11px] transition-transform", !expanded && "-rotate-90")}>▾</span>
             </button>
             {expanded ? (
               <div className="flex flex-col gap-1">

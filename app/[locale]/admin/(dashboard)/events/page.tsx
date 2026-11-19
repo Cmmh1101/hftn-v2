@@ -32,13 +32,13 @@ export default async function AdminEventsPage() {
           return (
             <Card key={e.id} className="grid grid-cols-1 items-center gap-5 sm:grid-cols-[2fr_1fr_1fr_auto]">
               <div>
-                <div className="text-[14.5px] font-bold">{e.name}</div>
-                <div className="mt-1 text-[12.5px] text-muted-2">
+                <div className="text-base font-bold">{e.name}</div>
+                <div className="mt-1 text-[13.5px] text-muted-2">
                   {e.event_date} · {e.location}
                 </div>
               </div>
               <div>
-                <div className="mb-1.5 text-[11.5px] text-muted-2">
+                <div className="mb-1.5 text-[12.5px] text-muted-2">
                   {t("raisedOf", {
                     raised: formatCents(e.raised_cents, intlLocale),
                     goal: formatCents(e.goal_cents, intlLocale),

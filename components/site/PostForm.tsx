@@ -21,7 +21,7 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
       <div>
         <Label>{t("fieldSlug")}</Label>
         <Input name="slug" defaultValue={post?.slug} placeholder={t("fieldSlugPlaceholder")} className="w-full" />
-        <p className="mt-1 text-xs text-label">{t("fieldSlugHint")}</p>
+        <p className="mt-1 text-[13px] text-label">{t("fieldSlugHint")}</p>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
@@ -52,7 +52,7 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
       <div>
         <Label>{t("fieldTags")}</Label>
         <Input name="tags" defaultValue={post?.tags?.join(", ")} placeholder={t("fieldTagsPlaceholder")} className="w-full" />
-        <p className="mt-1 text-xs text-label">{t("fieldTagsHint")}</p>
+        <p className="mt-1 text-[13px] text-label">{t("fieldTagsHint")}</p>
       </div>
       <div>
         <Label>{t("fieldPublishedAt")}</Label>
@@ -67,13 +67,13 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
         {post?.photo_path ? (
           <div className="mb-2 flex items-center gap-3">
             <Photo path={post.photo_path} alt={post.title} aspect="1" rounded="6px" className="w-20" />
-            <label className="flex items-center gap-2 text-xs text-muted">
+            <label className="flex items-center gap-2 text-[13px] text-muted">
               <input type="checkbox" name="removePhoto" /> {tForm("removePhoto")}
             </label>
           </div>
         ) : null}
         <Input type="file" name="photo" accept="image/png,image/jpeg,image/webp,image/gif" className="w-full" />
-        <p className="mt-1 text-xs text-label">{tForm("uploadHint")}</p>
+        <p className="mt-1 text-[13px] text-label">{tForm("uploadHint")}</p>
       </div>
       <div className="mt-2 flex gap-3">
         <Button type="submit" variant="primary">

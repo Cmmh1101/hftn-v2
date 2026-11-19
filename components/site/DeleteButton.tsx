@@ -28,18 +28,18 @@ export function DeleteButton({
         {Object.entries(hiddenFields).map(([name, value]) => (
           <input key={name} type="hidden" name={name} value={value} />
         ))}
-        <span className="text-[11px] italic text-muted-2">{confirmMessage}</span>
+        <span className="text-[12.5px] italic text-muted-2">{confirmMessage}</span>
         <div className="flex items-center gap-2">
           <button
             type="submit"
-            className="cursor-pointer rounded-md bg-red-600 px-2.5 py-1 text-xs font-bold text-white hover:bg-red-700"
+            className="cursor-pointer rounded-md bg-red-600 px-2.5 py-1 text-[13px] font-bold text-white hover:bg-red-700"
           >
             {confirmLabel}
           </button>
           <button
             type="button"
             onClick={() => setConfirming(false)}
-            className="cursor-pointer rounded-md border border-border px-2.5 py-1 text-xs font-bold text-muted-2 hover:bg-surface"
+            className="cursor-pointer rounded-md border border-border px-2.5 py-1 text-[13px] font-bold text-muted-2 hover:bg-surface"
           >
             {cancelLabel}
           </button>

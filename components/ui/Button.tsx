@@ -17,9 +17,9 @@ const variantClasses: Record<Variant, string> = {
 };
 
 const sizeClasses: Record<Size, string> = {
-  sm: "text-[13.5px] px-4 py-2.5 rounded-md",
-  md: "text-[14px] px-[22px] py-3 rounded-md",
-  lg: "text-[15px] px-[26px] py-3.5 rounded-md",
+  sm: "text-[15px] px-4 py-2.5 rounded-md",
+  md: "text-base px-[22px] py-3 rounded-md",
+  lg: "text-base px-[26px] py-3.5 rounded-md",
 };
 
 type CommonProps = {

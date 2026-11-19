@@ -2,7 +2,7 @@ import type { InputHTMLAttributes, TextareaHTMLAttributes, SelectHTMLAttributes 
 import { cn } from "@/lib/cn";
 
 const fieldClasses =
-  "border border-border-soft rounded-md px-3.5 py-3 text-base sm:text-sm font-sans placeholder:text-label focus:outline-none focus:border-blue";
+  "border border-border-soft rounded-md px-3.5 py-3 text-base font-sans placeholder:text-label focus:outline-none focus:border-blue";
 
 export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
   return <input className={cn(fieldClasses, className)} {...props} />;
@@ -21,7 +21,7 @@ export function Select({ className, children, ...props }: SelectHTMLAttributes<H
 }
 
 export function Label({ children }: { children: React.ReactNode }) {
-  return <label className="mb-1.5 block text-xs font-bold tracking-wide text-label">{children}</label>;
+  return <label className="mb-1.5 block text-[13px] font-bold tracking-wide text-label">{children}</label>;
 }
 
 export function FieldGroup({ children }: { children: React.ReactNode }) {

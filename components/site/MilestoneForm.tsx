@@ -42,7 +42,7 @@ export async function MilestoneForm({
           <Label>{t("fieldSortOrder")}</Label>
           <Input type="number" name="sort_order" defaultValue={milestone?.sort_order ?? 0} className="w-full" />
         </div>
-        <label className="mt-6 flex items-center gap-2 text-sm">
+        <label className="mt-6 flex items-center gap-2 text-[15px]">
           <input type="checkbox" name="is_goal" defaultChecked={milestone?.is_goal} /> {t("fieldIsGoal")}
         </label>
       </div>

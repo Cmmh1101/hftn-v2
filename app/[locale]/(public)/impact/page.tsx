@@ -77,13 +77,13 @@ export default async function ImpactPage() {
               {milestones.map((m) => (
                 <li key={m.id} className="border-b border-border-soft px-5 py-4 last:border-b-0">
                   <div className="flex items-baseline justify-between gap-3">
-                    <span className="text-sm font-bold text-ink">{m.period}</span>
-                    <span className="text-xs font-semibold uppercase tracking-wide text-label">{m.area}</span>
+                    <span className="text-[15px] font-bold text-ink">{m.period}</span>
+                    <span className="text-[13px] font-semibold uppercase tracking-wide text-label">{m.area}</span>
                   </div>
-                  <p className="mt-1.5 text-[14px] leading-snug text-ink">
+                  <p className="mt-1.5 text-base leading-snug text-ink">
                     {m.impact_value}
                     {m.is_goal ? (
-                      <span className="ml-2 rounded-full bg-blue-soft px-2 py-0.5 text-[10.5px] font-bold text-blue">
+                      <span className="ml-2 rounded-full bg-blue-soft px-2 py-0.5 text-xs font-bold text-blue">
                         {t("goalBadge")}
                       </span>
                     ) : null}
@@ -93,9 +93,9 @@ export default async function ImpactPage() {
             </ul>
           </Card>
           <Card padding="none" className="mb-11 hidden overflow-hidden sm:block">
-            <table className="w-full text-left text-[13.5px]">
+            <table className="w-full text-left text-[15px]">
               <thead>
-                <tr className="border-b border-border-soft bg-surface-soft-2 text-xs font-bold uppercase tracking-wide text-label">
+                <tr className="border-b border-border-soft bg-surface-soft-2 text-[13px] font-bold uppercase tracking-wide text-label">
                   <th className="px-5 py-3">{t("colPeriod")}</th>
                   <th className="px-5 py-3">{t("colArea")}</th>
                   <th className="px-5 py-3">{t("colImpact")}</th>
@@ -109,7 +109,7 @@ export default async function ImpactPage() {
                     <td className="px-5 py-3">
                       {m.impact_value}
                       {m.is_goal ? (
-                        <span className="ml-2 rounded-full bg-blue-soft px-2 py-0.5 text-[10.5px] font-bold text-blue">
+                        <span className="ml-2 rounded-full bg-blue-soft px-2 py-0.5 text-xs font-bold text-blue">
                           {t("goalBadge")}
                         </span>
                       ) : null}
@@ -126,13 +126,13 @@ export default async function ImpactPage() {
       <div className="mb-11 grid grid-cols-1 gap-4 md:grid-cols-3">
         {REPORTS.map((r) => (
           <Card key={r.label} className="flex items-center justify-between">
-            <span className="text-sm font-semibold">{r.label}</span>
+            <span className="text-[15px] font-semibold">{r.label}</span>
             {r.url ? (
-              <a href={r.url} target="_blank" rel="noreferrer" className="text-xs font-bold text-blue">
+              <a href={r.url} target="_blank" rel="noreferrer" className="text-[13px] font-bold text-blue">
                 {t("pdf")}
               </a>
             ) : (
-              <span className="text-xs italic text-label">{t("comingSoon")}</span>
+              <span className="text-[13px] italic text-label">{t("comingSoon")}</span>
             )}
           </Card>
         ))}
@@ -141,7 +141,7 @@ export default async function ImpactPage() {
       <div className="flex flex-wrap items-center justify-between gap-6 rounded-lg bg-gradient-to-br from-ink-soft via-ink to-ink-dark p-9 shadow-[0_4px_20px_rgba(1,19,50,0.25)]">
         <div>
           <div className="font-serif text-[22px] font-semibold text-white">{t("ctaTitle")}</div>
-          <div className="mt-1.5 text-sm text-white/80">{t("ctaBody")}</div>
+          <div className="mt-1.5 text-[15px] text-white/80">{t("ctaBody")}</div>
         </div>
         <Button href="/contact" variant="accentOnDark">
           {t("talkToTeam")}

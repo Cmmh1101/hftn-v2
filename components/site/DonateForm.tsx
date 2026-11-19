@@ -25,7 +25,7 @@ function DesignationPill({
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-full border border-border px-4.5 py-2.5 text-[13px] font-bold",
+        "rounded-full border border-border px-4.5 py-2.5 text-[15px] font-bold",
         selected ? "bg-ink text-white" : "bg-surface text-muted",
       )}
     >
@@ -105,7 +105,7 @@ export function DonateForm({ programs }: { programs: Program[] }) {
             onClick={() => setTierIndex(i)}
           >
             <div className="font-serif text-xl font-bold sm:text-2xl">{tier.label}</div>
-            <div className="mt-1.5 text-xs text-muted-2">{tier.desc}</div>
+            <div className="mt-1.5 text-[13px] text-muted-2">{tier.desc}</div>
           </Card>
         ))}
         <Card
@@ -127,12 +127,12 @@ export function DonateForm({ programs }: { programs: Program[] }) {
           ) : (
             <div className="font-serif text-xl font-bold sm:text-2xl">{t("tierCustom")}</div>
           )}
-          <div className="mt-1.5 text-xs text-muted-2">{t("tierCustomDesc")}</div>
+          <div className="mt-1.5 text-[13px] text-muted-2">{t("tierCustomDesc")}</div>
         </Card>
       </div>
 
       <div className="mb-8">
-        <div className="mb-3 text-xs font-bold uppercase tracking-wide text-label">{t("giveTo")}</div>
+        <div className="mb-3 text-[13px] font-bold uppercase tracking-wide text-label">{t("giveTo")}</div>
         <div className="flex flex-wrap gap-2.5">
           <DesignationPill selected={programId === null} onClick={() => setProgramId(null)}>
             {t("whereverNeeded")}
@@ -158,8 +158,8 @@ export function DonateForm({ programs }: { programs: Program[] }) {
           </Button>
         ) : null}
       </div>
-      {isSchoolOfHope ? <p className="mt-3 max-w-md text-xs text-label">{t("sponsorNote")}</p> : null}
-      {error ? <p className="mt-3 text-xs text-red-600">{error}</p> : null}
+      {isSchoolOfHope ? <p className="mt-3 max-w-md text-[13px] text-label">{t("sponsorNote")}</p> : null}
+      {error ? <p className="mt-3 text-[13px] text-red-600">{error}</p> : null}
     </div>
   );
 }

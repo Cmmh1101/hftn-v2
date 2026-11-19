@@ -69,20 +69,20 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="font-serif text-lg font-bold">
           Hope <span className="text-accent-strong">Admin</span>
         </div>
-        <div className="mt-1 text-[10px] tracking-[2px] text-sidebar-inactive">FOR THE NATIONS</div>
+        <div className="mt-1 text-xs tracking-[2px] text-sidebar-inactive">FOR THE NATIONS</div>
       </div>
       <AdminSidebarNav overview={OVERVIEW} groups={NAV_GROUPS} />
       <div className="mt-auto flex items-center gap-2.5 border-t border-white/10 pt-3.5">
         <Avatar initials={initials(name || "?")} />
         <div>
-          <div className="text-[12.5px] font-bold">{name}</div>
-          <div className="text-[10.5px] capitalize text-sidebar-inactive">{tRoles(role)}</div>
+          <div className="text-[13.5px] font-bold">{name}</div>
+          <div className="text-xs capitalize text-sidebar-inactive">{tRoles(role)}</div>
         </div>
       </div>
       <form action={signOut}>
         <button
           type="submit"
-          className="mt-1 w-full cursor-pointer py-2 text-left text-[11.5px] text-sidebar-inactive hover:text-white"
+          className="mt-1 w-full cursor-pointer py-2 text-left text-[12.5px] text-sidebar-inactive hover:text-white"
         >
           {t("signOut")}
         </button>
@@ -99,14 +99,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </div>
         <div className="flex shrink-0 items-center gap-3 sm:gap-4">
           <LocaleSwitcher />
-          <span className="hidden text-[12.5px] text-muted-2 md:inline">
+          <span className="hidden text-[13.5px] text-muted-2 md:inline">
             {new Date().toLocaleDateString(toIntlLocale(locale), {
               month: "short",
               day: "numeric",
               year: "numeric",
             })}
           </span>
-          <div className="hidden cursor-pointer rounded-md bg-accent px-4 py-2.5 text-[12.5px] font-bold text-white sm:block">
+          <div className="hidden cursor-pointer rounded-md bg-accent px-4 py-2.5 text-[13.5px] font-bold text-white sm:block">
             {tTopbar("newButton")}
           </div>
         </div>

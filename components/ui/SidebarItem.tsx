@@ -10,7 +10,7 @@ export function SidebarItem({ href, children }: { href: string; children: React.
     <Link
       href={href}
       className={cn(
-        "rounded-md px-3 py-2.5 text-[13.5px] font-semibold",
+        "rounded-md px-3 py-2.5 text-[15px] font-semibold",
         isActive ? "bg-accent-strong text-accent-ink" : "text-sidebar-inactive hover:bg-white/5",
       )}
     >

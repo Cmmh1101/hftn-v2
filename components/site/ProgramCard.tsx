@@ -35,9 +35,9 @@ export function ProgramCard({
         <Card padding="none" className="card-lift cursor-pointer overflow-hidden">
           <Photo path={program.photo_path} alt={program.name} aspect="4/3" label={`PHOTO — ${program.name}`} rounded="0" />
           <div className="p-5">
-            <span className="text-[11px] font-bold tracking-wide text-blue">{program.categoryLabel.toUpperCase()}</span>
+            <span className="text-[12.5px] font-bold tracking-wide text-blue">{program.categoryLabel.toUpperCase()}</span>
             <h3 className="mt-2 font-serif text-[19px]">{program.name}</h3>
-            <p className="mt-2 text-[13.5px] leading-normal text-muted">{program.summary}</p>
+            <p className="mt-2 text-[15px] leading-normal text-muted">{program.summary}</p>
           </div>
         </Card>
       </button>
@@ -53,7 +53,7 @@ export function ProgramCard({
           >
             <div className="flex items-start justify-between border-b border-border-soft p-5">
               <div>
-                <span className="text-[11px] font-bold tracking-wide text-blue">
+                <span className="text-[12.5px] font-bold tracking-wide text-blue">
                   {program.categoryLabel.toUpperCase()} · {program.typeLabel.toUpperCase()}
                 </span>
                 <h3 className="mt-1.5 font-serif text-xl font-semibold">{program.name}</h3>
@@ -69,7 +69,7 @@ export function ProgramCard({
             </div>
             <div className="overflow-y-auto p-5">
               <Photo path={program.photo_path} alt={program.name} aspect="16/9" rounded="8px" className="mb-4" />
-              <div className="mb-3 flex gap-5 text-xs text-muted-2">
+              <div className="mb-3 flex gap-5 text-[13px] text-muted-2">
                 <span>
                   {regionFieldLabel}: <strong className="text-ink">{program.regionLabel}</strong>
                 </span>
@@ -79,13 +79,13 @@ export function ProgramCard({
                   </span>
                 ) : null}
               </div>
-              <p className="text-[14.5px] leading-relaxed text-muted">{program.summary}</p>
+              <p className="text-base leading-relaxed lg:text-[17px] text-muted">{program.summary}</p>
               {program.websiteUrl ? (
                 <a
                   href={program.websiteUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-4 inline-flex items-center text-sm font-bold text-blue max-sm:min-h-11 hover:text-blue-hover"
+                  className="mt-4 inline-flex items-center text-[15px] font-bold text-blue max-sm:min-h-11 hover:text-blue-hover"
                 >
                   {visitWebsiteLabel} →
                 </a>

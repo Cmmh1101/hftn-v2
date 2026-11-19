@@ -61,11 +61,11 @@ export default async function HomePage() {
           className="dawn-glow pointer-events-none absolute -right-40 -top-40 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(94,203,234,0.16)_0%,rgba(94,203,234,0)_70%)]"
         />
         <div>
-          <span className="rise block text-xs font-bold uppercase tracking-[2px] text-blue">{t("eyebrow")}</span>
+          <span className="rise block text-[13px] font-bold uppercase tracking-[2px] text-blue">{t("eyebrow")}</span>
           <h1 className="rise accent-em mt-4 font-serif text-[40px] font-semibold leading-[1.1] sm:text-[52px]" style={{ animationDelay: "90ms" }}>
             {t.rich("heroTitle", { em: (chunks) => <em>{chunks}</em> })}
           </h1>
-          <p className="rise mt-5 max-w-[520px] text-[17px] leading-relaxed text-muted" style={{ animationDelay: "200ms" }}>{t("heroBody")}</p>
+          <p className="rise mt-5 max-w-[520px] text-lg leading-relaxed text-muted" style={{ animationDelay: "200ms" }}>{t("heroBody")}</p>
           <div className="rise mt-7 flex flex-wrap gap-3.5" style={{ animationDelay: "310ms" }}>
             <Button href="/programs" variant="primary" size="lg">
               {t("viewPrograms")}
@@ -115,8 +115,8 @@ export default async function HomePage() {
                       <Icon aria-hidden className="h-5 w-5" />
                     </span>
                     <span>
-                      <span className="block text-[15px] font-bold text-ink">{title}</span>
-                      <span className="mt-1 block text-[13px] leading-relaxed text-muted-2">{desc}</span>
+                      <span className="block text-base font-bold text-ink">{title}</span>
+                      <span className="mt-1 block text-[15px] leading-relaxed text-muted-2">{desc}</span>
                     </span>
                   </Card>
                 </Link>
@@ -134,12 +134,12 @@ export default async function HomePage() {
             {t("ourStory")}
           </Button>
         </div>
-        <p className="mb-9 max-w-[760px] text-base leading-relaxed text-muted">{t("beyondBody")}</p>
+        <p className="mb-9 max-w-[760px] text-base leading-relaxed lg:text-[17px] text-muted">{t("beyondBody")}</p>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {REGIONS.map((r, i) => (
             <Reveal key={r.label} delay={i * 120}>
               <Card className="card-lift h-full">
-                <div className="text-xs font-bold tracking-wide text-blue">{r.label}</div>
+                <div className="text-[13px] font-bold tracking-wide text-blue">{r.label}</div>
                 <div className="mt-2 font-serif text-lg">{r.places}</div>
               </Card>
             </Reveal>
@@ -157,11 +157,11 @@ export default async function HomePage() {
         />
         <div className="relative mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-12 px-5 sm:px-8 py-16 md:py-24 md:grid-cols-2">
           <div>
-            <span className="text-xs font-bold uppercase tracking-[2px] text-accent-strong">
+            <span className="text-[13px] font-bold uppercase tracking-[2px] text-accent-strong">
               {t("flagshipEyebrow")}
             </span>
             <h2 className="mt-3.5 font-serif text-[28px] sm:text-[32px] font-semibold">{t("flagshipTitle")}</h2>
-            <p className="mt-4 max-w-[460px] text-[15px] leading-relaxed text-white/85">{t("flagshipBody")}</p>
+            <p className="mt-4 max-w-[460px] text-base leading-relaxed lg:text-[17px] text-white/85">{t("flagshipBody")}</p>
             <div className="mt-5">
               <Button href="/programs" variant="accentOnDark">
                 {t("learnMore")}
@@ -184,11 +184,11 @@ export default async function HomePage() {
           <Card padding="none" className="card-lift grid grid-cols-1 overflow-hidden md:grid-cols-[1fr_1.4fr]">
             <Photo path={nextEvent.photo_path} alt={nextEvent.name} aspect="4/3" label={`PHOTO — ${nextEvent.name}`} rounded="0" />
             <div className="flex flex-col justify-center p-6 sm:p-8">
-              <span className="text-[13px] font-bold text-accent-deep">
+              <span className="text-[15px] font-bold text-accent-deep">
                 {formatEventDateLong(nextEvent.event_date, toIntlLocale(locale))} · {nextEvent.location.toUpperCase()}
               </span>
               <h3 className="mt-2.5 font-serif text-2xl font-semibold">{nextEvent.name}</h3>
-              <p className="mt-3 mb-4.5 text-[14.5px] leading-relaxed text-muted">{nextEvent.description}</p>
+              <p className="mt-3 mb-4.5 text-base leading-relaxed lg:text-[17px] text-muted">{nextEvent.description}</p>
               <Button href="/events" variant="primary" className="w-fit">
                 {nextEvent.cta_label}
               </Button>
@@ -212,8 +212,8 @@ export default async function HomePage() {
               <Card padding="none" className="card-lift h-full overflow-hidden">
                 <Photo path={s.photo_path} alt={s.title} aspect="4/3" label={`PHOTO — ${s.title.split(" ")[0]}`} rounded="0" />
                 <div className="p-5">
-                  <div className="text-[15px] font-bold">{s.title}</div>
-                  <div className="mt-1.5 text-[13.5px] leading-relaxed text-muted-2">{excerptFromHtml(s.body)}</div>
+                  <div className="text-base font-bold">{s.title}</div>
+                  <div className="mt-1.5 text-[15px] leading-relaxed text-muted-2">{excerptFromHtml(s.body)}</div>
                 </div>
               </Card>
             </Link>
@@ -251,8 +251,8 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.3fr_1fr]">
             <SocialButtons labelledBy="follow-us-heading" />
             <Card>
-              <div className="mb-2.5 text-[11px] font-bold tracking-wide text-label">{t("latest")}</div>
-              <div className="text-[13.5px] leading-relaxed text-muted">{t("quote")}</div>
+              <div className="mb-2.5 text-[12.5px] font-bold tracking-wide text-label">{t("latest")}</div>
+              <div className="text-[15px] leading-relaxed text-muted">{t("quote")}</div>
             </Card>
           </div>
         </div>

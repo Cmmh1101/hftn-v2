@@ -22,7 +22,7 @@ export function LocaleSwitcher({ onDark = false }: { onDark?: boolean }) {
   }
 
   return (
-    <div className="flex items-center gap-0.5 text-xs font-bold">
+    <div className="flex items-center gap-0.5 text-[13px] font-bold">
       {LOCALES.map((l) => (
         <button
           key={l.code}

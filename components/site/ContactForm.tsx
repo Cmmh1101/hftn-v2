@@ -13,7 +13,7 @@ export function ContactForm() {
   const [state, formAction, pending] = useActionState(submitContact, initialState);
 
   if (state.status === "success") {
-    return <p className="text-[15px] leading-relaxed text-muted">{state.message}</p>;
+    return <p className="text-base leading-relaxed lg:text-[17px] text-muted">{state.message}</p>;
   }
 
   return (
@@ -21,7 +21,7 @@ export function ContactForm() {
       <Input placeholder={t("namePlaceholder")} name="name" required />
       <Input placeholder={t("emailPlaceholder")} name="email" type="email" required />
       <Textarea placeholder={t("messagePlaceholder")} name="message" rows={5} required />
-      {state.status === "error" ? <p className="text-xs text-red-600">{state.message}</p> : null}
+      {state.status === "error" ? <p className="text-[13px] text-red-600">{state.message}</p> : null}
       <Button type="submit" variant="primary" className="w-fit" disabled={pending}>
         {pending ? t("sending") : t("send")}
       </Button>

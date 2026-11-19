@@ -20,11 +20,11 @@ export default async function AboutPage() {
       <div className="mb-14 grid grid-cols-1 gap-12 md:grid-cols-2">
         <div>
           <h2 className="mb-3 font-serif text-[22px] font-semibold">{t("missionTitle")}</h2>
-          <p className="text-[15px] leading-relaxed text-muted">{t("missionBody")}</p>
+          <p className="text-base leading-relaxed lg:text-[17px] text-muted">{t("missionBody")}</p>
         </div>
         <div>
           <h2 className="mb-3 font-serif text-[22px] font-semibold">{t("visionTitle")}</h2>
-          <p className="text-[15px] leading-relaxed text-muted">{t("visionBody")}</p>
+          <p className="text-base leading-relaxed lg:text-[17px] text-muted">{t("visionBody")}</p>
         </div>
       </div>
 
@@ -33,7 +33,7 @@ export default async function AboutPage() {
         {JOURNEY.map((j) => (
           <div key={j.year} className="border-t-[3px] border-accent pt-3.5">
             <div className="font-serif text-xl font-bold">{j.year}</div>
-            <div className="mt-1.5 text-[13px] text-muted-2">{j.desc}</div>
+            <div className="mt-1.5 text-[15px] text-muted-2">{j.desc}</div>
           </div>
         ))}
       </div>
@@ -48,8 +48,8 @@ export default async function AboutPage() {
         {leaders.map((l) => (
           <div key={l.id}>
             <Photo path={l.photo_path} alt={l.name} aspect="1" label="PHOTO" rounded="8px" className="mb-2.5" />
-            <div className="text-sm font-bold">{l.name}</div>
-            <div className="text-xs text-muted-2">{l.role}</div>
+            <div className="text-[15px] font-bold">{l.name}</div>
+            <div className="text-[13px] text-muted-2">{l.role}</div>
           </div>
         ))}
       </div>

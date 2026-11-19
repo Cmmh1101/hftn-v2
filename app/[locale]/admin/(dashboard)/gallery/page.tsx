@@ -48,9 +48,9 @@ export default async function AdminGalleryPage() {
         {photos.map((p) => (
           <div key={p.id}>
             <Photo path={p.storage_path} alt={p.location} aspect="1" rounded="6px" />
-            <div className="mt-1.5 text-[11px] text-muted-2">{p.location}</div>
+            <div className="mt-1.5 text-[12.5px] text-muted-2">{p.location}</div>
             <div className="mt-1 flex items-center gap-2.5">
-              <Button href={`/admin/gallery/${p.id}/edit`} variant="link" size="sm" className="text-[11px]">
+              <Button href={`/admin/gallery/${p.id}/edit`} variant="link" size="sm" className="text-[12.5px]">
                 {t("edit")}
               </Button>
               <DeleteButton
@@ -60,7 +60,7 @@ export default async function AdminGalleryPage() {
                 confirmLabel={tForm("confirmYes")}
                 cancelLabel={tForm("cancel")}
                 hiddenFields={{ id: p.id }}
-                className="text-[11px]"
+                className="text-[12.5px]"
               />
             </div>
           </div>

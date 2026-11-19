@@ -73,7 +73,7 @@ export default async function AdminOverviewPage() {
 
       <div className="mb-7 grid grid-cols-1 gap-5 lg:grid-cols-[1.5fr_1fr]">
         <Card>
-          <div className="mb-4 text-[13px] font-bold">{t("donationsByMonth")}</div>
+          <div className="mb-4 text-[15px] font-bold">{t("donationsByMonth")}</div>
           <div className="flex h-[140px] items-end gap-2.5">
             {donationBars.map((b, i) => (
               <div key={i} className="flex h-full flex-1 flex-col items-center justify-end gap-1.5">
@@ -81,17 +81,17 @@ export default async function AdminOverviewPage() {
                   className="w-full rounded-t-[3px] bg-accent"
                   style={{ height: `${Math.max((b.cents / maxCents) * 100, 2)}%` }}
                 />
-                <span className="text-[10.5px] text-muted-2">{b.label}</span>
+                <span className="text-xs text-muted-2">{b.label}</span>
               </div>
             ))}
           </div>
         </Card>
         <Card>
-          <div className="mb-4 text-[13px] font-bold">{t("reachByRegion")}</div>
+          <div className="mb-4 text-[15px] font-bold">{t("reachByRegion")}</div>
           <div className="flex flex-col gap-3">
             {REGION_REACH.map((r) => (
               <div key={r.label}>
-                <div className="mb-1.5 flex justify-between text-xs">
+                <div className="mb-1.5 flex justify-between text-[13px]">
                   <span>{r.label}</span>
                   <span className="text-muted-2">{r.pct}%</span>
                 </div>
@@ -103,14 +103,14 @@ export default async function AdminOverviewPage() {
       </div>
 
       <Card>
-        <div className="mb-3.5 text-[13px] font-bold">{t("recentActivity")}</div>
+        <div className="mb-3.5 text-[15px] font-bold">{t("recentActivity")}</div>
         {activity.length === 0 ? (
-          <p className="py-2 text-sm text-muted-2">{t("noActivity")}</p>
+          <p className="py-2 text-[15px] text-muted-2">{t("noActivity")}</p>
         ) : (
           activity.map((a, i) => (
             <div
               key={i}
-              className="flex justify-between border-b border-border-softer py-2.5 text-sm last:border-b-0"
+              className="flex justify-between border-b border-border-softer py-2.5 text-[15px] last:border-b-0"
             >
               <span>{activityText(a)}</span>
               <span className="text-muted-2">{a.time}</span>

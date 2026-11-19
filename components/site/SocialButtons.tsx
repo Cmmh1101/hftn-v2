@@ -32,7 +32,7 @@ export function SocialButtons({ labelledBy }: { labelledBy: string }) {
             href={s.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex min-h-12 items-center gap-3 rounded-xl border border-border bg-surface py-2 pl-2.5 pr-5 text-sm font-bold text-ink shadow-[0_1px_2px_rgba(3,48,124,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:border-blue hover:shadow-[0_8px_20px_rgba(3,48,124,0.14)]"
+            className="group inline-flex min-h-12 items-center gap-3 rounded-xl border border-border bg-surface py-2 pl-2.5 pr-5 text-[15px] font-bold text-ink shadow-[0_1px_2px_rgba(3,48,124,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:border-blue hover:shadow-[0_8px_20px_rgba(3,48,124,0.14)]"
           >
             <span
               className={cn(

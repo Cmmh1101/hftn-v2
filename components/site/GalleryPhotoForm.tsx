@@ -52,7 +52,7 @@ export async function GalleryPhotoForm({
           required={!photo}
           className="w-full"
         />
-        <p className="mt-1 text-xs text-label">{tForm("uploadHint")}</p>
+        <p className="mt-1 text-[13px] text-label">{tForm("uploadHint")}</p>
       </div>
       <div className="mt-2 flex gap-3">
         <Button type="submit" variant="primary">

@@ -32,16 +32,16 @@ export function Header() {
       <div className="relative mx-auto flex max-w-[1240px] items-center justify-between gap-6 px-5 sm:px-8 py-4">
         <Link href="/" className="flex items-center gap-3 leading-none">
           <Image src="/brand/logo.png" alt="" width={212} height={180} priority className="h-12 w-auto" />
-          {/* Under 540px and between 1024-1279px the badge (which already reads "Hope For The Nations") stands alone;
+          {/* Under 540px and between 1280-1439px the badge (which already reads "Hope For The Nations") stands alone;
               the text stays in the DOM, visually hidden, so the link keeps its accessible name. */}
-          <span className="flex flex-col max-[540px]:sr-only lg:max-xl:sr-only">
+          <span className="flex flex-col max-[540px]:sr-only xl:max-[1439px]:sr-only">
             <span className="font-serif text-[22px] font-bold tracking-wide text-ink">
               Hope <span className="text-accent">For The Nations</span>
             </span>
-            <span className="mt-1 text-[10px] tracking-[2.5px] text-label uppercase">{t("tagline")}</span>
+            <span className="mt-1 text-xs tracking-[2.5px] text-label uppercase">{t("tagline")}</span>
           </span>
         </Link>
-        <nav aria-label={t("mainNavLabel")} className="hidden items-center gap-5 lg:flex">
+        <nav aria-label={t("mainNavLabel")} className="hidden items-center gap-6 xl:flex">
           {MAIN_NAV.map((item) => (
             <NavLink key={item.href} href={item.href}>
               {item.label}
@@ -50,7 +50,7 @@ export function Header() {
           <NavDropdown label={t("aboutGroup")} items={ABOUT_MENU} />
         </nav>
         <div className="flex items-center gap-4">
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <LocaleSwitcher />
           </div>
           <Button href="/donate" variant="accent">

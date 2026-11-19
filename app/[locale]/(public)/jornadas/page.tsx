@@ -58,7 +58,7 @@ export default async function JornadasPage() {
           <h2 id="recent-jornadas" className="font-serif text-2xl font-semibold">
             {t("recentTitle")}
           </h2>
-          <p className="mb-6 mt-2 max-w-[640px] text-[14.5px] leading-relaxed text-muted">{t("recentIntro")}</p>
+          <p className="mb-6 mt-2 max-w-[640px] text-base leading-relaxed lg:text-[17px] text-muted">{t("recentIntro")}</p>
           <ul role="list" className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {galleryGroups.map((g, i) => (
               <li key={g.location}>
@@ -74,14 +74,14 @@ export default async function JornadasPage() {
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                       />
                       <div className="p-5">
-                        <span className="text-[11px] font-bold tracking-wide text-blue">
+                        <span className="text-[12.5px] font-bold tracking-wide text-blue">
                           {galleryRegionLabel(g.region).toUpperCase()}
                         </span>
                         <h3 className="mt-1.5 font-serif text-[19px] font-semibold">{g.location}</h3>
                         {g.caption ? (
-                          <p className="mt-2 text-[13.5px] leading-relaxed text-muted">{g.caption}</p>
+                          <p className="mt-2 text-[15px] leading-relaxed text-muted">{g.caption}</p>
                         ) : null}
-                        <span className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-bold text-blue">
+                        <span className="mt-3 inline-flex items-center gap-1.5 text-[15px] font-bold text-blue">
                           {g.photos.length > 0 ? t("photosCount", { count: g.photos.length }) : t("viewPhotos")}
                           <ArrowRight aria-hidden className="h-3.5 w-3.5" />
                         </span>
@@ -100,7 +100,7 @@ export default async function JornadasPage() {
           <h2 id="jornada-types" className="font-serif text-2xl font-semibold">
             {t("typesTitle")}
           </h2>
-          <p className="mb-5 mt-2 max-w-[640px] text-[14.5px] leading-relaxed text-muted">{t("typesIntro")}</p>
+          <p className="mb-5 mt-2 max-w-[640px] text-base leading-relaxed lg:text-[17px] text-muted">{t("typesIntro")}</p>
           <JornadaTypesSection groups={typeGroups} />
         </section>
       ) : null}
@@ -108,7 +108,7 @@ export default async function JornadasPage() {
       <div className="flex flex-wrap items-center justify-between gap-6 rounded-lg bg-gradient-to-br from-ink-soft via-ink to-ink-dark p-9 shadow-[0_4px_20px_rgba(1,19,50,0.25)]">
         <div>
           <h2 className="font-serif text-[22px] font-semibold text-white">{t("ctaTitle")}</h2>
-          <p className="mt-1.5 text-sm text-white/80">{t("ctaBody")}</p>
+          <p className="mt-1.5 text-[15px] text-white/80">{t("ctaBody")}</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <Button href="/donate" variant="accentOnDark">

@@ -13,7 +13,7 @@ export function AdminTable({
     <div className="overflow-x-auto rounded-lg border border-border bg-surface">
       <div className="min-w-[680px]">
         <div
-          className="gap-2 border-b border-border bg-surface-soft px-5 py-3 text-[11.5px] font-bold tracking-wide text-label"
+          className="gap-2 border-b border-border bg-surface-soft px-5 py-3 text-[12.5px] font-bold tracking-wide text-label"
           style={{ display: "grid", gridTemplateColumns: gridTemplate }}
         >
           {columns.map((c, i) => (
@@ -35,7 +35,7 @@ export function AdminTableRow({
 }) {
   return (
     <div
-      className="items-center gap-2 border-b border-border-softer px-5 py-3.5 text-sm last:border-b-0"
+      className="items-center gap-2 border-b border-border-softer px-5 py-3.5 text-[15px] last:border-b-0"
       style={{ display: "grid", gridTemplateColumns: gridTemplate }}
     >
       {children}

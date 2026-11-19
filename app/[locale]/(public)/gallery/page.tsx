@@ -61,7 +61,7 @@ export default async function GalleryPage({
       {groups.map((g) => (
         <div key={g.location} id={slugify(g.location)} className="mb-10 scroll-mt-28">
           <h3 className="mb-1 font-serif text-xl font-semibold">{g.location}</h3>
-          <div className="mb-3.5 text-xs text-label">
+          <div className="mb-3.5 text-[13px] text-label">
             {g.region} · {g.caption}
           </div>
           <div className="grid grid-cols-3 gap-2.5 md:grid-cols-6">

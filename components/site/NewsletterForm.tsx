@@ -12,7 +12,7 @@ export function NewsletterForm() {
   const [state, formAction, pending] = useActionState(subscribeNewsletter, initialState);
 
   if (state.status === "success") {
-    return <p className="text-[13px] text-muted-2">{state.message}</p>;
+    return <p className="text-[15px] text-muted-2">{state.message}</p>;
   }
 
   return (
@@ -26,11 +26,11 @@ export function NewsletterForm() {
       <button
         type="submit"
         disabled={pending}
-        className="min-h-11 w-fit cursor-pointer text-[13px] font-bold text-blue hover:text-blue-hover"
+        className="min-h-11 w-fit cursor-pointer text-[15px] font-bold text-blue hover:text-blue-hover"
       >
         {pending ? t("newsletterSending") : t("newsletterButton")}
       </button>
-      {state.status === "error" ? <p className="text-xs text-red-600">{state.message}</p> : null}
+      {state.status === "error" ? <p className="text-[13px] text-red-600">{state.message}</p> : null}
     </form>
   );
 }

@@ -20,7 +20,7 @@ export function RoleSelect({
         name="role"
         defaultValue={defaultValue}
         onChange={() => formRef.current?.requestSubmit()}
-        className="py-1.5 text-xs"
+        className="py-1.5 text-[13px]"
       >
         {options.map((o) => (
           <option key={o.value} value={o.value}>

@@ -22,7 +22,7 @@ export function NavLink({
       onClick={onClick}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "text-sm font-semibold",
+        "whitespace-nowrap text-base font-semibold",
         isActive ? "text-accent-deep" : "text-ink-soft hover:text-accent-deep",
         className,
       )}

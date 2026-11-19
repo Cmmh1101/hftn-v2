@@ -26,7 +26,7 @@ export function MobileNav({ sections, menuLabel }: { sections: Section[]; menuLa
   }, [open]);
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button
         ref={buttonRef}
         type="button"
@@ -50,7 +50,7 @@ export function MobileNav({ sections, menuLabel }: { sections: Section[]; menuLa
             {sections.map((section, i) => (
               <div key={i} className={cn(i > 0 && "mt-3 border-t border-border pt-3")}>
                 {section.title ? (
-                  <div className="px-1 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[1.5px] text-label">
+                  <div className="px-1 pb-1 pt-2 text-[12.5px] font-bold uppercase tracking-[1.5px] text-label">
                     {section.title}
                   </div>
                 ) : null}

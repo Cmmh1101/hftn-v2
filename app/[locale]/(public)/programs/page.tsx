@@ -36,17 +36,17 @@ export default async function ProgramsPage() {
       {flagship ? (
         <Card highlight className="mb-5 grid grid-cols-1 items-center gap-8 md:grid-cols-2">
           <div>
-            <span className="text-xs font-bold tracking-wide text-accent-deep">
+            <span className="text-[13px] font-bold tracking-wide text-accent-deep">
               {tCategory("flagship").toUpperCase()} · {typeLabel(flagship.type).toUpperCase()}
             </span>
             <h2 className="mt-2.5 font-serif text-[26px] font-semibold">{flagship.name}</h2>
-            <p className="mt-3 text-[14.5px] leading-relaxed text-muted">{flagship.summary}</p>
+            <p className="mt-3 text-base leading-relaxed lg:text-[17px] text-muted">{flagship.summary}</p>
             {flagship.website_url ? (
               <a
                 href={flagship.website_url}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-3 inline-flex items-center text-sm font-bold text-blue max-sm:min-h-11 hover:text-blue-hover"
+                className="mt-3 inline-flex items-center text-[15px] font-bold text-blue max-sm:min-h-11 hover:text-blue-hover"
               >
                 {t("visitWebsite")} →
               </a>
@@ -81,7 +81,7 @@ export default async function ProgramsPage() {
       <Card padding="lg" className="card-lift mt-11 flex flex-wrap items-center justify-between gap-6">
         <div className="max-w-[640px]">
           <h2 className="font-serif text-2xl font-semibold">{t("jornadasTitle")}</h2>
-          <p className="mt-2 text-[14.5px] leading-relaxed text-muted">{t("jornadasIntro")}</p>
+          <p className="mt-2 text-base leading-relaxed lg:text-[17px] text-muted">{t("jornadasIntro")}</p>
         </div>
         <Button href="/jornadas" variant="primary">
           {t("jornadasCta")}

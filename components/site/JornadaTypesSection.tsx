@@ -29,8 +29,8 @@ export function JornadaTypesSection({ groups }: { groups: TypeGroup[] }) {
         {groups.map((g) => (
           <button key={g.type} type="button" onClick={() => setOpenType(g.type)} className="text-left">
             <Card className="card-lift cursor-pointer text-center">
-              <div className="text-[13px] font-bold">{g.label}</div>
-              <div className="mt-1 text-[11px] text-muted-2">{g.entries.length}</div>
+              <div className="text-[15px] font-bold">{g.label}</div>
+              <div className="mt-1 text-[12.5px] text-muted-2">{g.entries.length}</div>
             </Card>
           </button>
         ))}
@@ -62,10 +62,10 @@ export function JornadaTypesSection({ groups }: { groups: TypeGroup[] }) {
                   <Photo path={entry.photo_path} alt={entry.name} aspect="1" rounded="6px" className="w-20 shrink-0" />
                   <div>
                     <div className="font-semibold">{entry.name}</div>
-                    <div className="mt-0.5 text-xs text-muted-2">
+                    <div className="mt-0.5 text-[13px] text-muted-2">
                       {[entry.dateLabel, entry.regionLabel].filter(Boolean).join(" · ")}
                     </div>
-                    {entry.summary ? <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{entry.summary}</p> : null}
+                    {entry.summary ? <p className="mt-1.5 text-[15px] leading-relaxed text-muted">{entry.summary}</p> : null}
                   </div>
                 </div>
               ))}

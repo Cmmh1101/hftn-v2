@@ -14,7 +14,7 @@ export function Chip({
     <Link
       href={href}
       className={cn(
-        "rounded-full border border-border px-4.5 py-2.5 text-[13px] font-bold",
+        "rounded-full border border-border px-4.5 py-2.5 text-[15px] font-bold",
         selected ? "bg-ink text-white" : "bg-surface text-muted",
       )}
     >

@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
         <div className="mb-1 font-serif text-lg font-bold">
           Hope <span className="text-accent">Admin</span>
         </div>
-        <div className="mb-7 text-xs tracking-wide text-label">{t("tagline")}</div>
+        <div className="mb-7 text-[13px] tracking-wide text-label">{t("tagline")}</div>
 
         <div className="flex flex-col gap-3.5">
           <Input
@@ -61,7 +61,7 @@ export default function AdminLoginPage() {
           />
         </div>
 
-        {error ? <p className="mt-3 text-xs text-red-600">{error}</p> : null}
+        {error ? <p className="mt-3 text-[13px] text-red-600">{error}</p> : null}
 
         <Button type="submit" variant="primary" className="mt-5 w-full justify-center" disabled={loading}>
           {loading ? t("signingIn") : t("signIn")}

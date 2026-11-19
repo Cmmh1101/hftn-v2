@@ -15,18 +15,18 @@ export default function ContactPage() {
         <ContactForm />
         <div className="flex flex-col gap-5">
           <div>
-            <div className="text-xs font-bold tracking-wide text-label">{t("emailLabel")}</div>
-            <div className="mt-1 text-[15px]">admin@hopeforthenations7.org</div>
+            <div className="text-[13px] font-bold tracking-wide text-label">{t("emailLabel")}</div>
+            <div className="mt-1 text-base">admin@hopeforthenations7.org</div>
           </div>
           <div>
-            <div className="text-xs font-bold tracking-wide text-label">{t("hqLabel")}</div>
-            <div className="mt-1 text-[15px]">{t("hqValue")}</div>
+            <div className="text-[13px] font-bold tracking-wide text-label">{t("hqLabel")}</div>
+            <div className="mt-1 text-base">{t("hqValue")}</div>
           </div>
           <div>
-            <div className="text-xs font-bold tracking-wide text-label">{t("followLabel")}</div>
+            <div className="text-[13px] font-bold tracking-wide text-label">{t("followLabel")}</div>
             <div className="mt-1.5 flex gap-4">
               {SOCIALS.map((s) => (
-                <a key={s.href} href={s.href} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center text-[15px] font-semibold text-blue">
+                <a key={s.href} href={s.href} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center text-base font-semibold text-blue">
                   {s.label}
                 </a>
               ))}

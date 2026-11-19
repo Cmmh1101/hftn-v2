@@ -27,7 +27,7 @@ function ToolbarButton({
       onMouseDown={(e) => e.preventDefault()}
       onClick={onClick}
       className={cn(
-        "cursor-pointer rounded px-2 py-1 text-[13px] font-bold hover:bg-surface-soft-2",
+        "cursor-pointer rounded px-2 py-1 text-[15px] font-bold hover:bg-surface-soft-2",
         active ? "bg-accent-strong text-accent-ink" : "text-ink-soft",
       )}
     >

@@ -23,7 +23,7 @@ export default async function AdminSettingsPage() {
   return (
     <main className="p-4 sm:p-8">
       <h1 className="mb-2 font-serif text-[26px] font-semibold">{t("title")}</h1>
-      <p className="mb-6 max-w-xl text-sm text-muted-2">{t("intro")}</p>
+      <p className="mb-6 max-w-xl text-[15px] text-muted-2">{t("intro")}</p>
 
       <form action={updateSiteSettings} className="flex max-w-xl flex-col gap-6">
         <Card className="flex flex-col gap-4">
@@ -53,16 +53,16 @@ export default async function AdminSettingsPage() {
 
         <Card className="flex flex-col gap-3">
           <h2 className="font-serif text-lg font-semibold">{t("heroPhotoTitle")}</h2>
-          <p className="text-xs text-label">{t("heroPhotoHint")}</p>
+          <p className="text-[13px] text-label">{t("heroPhotoHint")}</p>
           {settings.hero_photo_path ? (
             <div className="flex items-center gap-4">
               <Photo path={settings.hero_photo_path} alt="" aspect="5/4" rounded="8px" className="w-40 shrink-0" />
-              <label className="flex items-center gap-1.5 text-xs text-muted">
+              <label className="flex items-center gap-1.5 text-[13px] text-muted">
                 <input type="checkbox" name="remove_hero_photo" /> {tForm("removePhoto")}
               </label>
             </div>
           ) : (
-            <p className="text-xs italic text-label">{t("noFileYet")}</p>
+            <p className="text-[13px] italic text-label">{t("noFileYet")}</p>
           )}
           <Input type="file" name="hero_photo_file" accept="image/png,image/jpeg,image/webp" className="w-full" />
         </Card>
@@ -77,15 +77,15 @@ export default async function AdminSettingsPage() {
                 <Label>{r.label}</Label>
                 {currentUrl ? (
                   <div className="mb-1.5 flex items-center gap-3">
-                    <a href={currentUrl} target="_blank" rel="noreferrer" className="text-xs font-bold text-blue">
+                    <a href={currentUrl} target="_blank" rel="noreferrer" className="text-[13px] font-bold text-blue">
                       {t("viewCurrent")}
                     </a>
-                    <label className="flex items-center gap-1.5 text-xs text-muted">
+                    <label className="flex items-center gap-1.5 text-[13px] text-muted">
                       <input type="checkbox" name={`remove_${r.key}`} /> {tForm("removeFile")}
                     </label>
                   </div>
                 ) : (
-                  <p className="mb-1.5 text-xs italic text-label">{t("noFileYet")}</p>
+                  <p className="mb-1.5 text-[13px] italic text-label">{t("noFileYet")}</p>
                 )}
                 <Input type="file" name={`${r.key}_file`} accept="application/pdf" className="w-full" />
               </div>

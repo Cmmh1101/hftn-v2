@@ -76,7 +76,7 @@ export function NavDropdown({ label, items }: { label: string; items: DropdownIt
           setOpen((o) => !o);
         }}
         className={cn(
-          "flex cursor-pointer items-center gap-1 text-sm font-semibold",
+          "flex cursor-pointer items-center gap-1 whitespace-nowrap text-base font-semibold",
           activeHref ? "text-accent-deep" : "text-ink-soft hover:text-accent-deep",
         )}
       >
@@ -104,9 +104,9 @@ export function NavDropdown({ label, items }: { label: string; items: DropdownIt
                     item.href === activeHref && "bg-surface-soft-2",
                   )}
                 >
-                  <span className="block text-sm font-bold text-ink">{item.label}</span>
+                  <span className="block text-base font-bold text-ink">{item.label}</span>
                   {item.description ? (
-                    <span className="mt-0.5 block text-xs font-medium leading-snug text-muted-2">{item.description}</span>
+                    <span className="mt-0.5 block text-[13px] font-medium leading-snug text-muted-2">{item.description}</span>
                   ) : null}
                 </Link>
               </li>

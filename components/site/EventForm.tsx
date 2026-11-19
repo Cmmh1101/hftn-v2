@@ -78,13 +78,13 @@ export async function EventForm({
         {event?.photo_path ? (
           <div className="mb-2 flex items-center gap-3">
             <Photo path={event.photo_path} alt={event.name} aspect="1" rounded="6px" className="w-20" />
-            <label className="flex items-center gap-2 text-xs text-muted">
+            <label className="flex items-center gap-2 text-[13px] text-muted">
               <input type="checkbox" name="removePhoto" /> {tForm("removePhoto")}
             </label>
           </div>
         ) : null}
         <Input type="file" name="photo" accept="image/png,image/jpeg,image/webp,image/gif" className="w-full" />
-        <p className="mt-1 text-xs text-label">{tForm("uploadHint")}</p>
+        <p className="mt-1 text-[13px] text-label">{tForm("uploadHint")}</p>
       </div>
       <div className="mt-2 flex gap-3">
         <Button type="submit" variant="primary">

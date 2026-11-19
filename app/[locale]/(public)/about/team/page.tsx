@@ -28,30 +28,30 @@ export default async function TeamPage() {
             <Photo path={l.photo_path} alt={l.name} aspect="1" label="PHOTO" rounded="8px" className="w-24 shrink-0 min-[480px]:w-28" />
             <div>
               <div className="text-base font-bold">{l.name}</div>
-              <div className="mt-0.5 text-xs font-bold uppercase tracking-wide text-blue">{l.role}</div>
-              <p className="mt-2.5 text-[13.5px] leading-relaxed text-muted">{l.bio}</p>
+              <div className="mt-0.5 text-[13px] font-bold uppercase tracking-wide text-blue">{l.role}</div>
+              <p className="mt-2.5 text-[15px] leading-relaxed text-muted">{l.bio}</p>
             </div>
           </div>
         ))}
       </div>
 
       <h2 className="mb-3 font-serif text-[22px] font-semibold">{t("boardTitle")}</h2>
-      <p className="max-w-[720px] text-[15px] leading-relaxed text-muted">{t("boardBody")}</p>
-      <p className="mb-14 mt-3 text-sm italic text-label">{t("boardComingSoon")}</p>
+      <p className="max-w-[720px] text-base leading-relaxed lg:text-[17px] text-muted">{t("boardBody")}</p>
+      <p className="mb-14 mt-3 text-[15px] italic text-label">{t("boardComingSoon")}</p>
 
       <h2 className="mb-3 font-serif text-[22px] font-semibold">{t("schoolTitle")}</h2>
-      <p className="mb-14 max-w-[720px] text-[15px] leading-relaxed text-muted">{t("schoolBody")}</p>
+      <p className="mb-14 max-w-[720px] text-base leading-relaxed lg:text-[17px] text-muted">{t("schoolBody")}</p>
 
       <h2 className="mb-3 font-serif text-[22px] font-semibold">{t("volunteersTitle")}</h2>
-      <p className="mb-14 max-w-[720px] text-[15px] leading-relaxed text-muted">{t("volunteersBody")}</p>
+      <p className="mb-14 max-w-[720px] text-base leading-relaxed lg:text-[17px] text-muted">{t("volunteersBody")}</p>
 
       <h2 className="mb-2 font-serif text-[22px] font-semibold">{t("cultureTitle")}</h2>
-      <p className="mb-6 max-w-[720px] text-[15px] leading-relaxed text-muted">{t("cultureIntro")}</p>
+      <p className="mb-6 max-w-[720px] text-base leading-relaxed lg:text-[17px] text-muted">{t("cultureIntro")}</p>
       <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 md:grid-cols-4">
         {VALUES.map((v) => (
           <Card key={v.title}>
-            <div className="text-sm font-bold text-accent-deep">{v.title}</div>
-            <p className="mt-1.5 text-[13px] leading-relaxed text-muted-2">{v.body}</p>
+            <div className="text-[15px] font-bold text-accent-deep">{v.title}</div>
+            <p className="mt-1.5 text-[15px] leading-relaxed text-muted-2">{v.body}</p>
           </Card>
         ))}
       </div>

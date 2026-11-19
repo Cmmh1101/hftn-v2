@@ -39,7 +39,7 @@ export function PhotoPlaceholder({
     >
       <span
         className={cn(
-          "max-w-[60%] whitespace-pre-line text-[10.5px] font-semibold uppercase leading-snug tracking-[1.4px]",
+          "max-w-[60%] whitespace-pre-line text-xs font-semibold uppercase leading-snug tracking-[1.4px]",
           tone === "dark" ? "text-white/55" : "text-ink/45",
         )}
       >

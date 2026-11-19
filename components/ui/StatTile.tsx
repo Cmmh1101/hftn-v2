@@ -29,7 +29,7 @@ export function StatTile({
           "relative overflow-hidden rounded-lg border border-border bg-gradient-to-b from-surface to-surface-soft p-5 shadow-[0_1px_2px_rgba(3,48,124,0.04),0_4px_12px_rgba(3,48,124,0.05)] before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:bg-gradient-to-r before:from-accent-strong before:to-blue before:content-['']",
       )}
     >
-      {variant === "card" ? <div className="text-xs font-semibold text-label">{label}</div> : null}
+      {variant === "card" ? <div className="text-[13px] font-semibold text-label">{label}</div> : null}
       <div
         className={cn(
           "font-serif font-bold",
@@ -41,9 +41,9 @@ export function StatTile({
         {countUp ? <CountUp value={value} /> : value}
       </div>
       {variant === "plain" ? (
-        <div className="mt-1 text-[13px] text-muted-2">{label}</div>
+        <div className="mt-1 text-[15px] text-muted-2">{label}</div>
       ) : trend ? (
-        <div className={cn("mt-1 text-xs", trendTone === "up" ? "text-success-text" : "text-label")}>
+        <div className={cn("mt-1 text-[13px]", trendTone === "up" ? "text-success-text" : "text-label")}>
           {trend}
         </div>
       ) : null}
