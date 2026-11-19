@@ -27,7 +27,8 @@ export async function SponsorsStrip({ className }: { className?: string }) {
       </div>
       {/* One continuous line of logos. The set is rendered twice and slid by
           exactly half its width, so the loop has no visible seam. The second
-          copy is hidden from assistive tech and the tab order. */}
+          copy is hidden from assistive tech and skipped by Tab, but (unlike
+          `inert`) still reacts to the mouse, so hover shows the colour logo. */}
       <div className="sponsors-marquee relative mt-9 overflow-hidden pb-12 md:pb-[72px] motion-reduce:overflow-x-auto">
         <div
           className="sponsors-track flex w-max motion-reduce:animate-none"
@@ -38,7 +39,6 @@ export async function SponsorsStrip({ className }: { className?: string }) {
               key={copy}
               role={copy === 0 ? "list" : undefined}
               aria-hidden={copy === 1 ? true : undefined}
-              inert={copy === 1 ? true : undefined}
               className="flex shrink-0"
             >
               {items.map((s, i) => {
@@ -49,6 +49,7 @@ export async function SponsorsStrip({ className }: { className?: string }) {
                         src={getPublicUrl(s.logo_path)!}
                         alt={copy === 0 ? s.name : ""}
                         fill
+                        loading="eager"
                         sizes="192px"
                         className="object-contain opacity-90 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                       />
@@ -58,7 +59,7 @@ export async function SponsorsStrip({ className }: { className?: string }) {
                 return (
                   <li key={`${s.id}-${i}`} className="mr-4 shrink-0">
                     {s.website_url ? (
-                      <a href={s.website_url} target="_blank" rel="noopener noreferrer" className="group block">
+                      <a href={s.website_url} target="_blank" rel="noopener noreferrer" tabIndex={copy === 1 ? -1 : undefined} className="group block">
                         {logo}
                         <span className="sr-only">{tA11y("opensInNewTab")}</span>
                       </a>
