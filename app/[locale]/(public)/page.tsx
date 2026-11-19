@@ -208,7 +208,7 @@ export default async function HomePage() {
       {/* SCHOOL OF HOPE FLAGSHIP */}
       <section className="relative overflow-hidden bg-gradient-to-br from-ink-soft via-ink to-ink-dark text-white">
         <SectionWave position="top" />
-        <SectionWave position="bottom" />
+        <SectionWave position="bottom" className={outreach && outreachPhotos.length >= 2 ? "text-accent-soft!" : undefined} />
         <div
           aria-hidden
           className="pointer-events-none absolute -left-32 -bottom-32 h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(94,203,234,0.14)_0%,rgba(94,203,234,0)_70%)]"
