@@ -96,21 +96,21 @@ export function DonateForm({ programs }: { programs: Program[] }) {
 
   return (
     <div>
-      <div className="mb-9 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="mb-9 grid grid-cols-1 gap-3 min-[360px]:grid-cols-2 sm:gap-4 md:grid-cols-4">
         {tiers.map((tier, i) => (
           <Card
             key={tier.label}
             highlight={tierIndex === i}
-            className="cursor-pointer text-center"
+            className="min-w-0 cursor-pointer p-3! text-center sm:p-6!"
             onClick={() => setTierIndex(i)}
           >
-            <div className="font-serif text-2xl font-bold">{tier.label}</div>
+            <div className="font-serif text-xl font-bold sm:text-2xl">{tier.label}</div>
             <div className="mt-1.5 text-xs text-muted-2">{tier.desc}</div>
           </Card>
         ))}
         <Card
           highlight={tierIndex === "custom"}
-          className="cursor-pointer text-center"
+          className="min-w-0 cursor-pointer p-3! text-center sm:p-6!"
           onClick={() => setTierIndex("custom")}
         >
           {tierIndex === "custom" ? (
@@ -121,11 +121,11 @@ export function DonateForm({ programs }: { programs: Program[] }) {
               value={customAmount}
               onChange={(e) => setCustomAmount(e.target.value)}
               onClick={(e) => e.stopPropagation()}
-              className="text-center"
+              className="w-full min-w-0 text-center"
               autoFocus
             />
           ) : (
-            <div className="font-serif text-2xl font-bold">{t("tierCustom")}</div>
+            <div className="font-serif text-xl font-bold sm:text-2xl">{t("tierCustom")}</div>
           )}
           <div className="mt-1.5 text-xs text-muted-2">{t("tierCustomDesc")}</div>
         </Card>
@@ -146,14 +146,14 @@ export function DonateForm({ programs }: { programs: Program[] }) {
       </div>
 
       <div className="flex flex-wrap gap-3.5">
-        <Button variant="accent" size="lg" onClick={() => donate("one_time")} disabled={submitting}>
+        <Button variant="accent" size="lg" className="max-sm:w-full" onClick={() => donate("one_time")} disabled={submitting}>
           {t("giveOnce")}
         </Button>
-        <Button variant="outline" size="lg" onClick={() => donate("monthly")} disabled={submitting}>
+        <Button variant="outline" size="lg" className="max-sm:w-full" onClick={() => donate("monthly")} disabled={submitting}>
           {t("giveMonthly")}
         </Button>
         {isSchoolOfHope ? (
-          <Button variant="outline" size="lg" onClick={() => donate("sponsorship")} disabled={submitting}>
+          <Button variant="outline" size="lg" className="max-sm:w-full" onClick={() => donate("sponsorship")} disabled={submitting}>
             {t("sponsorStudent")}
           </Button>
         ) : null}

@@ -44,7 +44,7 @@ export function MobileNav({ sections, menuLabel }: { sections: Section[]; menuLa
       {open ? (
         <div
           id={panelId}
-          className="dropdown-panel absolute inset-x-0 top-full max-h-[calc(100dvh-5rem)] overflow-y-auto border-b border-border bg-bg px-8 pb-6 pt-3 shadow-lg"
+          className="dropdown-panel absolute inset-x-0 top-full max-h-[calc(100dvh-5rem)] overflow-y-auto border-b border-border bg-bg px-5 pb-6 pt-3 shadow-lg"
         >
           <nav aria-label={menuLabel}>
             {sections.map((section, i) => (

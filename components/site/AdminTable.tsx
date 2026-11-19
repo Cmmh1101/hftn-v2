@@ -8,16 +8,20 @@ export function AdminTable({
   children: React.ReactNode;
 }) {
   return (
-    <div className="overflow-hidden rounded-lg border border-border bg-surface">
-      <div
-        className="gap-2 border-b border-border bg-surface-soft px-5 py-3 text-[11.5px] font-bold tracking-wide text-label"
-        style={{ display: "grid", gridTemplateColumns: gridTemplate }}
-      >
-        {columns.map((c) => (
-          <span key={c}>{c}</span>
-        ))}
+    // Narrow screens scroll the table sideways inside its card instead of squeezing
+    // six columns into a phone, which would make every cell unreadable.
+    <div className="overflow-x-auto rounded-lg border border-border bg-surface">
+      <div className="min-w-[680px]">
+        <div
+          className="gap-2 border-b border-border bg-surface-soft px-5 py-3 text-[11.5px] font-bold tracking-wide text-label"
+          style={{ display: "grid", gridTemplateColumns: gridTemplate }}
+        >
+          {columns.map((c, i) => (
+            <span key={`${i}-${c}`}>{c}</span>
+          ))}
+        </div>
+        {children}
       </div>
-      {children}
     </div>
   );
 }

@@ -30,7 +30,7 @@ export default async function ProgramsPage() {
   const typeLabel = (type: string) => tTypes(PROGRAM_TYPES.find((pt) => pt.dbValue === type)?.labelKey ?? "continuous");
 
   return (
-    <main className="mx-auto max-w-[1240px] px-8 pb-20 pt-14">
+    <main className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-16 sm:pb-20 pt-10 sm:pt-14">
       <PageIntro eyebrow={t("eyebrow")} title={t("title")} intro={t("intro")} />
 
       {flagship ? (
@@ -46,7 +46,7 @@ export default async function ProgramsPage() {
                 href={flagship.website_url}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-3 inline-block text-sm font-bold text-blue hover:text-blue-hover"
+                className="mt-3 inline-flex items-center text-sm font-bold text-blue max-sm:min-h-11 hover:text-blue-hover"
               >
                 {t("visitWebsite")} →
               </a>

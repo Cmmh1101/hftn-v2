@@ -27,7 +27,7 @@ export default async function AdminDonationsPage() {
     : 0;
 
   return (
-    <main className="p-8">
+    <main className="p-4 sm:p-8">
       <h1 className="mb-5 font-serif text-[26px] font-semibold">{t("title")}</h1>
 
       <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">

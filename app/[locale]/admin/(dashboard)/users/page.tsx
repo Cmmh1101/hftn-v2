@@ -22,7 +22,7 @@ export default async function AdminUsersPage() {
   ];
 
   return (
-    <main className="p-8">
+    <main className="p-4 sm:p-8">
       <div className="mb-5 flex items-center justify-between gap-4">
         <h1 className="font-serif text-[26px] font-semibold">{t("title")}</h1>
         <form action={inviteUser} className="flex gap-2">

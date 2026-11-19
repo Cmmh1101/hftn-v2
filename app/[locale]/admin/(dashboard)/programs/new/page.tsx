@@ -6,7 +6,7 @@ export default async function NewProgramPage() {
   const t = await getTranslations("admin.programs");
 
   return (
-    <main className="p-8">
+    <main className="p-4 sm:p-8">
       <h1 className="mb-6 font-serif text-[26px] font-semibold">{t("newTitle")}</h1>
       <ProgramForm action={createProgram} />
     </main>

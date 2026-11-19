@@ -17,7 +17,7 @@ export default async function AdminGalleryPage() {
   ]);
 
   return (
-    <main className="p-8">
+    <main className="p-4 sm:p-8">
       <h1 className="mb-5 font-serif text-[26px] font-semibold">{t("title")}</h1>
 
       <Card className="mb-7 max-w-2xl">
@@ -44,7 +44,7 @@ export default async function AdminGalleryPage() {
         </form>
       </Card>
 
-      <div className="grid grid-cols-3 gap-3 md:grid-cols-6">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
         {photos.map((p) => (
           <div key={p.id}>
             <Photo path={p.storage_path} alt={p.location} aspect="1" rounded="6px" />

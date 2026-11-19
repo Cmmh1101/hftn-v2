@@ -23,7 +23,7 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
         <Input name="slug" defaultValue={post?.slug} placeholder={t("fieldSlugPlaceholder")} className="w-full" />
         <p className="mt-1 text-xs text-label">{t("fieldSlugHint")}</p>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label>{t("colType")}</Label>
           <Select name="type" defaultValue={post?.type ?? "blog"} required className="w-full">
@@ -39,7 +39,7 @@ export async function PostForm({ action, post }: { action: (formData: FormData) 
           </Select>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label>{t("colAuthor")}</Label>
           <Input name="author" defaultValue={post?.author} className="w-full" />

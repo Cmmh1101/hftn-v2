@@ -85,7 +85,7 @@ export function ProgramCard({
                   href={program.websiteUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-4 inline-block text-sm font-bold text-blue hover:text-blue-hover"
+                  className="mt-4 inline-flex items-center text-sm font-bold text-blue max-sm:min-h-11 hover:text-blue-hover"
                 >
                   {visitWebsiteLabel} →
                 </a>

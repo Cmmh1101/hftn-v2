@@ -14,7 +14,7 @@ export default async function AboutPage() {
   ];
 
   return (
-    <main className="mx-auto max-w-[1240px] px-8 pb-20 pt-14">
+    <main className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-16 sm:pb-20 pt-10 sm:pt-14">
       <PageIntro eyebrow={t("eyebrow")} title={t("title")} />
 
       <div className="mb-14 grid grid-cols-1 gap-12 md:grid-cols-2">
@@ -38,7 +38,7 @@ export default async function AboutPage() {
         ))}
       </div>
 
-      <div className="mb-6 flex items-baseline justify-between">
+      <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <h2 className="font-serif text-[22px] font-semibold">{t("leadershipTitle")}</h2>
         <Button href="/about/team" variant="link">
           {t("meetTeamLink")}

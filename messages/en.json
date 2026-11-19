@@ -301,7 +301,9 @@
     },
     "topbar": {
       "search": "Search programs, donors, posts...",
-      "newButton": "+ New"
+      "newButton": "+ New",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu"
     },
     "form": {
       "save": "Save",

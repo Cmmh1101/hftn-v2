@@ -22,12 +22,11 @@ export function NewsletterForm() {
         name="email"
         placeholder={t("newsletterPlaceholder")}
         required
-        className="text-[13px]"
       />
       <button
         type="submit"
         disabled={pending}
-        className="w-fit cursor-pointer text-[13px] font-bold text-blue hover:text-blue-hover"
+        className="min-h-11 w-fit cursor-pointer text-[13px] font-bold text-blue hover:text-blue-hover"
       >
         {pending ? t("newsletterSending") : t("newsletterButton")}
       </button>

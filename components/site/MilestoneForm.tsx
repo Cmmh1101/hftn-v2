@@ -17,7 +17,7 @@ export async function MilestoneForm({
 
   return (
     <form action={action} className="flex max-w-xl flex-col gap-4">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label>{t("fieldPeriod")}</Label>
           <Input name="period" defaultValue={milestone?.period} placeholder="2021" required className="w-full" />
@@ -37,7 +37,7 @@ export async function MilestoneForm({
           className="w-full"
         />
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label>{t("fieldSortOrder")}</Label>
           <Input type="number" name="sort_order" defaultValue={milestone?.sort_order ?? 0} className="w-full" />

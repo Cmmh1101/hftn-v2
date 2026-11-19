@@ -7,7 +7,7 @@ const paddingClasses: Record<Padding, string> = {
   none: "",
   sm: "p-5",
   md: "p-6",
-  lg: "p-8",
+  lg: "p-6 sm:p-8",
 };
 
 export type CardProps = HTMLAttributes<HTMLDivElement> & {

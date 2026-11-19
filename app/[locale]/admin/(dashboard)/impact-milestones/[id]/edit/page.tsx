@@ -12,7 +12,7 @@ export default async function EditMilestonePage({ params }: { params: Promise<{ 
   if (!milestone) notFound();
 
   return (
-    <main className="p-8">
+    <main className="p-4 sm:p-8">
       <h1 className="mb-6 font-serif text-[26px] font-semibold">{t("editTitle")}</h1>
       <MilestoneForm action={updateMilestone.bind(null, id)} milestone={milestone} />
     </main>

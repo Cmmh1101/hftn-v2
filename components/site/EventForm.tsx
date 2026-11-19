@@ -23,7 +23,7 @@ export async function EventForm({
         <Label>{t("fieldName")}</Label>
         <Input name="name" defaultValue={event?.name} required className="w-full" />
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label>{t("fieldDate")}</Label>
           <Input type="date" name="event_date" defaultValue={event?.event_date} required className="w-full" />
@@ -45,7 +45,7 @@ export async function EventForm({
         <Label>{t("fieldDescription")}</Label>
         <Textarea name="description" defaultValue={event?.description} rows={3} className="w-full" />
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label>{t("fieldGoal")}</Label>
           <Input

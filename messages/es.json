@@ -301,7 +301,9 @@
     },
     "topbar": {
       "search": "Buscar programas, donantes, publicaciones...",
-      "newButton": "+ Nuevo"
+      "newButton": "+ Nuevo",
+      "openMenu": "Abrir menú",
+      "closeMenu": "Cerrar menú"
     },
     "form": {
       "save": "Guardar",

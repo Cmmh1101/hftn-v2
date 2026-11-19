@@ -29,7 +29,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur-sm">
-      <div className="relative mx-auto flex max-w-[1240px] items-center justify-between gap-6 px-8 py-4">
+      <div className="relative mx-auto flex max-w-[1240px] items-center justify-between gap-6 px-5 sm:px-8 py-4">
         <Link href="/" className="flex items-center gap-3 leading-none">
           <Image src="/brand/logo.png" alt="" width={212} height={180} priority className="h-12 w-auto" />
           {/* Under 540px and between 1024-1279px the badge (which already reads "Hope For The Nations") stands alone;

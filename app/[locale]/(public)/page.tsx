@@ -55,18 +55,18 @@ export default async function HomePage() {
   return (
     <main>
       {/* HERO */}
-      <section className="relative mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-14 overflow-hidden px-8 pb-16 pt-[72px] md:grid-cols-[1.1fr_1fr]">
+      <section className="relative mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-14 overflow-hidden px-5 sm:px-8 pb-16 pt-12 md:pt-[72px] md:grid-cols-[1.1fr_1fr]">
         <div
           aria-hidden
           className="dawn-glow pointer-events-none absolute -right-40 -top-40 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(94,203,234,0.16)_0%,rgba(94,203,234,0)_70%)]"
         />
         <div>
           <span className="rise block text-xs font-bold uppercase tracking-[2px] text-blue">{t("eyebrow")}</span>
-          <h1 className="rise accent-em mt-4 font-serif text-[52px] font-semibold leading-[1.08]" style={{ animationDelay: "90ms" }}>
+          <h1 className="rise accent-em mt-4 font-serif text-[40px] font-semibold leading-[1.1] sm:text-[52px]" style={{ animationDelay: "90ms" }}>
             {t.rich("heroTitle", { em: (chunks) => <em>{chunks}</em> })}
           </h1>
           <p className="rise mt-5 max-w-[520px] text-[17px] leading-relaxed text-muted" style={{ animationDelay: "200ms" }}>{t("heroBody")}</p>
-          <div className="rise mt-7 flex gap-3.5" style={{ animationDelay: "310ms" }}>
+          <div className="rise mt-7 flex flex-wrap gap-3.5" style={{ animationDelay: "310ms" }}>
             <Button href="/programs" variant="primary" size="lg">
               {t("viewPrograms")}
             </Button>
@@ -91,7 +91,7 @@ export default async function HomePage() {
 
       {/* STATS BAR */}
       <section className="border-y border-border bg-gradient-to-r from-surface-soft-2 via-surface-soft to-surface-soft-2">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-2 gap-6 px-8 py-9 text-center md:grid-cols-4">
+        <div className="mx-auto grid max-w-[1240px] grid-cols-2 gap-6 px-5 sm:px-8 py-9 text-center md:grid-cols-4">
           {HOME_STATS.map((s, i) => (
             <Reveal key={s.label} delay={i * 90}>
               <StatTile value={s.value} label={s.label} size="lg" tone="accent" countUp />
@@ -101,8 +101,8 @@ export default async function HomePage() {
       </section>
 
       {/* EXPLORE — a visible map of the whole site, so no page depends on finding it in a menu */}
-      <section aria-labelledby="explore-heading" className="mx-auto max-w-[1240px] px-8 pt-[72px]">
-        <h2 id="explore-heading" className="font-serif text-[30px] font-semibold">
+      <section aria-labelledby="explore-heading" className="mx-auto max-w-[1240px] px-5 sm:px-8 pt-12 md:pt-[72px]">
+        <h2 id="explore-heading" className="font-serif text-[26px] font-semibold sm:text-[30px]">
           {t("exploreTitle")}
         </h2>
         <ul role="list" className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -127,9 +127,9 @@ export default async function HomePage() {
       </section>
 
       {/* BEYOND VENEZUELA */}
-      <section className="mx-auto max-w-[1240px] px-8 py-[72px]">
+      <section className="mx-auto max-w-[1240px] px-5 sm:px-8 py-12 md:py-[72px]">
         <div className="mb-7 flex flex-wrap items-baseline justify-between gap-3">
-          <h2 className="font-serif text-[30px] font-semibold">{t("beyondTitle")}</h2>
+          <h2 className="font-serif text-[26px] font-semibold sm:text-[30px]">{t("beyondTitle")}</h2>
           <Button href="/about" variant="link">
             {t("ourStory")}
           </Button>
@@ -155,12 +155,12 @@ export default async function HomePage() {
           aria-hidden
           className="pointer-events-none absolute -left-32 -bottom-32 h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(94,203,234,0.14)_0%,rgba(94,203,234,0)_70%)]"
         />
-        <div className="relative mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-12 px-8 py-24 md:grid-cols-2">
+        <div className="relative mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-12 px-5 sm:px-8 py-16 md:py-24 md:grid-cols-2">
           <div>
             <span className="text-xs font-bold uppercase tracking-[2px] text-accent-strong">
               {t("flagshipEyebrow")}
             </span>
-            <h2 className="mt-3.5 font-serif text-[32px] font-semibold">{t("flagshipTitle")}</h2>
+            <h2 className="mt-3.5 font-serif text-[28px] sm:text-[32px] font-semibold">{t("flagshipTitle")}</h2>
             <p className="mt-4 max-w-[460px] text-[15px] leading-relaxed text-white/85">{t("flagshipBody")}</p>
             <div className="mt-5">
               <Button href="/programs" variant="accentOnDark">
@@ -174,16 +174,16 @@ export default async function HomePage() {
 
       {/* UPCOMING EVENT */}
       {nextEvent ? (
-        <section className="mx-auto max-w-[1240px] px-8 py-[72px]">
-          <div className="mb-7 flex items-baseline justify-between">
-            <h2 className="font-serif text-[30px] font-semibold">{t("upcomingEventTitle")}</h2>
+        <section className="mx-auto max-w-[1240px] px-5 sm:px-8 py-12 md:py-[72px]">
+          <div className="mb-7 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h2 className="font-serif text-[26px] font-semibold sm:text-[30px]">{t("upcomingEventTitle")}</h2>
             <Button href="/events" variant="link">
               {t("allEvents")}
             </Button>
           </div>
           <Card padding="none" className="card-lift grid grid-cols-1 overflow-hidden md:grid-cols-[1fr_1.4fr]">
             <Photo path={nextEvent.photo_path} alt={nextEvent.name} aspect="4/3" label={`PHOTO — ${nextEvent.name}`} rounded="0" />
-            <div className="flex flex-col justify-center p-8">
+            <div className="flex flex-col justify-center p-6 sm:p-8">
               <span className="text-[13px] font-bold text-accent-deep">
                 {formatEventDateLong(nextEvent.event_date, toIntlLocale(locale))} · {nextEvent.location.toUpperCase()}
               </span>
@@ -198,9 +198,9 @@ export default async function HomePage() {
       ) : null}
 
       {/* STORIES OF HOPE */}
-      <section className="mx-auto max-w-[1240px] px-8 pb-[72px] pt-4">
-        <div className="mb-7 flex items-baseline justify-between">
-          <h2 className="font-serif text-[30px] font-semibold">{t("storiesTitle")}</h2>
+      <section className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-12 md:pb-[72px] pt-4">
+        <div className="mb-7 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h2 className="font-serif text-[26px] font-semibold sm:text-[30px]">{t("storiesTitle")}</h2>
           <Button href="/stories" variant="link">
             {t("readMore")}
           </Button>
@@ -223,9 +223,9 @@ export default async function HomePage() {
       </section>
 
       {/* FROM OUR JORNADAS */}
-      <section className="mx-auto max-w-[1240px] px-8 pb-[72px] pt-4">
-        <div className="mb-7 flex items-baseline justify-between">
-          <h2 className="font-serif text-[30px] font-semibold">{t("jornadasTitle")}</h2>
+      <section className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-12 md:pb-[72px] pt-4">
+        <div className="mb-7 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h2 className="font-serif text-[26px] font-semibold sm:text-[30px]">{t("jornadasTitle")}</h2>
           <Button href="/gallery" variant="link">
             {t("fullGallery")}
           </Button>
@@ -246,7 +246,7 @@ export default async function HomePage() {
 
       {/* FOLLOW US */}
       <section className="border-t border-border bg-gradient-to-b from-surface-soft-2 to-surface-soft">
-        <div className="mx-auto max-w-[1240px] px-8 py-14">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-8 py-14">
           <h2 id="follow-us-heading" className="mb-6 font-serif text-2xl font-semibold">{t("followUs")}</h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.3fr_1fr]">
             <SocialButtons labelledBy="follow-us-heading" />

@@ -48,6 +48,8 @@
 @layer base {
   body {
     background: var(--color-bg);
+    /* Manrope turns "(c)" into © via a ligature, which turned "501(c)(3)" into "501©(3)". */
+    font-variant-ligatures: no-common-ligatures;
   }
 
   a {

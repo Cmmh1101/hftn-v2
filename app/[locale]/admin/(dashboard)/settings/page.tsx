@@ -21,13 +21,13 @@ export default async function AdminSettingsPage() {
   ];
 
   return (
-    <main className="p-8">
+    <main className="p-4 sm:p-8">
       <h1 className="mb-2 font-serif text-[26px] font-semibold">{t("title")}</h1>
       <p className="mb-6 max-w-xl text-sm text-muted-2">{t("intro")}</p>
 
       <form action={updateSiteSettings} className="flex max-w-xl flex-col gap-6">
         <Card className="flex flex-col gap-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <Label>{t("fieldCountries")}</Label>
               <Input name="countries_served" defaultValue={settings.countries_served} className="w-full" />

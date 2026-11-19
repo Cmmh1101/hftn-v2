@@ -50,7 +50,7 @@ export default async function JornadasPage() {
   })).filter((g) => g.entries.length > 0);
 
   return (
-    <main className="mx-auto max-w-[1240px] px-8 pb-20 pt-14">
+    <main className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-16 sm:pb-20 pt-10 sm:pt-14">
       <PageIntro eyebrow={t("eyebrow")} title={t("title")} intro={t("intro")} />
 
       {galleryGroups.length > 0 ? (

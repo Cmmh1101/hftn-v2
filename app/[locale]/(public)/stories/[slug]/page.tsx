@@ -18,7 +18,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
   const intlLocale = toIntlLocale(locale);
 
   return (
-    <main className="mx-auto max-w-[760px] px-8 pb-20 pt-14">
+    <main className="mx-auto max-w-[760px] px-5 sm:px-8 pb-16 sm:pb-20 pt-10 sm:pt-14">
       <Link href="/stories" className="text-sm font-semibold text-blue">
         ← {t("backToStories")}
       </Link>
@@ -27,7 +27,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
         {post.category ? (
           <span className="text-xs font-bold tracking-wide text-blue">{post.category.toUpperCase()}</span>
         ) : null}
-        <h1 className="mt-2 font-serif text-[34px] font-semibold leading-tight">{post.title}</h1>
+        <h1 className="mt-2 font-serif text-[28px] font-semibold leading-tight sm:text-[34px]">{post.title}</h1>
         <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-muted-2">
           {post.author ? <span>{post.author}</span> : null}
           {post.author && post.published_at ? <span>·</span> : null}

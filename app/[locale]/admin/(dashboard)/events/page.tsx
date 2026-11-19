@@ -19,8 +19,8 @@ export default async function AdminEventsPage() {
   const intlLocale = toIntlLocale(locale);
 
   return (
-    <main className="p-8">
-      <div className="mb-5 flex items-center justify-between">
+    <main className="p-4 sm:p-8">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-serif text-[26px] font-semibold">{t("title")}</h1>
         <Button href="/admin/events/new" variant="primary" size="sm">
           {t("newEvent")}

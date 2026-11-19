@@ -43,7 +43,7 @@ export default async function AdminOverviewPage() {
   }
 
   return (
-    <main className="p-8">
+    <main className="p-4 sm:p-8">
       <h1 className="mb-6 font-serif text-[26px] font-semibold">{t("title")}</h1>
 
       <div className="mb-7 grid grid-cols-2 gap-4 md:grid-cols-4">

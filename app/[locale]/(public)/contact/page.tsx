@@ -8,7 +8,7 @@ export default function ContactPage() {
   const t = useTranslations("contact");
 
   return (
-    <main className="mx-auto max-w-[1240px] px-8 pb-20 pt-14">
+    <main className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-16 sm:pb-20 pt-10 sm:pt-14">
       <PageIntro eyebrow={t("eyebrow")} title={t("title")} />
 
       <div className="grid grid-cols-1 gap-14 md:grid-cols-2">
@@ -26,7 +26,7 @@ export default function ContactPage() {
             <div className="text-xs font-bold tracking-wide text-label">{t("followLabel")}</div>
             <div className="mt-1.5 flex gap-4">
               {SOCIALS.map((s) => (
-                <a key={s.href} href={s.href} target="_blank" rel="noreferrer" className="text-[15px] font-semibold text-blue">
+                <a key={s.href} href={s.href} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center text-[15px] font-semibold text-blue">
                   {s.label}
                 </a>
               ))}

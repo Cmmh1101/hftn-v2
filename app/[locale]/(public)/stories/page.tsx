@@ -17,7 +17,7 @@ export default async function StoriesPage() {
   const intlLocale = toIntlLocale(locale);
 
   return (
-    <main className="mx-auto max-w-[1240px] px-8 pb-20 pt-14">
+    <main className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-16 sm:pb-20 pt-10 sm:pt-14">
       <PageIntro eyebrow={t("eyebrow")} title={t("title")} />
 
       <div className="mb-14 grid grid-cols-2 gap-5 md:grid-cols-4">

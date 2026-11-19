@@ -28,7 +28,7 @@ export async function ProgramForm({
         <Label>{t("colName")}</Label>
         <Input name="name" defaultValue={program?.name} required className="w-full" />
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label>{t("fieldCategory")}</Label>
           <Select name="category" defaultValue={program?.category ?? "continuous"} required className="w-full">
@@ -47,7 +47,7 @@ export async function ProgramForm({
           </Select>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label>{t("colType")}</Label>
           <Select name="type" defaultValue={program?.type ?? PROGRAM_TYPES[0].dbValue} required className="w-full">
@@ -69,7 +69,7 @@ export async function ProgramForm({
           </Select>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label>{t("colParticipants")}</Label>
           <Input type="number" min={0} name="participants" defaultValue={program?.participants ?? 0} className="w-full" />

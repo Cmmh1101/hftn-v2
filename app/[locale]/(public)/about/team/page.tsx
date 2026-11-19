@@ -18,14 +18,14 @@ export default async function TeamPage() {
   ];
 
   return (
-    <main className="mx-auto max-w-[1240px] px-8 pb-20 pt-14">
+    <main className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-16 sm:pb-20 pt-10 sm:pt-14">
       <PageIntro eyebrow={t("eyebrow")} title={t("title")} intro={t("intro")} />
 
       <h2 className="mb-6 font-serif text-[22px] font-semibold">{t("leadershipTitle")}</h2>
       <div className="mb-14 grid grid-cols-1 gap-8 md:grid-cols-2">
         {leaders.map((l) => (
-          <div key={l.id} className="flex gap-5">
-            <Photo path={l.photo_path} alt={l.name} aspect="1" label="PHOTO" rounded="8px" className="w-28 shrink-0" />
+          <div key={l.id} className="flex flex-col gap-4 min-[480px]:flex-row min-[480px]:gap-5">
+            <Photo path={l.photo_path} alt={l.name} aspect="1" label="PHOTO" rounded="8px" className="w-24 shrink-0 min-[480px]:w-28" />
             <div>
               <div className="text-base font-bold">{l.name}</div>
               <div className="mt-0.5 text-xs font-bold uppercase tracking-wide text-blue">{l.role}</div>
@@ -47,7 +47,7 @@ export default async function TeamPage() {
 
       <h2 className="mb-2 font-serif text-[22px] font-semibold">{t("cultureTitle")}</h2>
       <p className="mb-6 max-w-[720px] text-[15px] leading-relaxed text-muted">{t("cultureIntro")}</p>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 md:grid-cols-4">
         {VALUES.map((v) => (
           <Card key={v.title}>
             <div className="text-sm font-bold text-accent-deep">{v.title}</div>

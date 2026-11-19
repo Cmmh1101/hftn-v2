@@ -12,7 +12,7 @@ export default async function EditLeaderPage({ params }: { params: Promise<{ id:
   if (!leader) notFound();
 
   return (
-    <main className="p-8">
+    <main className="p-4 sm:p-8">
       <h1 className="mb-6 font-serif text-[26px] font-semibold">{t("editTitle")}</h1>
       <LeaderForm action={updateLeader.bind(null, id)} leader={leader} />
     </main>

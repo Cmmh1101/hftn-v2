@@ -13,7 +13,7 @@ const variantClasses: Record<Variant, string> = {
   accentOnDark: "bg-accent-strong text-accent-ink hover:brightness-105",
   outline: "border-[1.5px] border-ink text-ink bg-transparent hover:bg-ink/5",
   outlineOnDark: "border-[1.5px] border-white/70 text-white bg-transparent hover:bg-white/10",
-  link: "text-blue hover:text-blue-hover bg-transparent p-0! font-bold",
+  link: "text-blue hover:text-blue-hover bg-transparent p-0! font-bold max-sm:min-h-11",
 };
 
 const sizeClasses: Record<Size, string> = {

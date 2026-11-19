@@ -42,7 +42,7 @@ export default async function ImpactPage() {
   ];
 
   return (
-    <main className="mx-auto max-w-[1240px] px-8 pb-20 pt-14">
+    <main className="mx-auto max-w-[1240px] px-5 sm:px-8 pb-16 sm:pb-20 pt-10 sm:pt-14">
       <PageIntro eyebrow={t("eyebrow")} title={t("title")} intro={t("intro")} />
 
       <div className="mb-11 grid grid-cols-2 gap-5 md:grid-cols-4">
@@ -70,7 +70,29 @@ export default async function ImpactPage() {
       {milestones.length > 0 ? (
         <>
           <h2 className="mb-5 font-serif text-2xl font-semibold">{t("milestonesTitle")}</h2>
-          <Card padding="none" className="mb-11 overflow-hidden">
+          {/* Phones: a three-column table clips its last (most important) column, so each
+              milestone becomes a stacked row instead. The table returns from 640px up. */}
+          <Card padding="none" className="mb-11 overflow-hidden sm:hidden">
+            <ul role="list" aria-label={t("milestonesTitle")}>
+              {milestones.map((m) => (
+                <li key={m.id} className="border-b border-border-soft px-5 py-4 last:border-b-0">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="text-sm font-bold text-ink">{m.period}</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-label">{m.area}</span>
+                  </div>
+                  <p className="mt-1.5 text-[14px] leading-snug text-ink">
+                    {m.impact_value}
+                    {m.is_goal ? (
+                      <span className="ml-2 rounded-full bg-blue-soft px-2 py-0.5 text-[10.5px] font-bold text-blue">
+                        {t("goalBadge")}
+                      </span>
+                    ) : null}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </Card>
+          <Card padding="none" className="mb-11 hidden overflow-hidden sm:block">
             <table className="w-full text-left text-[13.5px]">
               <thead>
                 <tr className="border-b border-border-soft bg-surface-soft-2 text-xs font-bold uppercase tracking-wide text-label">
