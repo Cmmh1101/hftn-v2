@@ -10,11 +10,15 @@ import Image from "next/image";
 import { Photo } from "@/components/ui/Photo";
 import { VideoEmbed } from "@/components/ui/VideoEmbed";
 import { SponsorsStrip } from "@/components/site/SponsorsStrip";
-import { getGalleryGroups, getNextEvent, getPrograms, getProgramPhotosByProgram, getPublishedPosts, getSiteSettings } from "@/lib/queries";
+import { VerseBanner } from "@/components/site/VerseBanner";
+import { getGalleryGroups, getNextEvent, getPrograms, getVerses, getProgramPhotosByProgram, getPublishedPosts, getSiteSettings } from "@/lib/queries";
 import { getPublicUrl } from "@/lib/storage";
 import { formatEventDateLong, toIntlLocale } from "@/lib/format";
 import { excerptFromHtml } from "@/lib/excerpt";
 import { SocialButtons } from "@/components/site/SocialButtons";
+
+// The program shown in the second home banner.
+const OUTREACH_SLUG = "outreach-programs-for-children-and-youth";
 
 // "Puerto Píritu, Anzoátegui, Venezuela" -> "Puerto Píritu"
 function placeName(location: string) {
@@ -41,7 +45,7 @@ function mosaicPhotos<T extends { photos: { storage_path: string | null }[] }>(g
 
 export default async function HomePage() {
   const contentLocale = await getLocale();
-  const [t, tNav, locale, stories, nextEvent, galleryGroups, settings, programs, programPhotos] = await Promise.all([
+  const [t, tNav, locale, stories, nextEvent, galleryGroups, settings, programs, programPhotos, verses] = await Promise.all([
     getTranslations("home"),
     getTranslations("nav"),
     getLocale(),
@@ -51,12 +55,19 @@ export default async function HomePage() {
     getSiteSettings(),
     getPrograms(contentLocale),
     getProgramPhotosByProgram(contentLocale),
+    getVerses(contentLocale),
   ]);
   const featuredStories = stories.slice(0, 3);
   const mosaic = mosaicPhotos(galleryGroups, 9);
 
   const flagship = programs.find((p) => p.category === "flagship");
   const flagshipCover = flagship ? (flagship.photo_path ?? programPhotos.get(flagship.id)?.[0]?.storage_path ?? null) : null;
+  const outreach = programs.find((p) => p.slug === OUTREACH_SLUG);
+  const outreachPhotos = outreach
+    ? [outreach.photo_path, ...(programPhotos.get(outreach.id) ?? []).map((p) => p.storage_path)]
+        .filter((p): p is string => Boolean(p))
+        .slice(0, 4)
+    : [];
   const relief = programs.find((p) => p.slug === "disaster-relief");
   const reliefCover = relief ? (relief.photo_path ?? programPhotos.get(relief.id)?.[0]?.storage_path ?? null) : null;
 
@@ -226,6 +237,36 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* OUTREACH PROGRAMS */}
+      {outreach && outreachPhotos.length >= 2 ? (
+        <section aria-labelledby="outreach-heading" className="bg-gradient-to-b from-accent-soft to-accent-soft-2">
+          <div className="mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1.1fr_1fr] md:gap-14 md:py-[72px]">
+            <ul role="list" className="grid grid-cols-2 gap-3 md:order-first">
+              {outreachPhotos.map((path, i) => (
+                <li key={path} className={i % 3 === 0 ? "translate-y-0" : "translate-y-3"}>
+                  <Photo path={path} alt={outreach.name} aspect="4/3" rounded="12px" sizes="(max-width: 768px) 50vw, 320px" />
+                </li>
+              ))}
+            </ul>
+            <div>
+              <span className="text-[13px] font-bold uppercase tracking-[2px] text-blue">{t("outreachEyebrow")}</span>
+              <h2 id="outreach-heading" className="mt-3.5 font-serif text-[28px] font-semibold leading-tight sm:text-[34px]">
+                {t("outreachTitle")}
+              </h2>
+              <p className="mt-4 max-w-[480px] text-base leading-relaxed text-muted lg:text-[17px]">{t("outreachBody")}</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button href={`/programs/${outreach.slug}`} variant="primary">
+                  {t("outreachCta")}
+                </Button>
+                <Button href="/donate" variant="outline">
+                  {t("donate")}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {/* UPCOMING EVENT */}
       {nextEvent ? (
         <section className="mx-auto max-w-[1240px] px-5 sm:px-8 py-12 md:py-[72px]">
@@ -249,6 +290,14 @@ export default async function HomePage() {
             </div>
           </Card>
         </section>
+      ) : null}
+
+      {/* BIBLE VERSES */}
+      {verses.length > 0 ? (
+        <VerseBanner
+          verses={verses.map((v) => ({ id: v.id, reference: v.reference, text: v.text }))}
+          backgroundPath="site/verse-sea.jpg"
+        />
       ) : null}
 
       {/* STORIES OF HOPE */}

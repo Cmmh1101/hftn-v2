@@ -149,7 +149,11 @@
     "reliefBody": "Podemos ayudar y generar un impacto gracias a contribuyentes como tú. Ayúdanos a seguir sirviendo a nuestros niños y a nuestra comunidad en tiempos difíciles.",
     "reliefCta": "Ayuda a las familias a recuperarse",
     "flagshipPhotoAlt": "Un estudiante de School of Hope International",
-    "reliefLearn": "Saber más"
+    "reliefLearn": "Saber más",
+    "outreachEyebrow": "Programas de alcance",
+    "outreachTitle": "Llegando a niños y jóvenes donde están",
+    "outreachBody": "Nuestros voluntarios llevan comidas calientes, atención médica, cortes de cabello, útiles escolares y una cálida bienvenida a niños, jóvenes y familias en comunidades vulnerables.",
+    "outreachCta": "Conoce el programa"
   },
   "programCategory": {
     "flagship": "Insignia",
@@ -385,7 +389,8 @@
       "subscribers": "Suscriptores",
       "settings": "Configuración",
       "signOut": "Cerrar sesión",
-      "sponsors": "Patrocinadores"
+      "sponsors": "Patrocinadores",
+      "verses": "Versículos bíblicos"
     },
     "navGroups": {
       "content": "Contenido",
@@ -626,6 +631,22 @@
       "upload": "Subir fotos",
       "uploading": "Subiendo {done} de {total}…",
       "uploaded": "{count, plural, one {# foto agregada.} other {# fotos agregadas.}}"
+    },
+    "verses": {
+      "title": "Versículos bíblicos",
+      "intro": "Versículos que se muestran en el banner de la página de inicio. Con más de uno, el banner los va rotando.",
+      "newVerse": "+ Nuevo versículo",
+      "newTitle": "Nuevo versículo",
+      "editTitle": "Editar versículo",
+      "colReference": "REFERENCIA",
+      "colText": "VERSÍCULO",
+      "colStatus": "ESTADO",
+      "hidden": "Oculto",
+      "edit": "Editar",
+      "fieldReference": "Referencia",
+      "fieldText": "Texto del versículo",
+      "fieldSortOrder": "Orden",
+      "fieldActive": "Mostrar en el sitio"
     }
   },
   "jornadas": {
@@ -646,5 +667,12 @@
   "sponsors": {
     "title": "Nuestros patrocinadores y aliados",
     "intro": "Gracias a las empresas y organizaciones cuya generosidad hace posible este trabajo."
+  },
+  "verses": {
+    "label": "Versículos bíblicos",
+    "controls": "Controles de versículos",
+    "previous": "Versículo anterior",
+    "next": "Versículo siguiente",
+    "goTo": "Mostrar versículo {number} de {total}"
   }
 }

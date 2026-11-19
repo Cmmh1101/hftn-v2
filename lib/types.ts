@@ -169,3 +169,14 @@ export type SiteSettings = {
   hero_photo_path: string | null;
   home_video_url: string | null;
 };
+
+export type Verse = {
+  id: string;
+  reference: string;
+  reference_es: string | null;
+  text: string;
+  text_es: string | null;
+  sort_order: number;
+  active: boolean;
+  created_at: string;
+};

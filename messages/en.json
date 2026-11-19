@@ -149,7 +149,11 @@
     "reliefBody": "We are able to support and make an impact thanks to contributors like you. Help us continue serving our children and community during difficult times.",
     "reliefCta": "Help families recover",
     "flagshipPhotoAlt": "A School of Hope International student",
-    "reliefLearn": "Learn more"
+    "reliefLearn": "Learn more",
+    "outreachEyebrow": "Outreach programs",
+    "outreachTitle": "Reaching children and youth where they are",
+    "outreachBody": "Our volunteers bring hot meals, medical care, haircuts, school supplies and a warm welcome to children, youth and families in vulnerable communities.",
+    "outreachCta": "Explore the program"
   },
   "programCategory": {
     "flagship": "Flagship",
@@ -385,7 +389,8 @@
       "subscribers": "Subscribers",
       "settings": "Settings",
       "signOut": "Sign out",
-      "sponsors": "Sponsors"
+      "sponsors": "Sponsors",
+      "verses": "Bible verses"
     },
     "navGroups": {
       "content": "Content",
@@ -626,6 +631,22 @@
       "upload": "Upload photos",
       "uploading": "Uploading {done} of {total}…",
       "uploaded": "{count, plural, one {# photo added.} other {# photos added.}}"
+    },
+    "verses": {
+      "title": "Bible verses",
+      "intro": "Verses shown in the banner on the Home page. With more than one, the banner rotates through them.",
+      "newVerse": "+ New Verse",
+      "newTitle": "New Verse",
+      "editTitle": "Edit Verse",
+      "colReference": "REFERENCE",
+      "colText": "VERSE",
+      "colStatus": "STATUS",
+      "hidden": "Hidden",
+      "edit": "Edit",
+      "fieldReference": "Reference",
+      "fieldText": "Verse text",
+      "fieldSortOrder": "Sort order",
+      "fieldActive": "Show on the website"
     }
   },
   "jornadas": {
@@ -646,5 +667,12 @@
   "sponsors": {
     "title": "Our sponsors & partners",
     "intro": "Thank you to the businesses and organizations whose generosity makes this work possible."
+  },
+  "verses": {
+    "label": "Bible verses",
+    "controls": "Verse controls",
+    "previous": "Previous verse",
+    "next": "Next verse",
+    "goTo": "Show verse {number} of {total}"
   }
 }

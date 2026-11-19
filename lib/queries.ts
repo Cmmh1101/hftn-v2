@@ -11,6 +11,7 @@ import type {
   ProgramPhoto,
   SiteSettings,
   Sponsor,
+  Verse,
   Subscriber,
 } from "@/lib/types";
 import { relativeTime } from "@/lib/format";
@@ -22,6 +23,7 @@ const PROGRAM_FIELDS = ["name", "summary", "description"] as const;
 const EVENT_FIELDS = ["name", "description", "cta_label"] as const;
 const POST_FIELDS = ["title", "category", "tags", "body"] as const;
 const LEADER_FIELDS = ["role", "bio"] as const;
+const VERSE_FIELDS = ["reference", "text"] as const;
 const MILESTONE_FIELDS = ["area", "impact_value"] as const;
 
 const DEFAULT_SITE_SETTINGS: SiteSettings = {
@@ -86,6 +88,15 @@ export async function getProgramPhotosByProgram(locale?: string): Promise<Map<st
     byProgram.set(photo.program_id, [...(byProgram.get(photo.program_id) ?? []), photo]);
   }
   return byProgram;
+}
+
+export async function getVerses(locale?: string, options: { includeInactive?: boolean } = {}): Promise<Verse[]> {
+  const supabase = await createClient();
+  let query = supabase.from("verses").select("*").order("sort_order", { ascending: true }).order("created_at", { ascending: true });
+  if (!options.includeInactive) query = query.eq("active", true);
+  const { data } = await query;
+  const rows = data ?? [];
+  return locale ? rows.map((r) => localizeRow(r, VERSE_FIELDS, toContentLocale(locale))) : rows;
 }
 
 export async function getSponsors(options: { includeInactive?: boolean } = {}): Promise<Sponsor[]> {

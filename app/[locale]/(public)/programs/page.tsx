@@ -74,7 +74,7 @@ export default async function ProgramsPage() {
         </Card>
       ) : null}
 
-      <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-3">
+      <div className="mb-5 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
         {continuousAndRelief.map((p) => (
           <ProgramCard key={p.id} program={toCardData(p)} />
         ))}
